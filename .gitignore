@@ -128,23 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-../results/
-../obsolete/
-../demos/
-
-../results
-../obsolete
-../demos
-
-results/*
-obsolete/*
-demos/*
-
 results/
-obsolete/
 demos/
-
-results
-obsolete
-demos
-
+obsolete/
