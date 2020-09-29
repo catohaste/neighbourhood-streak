@@ -132,7 +132,19 @@ dmypy.json
 ../obsolete/
 ../demos/
 
+../results
+../obsolete
+../demos
+
 results/*
 obsolete/*
 demos/*
+
+results/
+obsolete/
+demos/
+
+results
+obsolete
+demos
 
