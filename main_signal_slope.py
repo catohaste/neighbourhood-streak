@@ -29,7 +29,7 @@ if sub_directory[-1] != '/':
 save_directory = 'results/' + sub_directory
 
 # initialize embryos
-embryoN = 24
+embryoN = 30
 embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
 
 model_values = np.ndarray((modelN, embryoN, initial_params['number_of_cells']), dtype=float)

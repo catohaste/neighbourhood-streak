@@ -231,7 +231,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     
     list_of_embryos[8].index = '08_'
-    list_of_embryos[8].name = 'A, 10'
+    list_of_embryos[8].name = 'C-A-C, 0-10-0'
     list_of_embryos[8].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
     list_of_embryos[8].inducer.add_bead(0, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[8].desired = copy.deepcopy(no_streak)
@@ -268,99 +268,158 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[11].desired = add_streak(list_of_embryos[11].desired, 320, certain_width, uncertain_width)
     list_of_embryos[11].desired = add_streak(list_of_embryos[11].desired, 0, certain_width, uncertain_width)
     
-    list_of_embryos[23].index = '23_'
-    list_of_embryos[23].name = 'A-B-A, 10-25-10'
-    list_of_embryos[23].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
-    list_of_embryos[23].inducer.add_bead(-20, heparin_10_spread, activin_10_conc, heparin_width)
-    list_of_embryos[23].inhibitor.add_bead(0, afigel_25_spread, bmp4_25_conc, afigel_width)
-    list_of_embryos[23].inducer.add_bead(20, heparin_10_spread, activin_10_conc, heparin_width)
-    list_of_embryos[23].desired = copy.deepcopy(no_streak)
-    list_of_embryos[23].desired = add_streak(list_of_embryos[23].desired, 0, certain_width, uncertain_width)
-    
-    
     list_of_embryos[12].index = '12_'
-    list_of_embryos[12].name = 'B-C-B, 12-0-12'
+    list_of_embryos[12].name = 'A-B-A, 10-25-10'
     list_of_embryos[12].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
-    list_of_embryos[12].inhibitor.add_bead(-20, afigel_12_spread, bmp4_12_conc, afigel_width)
-    list_of_embryos[12].inhibitor.add_bead(20, afigel_12_spread, bmp4_12_conc, afigel_width)
+    list_of_embryos[12].inducer.add_bead(-20, heparin_10_spread, activin_10_conc, heparin_width)
+    list_of_embryos[12].inhibitor.add_bead(0, afigel_25_spread, bmp4_25_conc, afigel_width)
+    list_of_embryos[12].inducer.add_bead(20, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[12].desired = copy.deepcopy(no_streak)
     list_of_embryos[12].desired = add_streak(list_of_embryos[12].desired, 0, certain_width, uncertain_width)
-
+    
+    
+    
     list_of_embryos[13].index = '13_'
-    list_of_embryos[13].name = 'C-A-C, 0-2-0'
+    list_of_embryos[13].name = 'B-C-B, 6-0-6'
     list_of_embryos[13].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
-    list_of_embryos[13].inducer.add_bead(0, heparin_2_spread, activin_2_conc, heparin_width)
+    list_of_embryos[13].inhibitor.add_bead(-20, afigel_6_spread, bmp4_6_conc, afigel_width)
+    list_of_embryos[13].inhibitor.add_bead(20, afigel_6_spread, bmp4_6_conc, afigel_width)
     list_of_embryos[13].desired = copy.deepcopy(no_streak)
     list_of_embryos[13].desired = add_streak(list_of_embryos[13].desired, 0, certain_width, uncertain_width)
 
     list_of_embryos[14].index = '14_'
-    list_of_embryos[14].name = 'B-A-B, 12-2-12'
+    list_of_embryos[14].name = 'C-A-C, 0-2-0'
     list_of_embryos[14].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
-    list_of_embryos[14].inhibitor.add_bead(-20, afigel_12_spread, bmp4_12_conc, afigel_width)
     list_of_embryos[14].inducer.add_bead(0, heparin_2_spread, activin_2_conc, heparin_width)
-    list_of_embryos[14].inhibitor.add_bead(20, afigel_12_spread, bmp4_12_conc, afigel_width)
     list_of_embryos[14].desired = copy.deepcopy(no_streak)
-    list_of_embryos[14].desired = add_streak(list_of_embryos[14].desired, 300, certain_width, uncertain_width)
     list_of_embryos[14].desired = add_streak(list_of_embryos[14].desired, 0, certain_width, uncertain_width)
-
-
+    
     list_of_embryos[15].index = '15_'
-    list_of_embryos[15].name = 'BMP4 bead, ant'
+    list_of_embryos[15].name = 'B-A-B, 6-2-6'
     list_of_embryos[15].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
-    list_of_embryos[15].inhibitor.add_bead(-70, afigel_25_spread, bmp4_25_conc, afigel_width)
+    list_of_embryos[15].inhibitor.add_bead(-20, afigel_6_spread, bmp4_6_conc, afigel_width)
+    list_of_embryos[15].inducer.add_bead(0, heparin_2_spread, activin_2_conc, heparin_width)
+    list_of_embryos[15].inhibitor.add_bead(20, afigel_6_spread, bmp4_6_conc, afigel_width)
     list_of_embryos[15].desired = copy.deepcopy(no_streak)
+    list_of_embryos[15].desired = add_streak(list_of_embryos[15].desired, 300, certain_width, uncertain_width)
     list_of_embryos[15].desired = add_streak(list_of_embryos[15].desired, 0, certain_width, uncertain_width)
 
     list_of_embryos[16].index = '16_'
-    list_of_embryos[16].name = 'BMP4 bead, post cent, 50ng'
-    list_of_embryos[16].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
-    list_of_embryos[16].inhibitor.add_bead(300, afigel_50_spread, bmp4_50_conc, afigel_width)
+    list_of_embryos[16].name = 'B-A-B, 12-2-12'
+    list_of_embryos[16].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[16].inhibitor.add_bead(-20, afigel_12_spread, bmp4_12_conc, afigel_width)
+    list_of_embryos[16].inducer.add_bead(0, heparin_2_spread, activin_2_conc, heparin_width)
+    list_of_embryos[16].inhibitor.add_bead(20, afigel_12_spread, bmp4_12_conc, afigel_width)
     list_of_embryos[16].desired = copy.deepcopy(no_streak)
-
+    list_of_embryos[16].desired = add_streak(list_of_embryos[16].desired, 300, certain_width, uncertain_width)
+    list_of_embryos[16].desired = add_streak(list_of_embryos[16].desired, 0, certain_width, uncertain_width)
+    
+    
+    
     list_of_embryos[17].index = '17_'
-    list_of_embryos[17].name = 'BMP4 bead, post cent, 6ng'
-    list_of_embryos[17].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
-    list_of_embryos[17].inhibitor.add_bead(300, afigel_6_spread, bmp4_6_conc, afigel_width)
+    list_of_embryos[17].name = 'BMP4 bead, ant'
+    list_of_embryos[17].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[17].inhibitor.add_bead(-70, afigel_25_spread, bmp4_25_conc, afigel_width)
     list_of_embryos[17].desired = copy.deepcopy(no_streak)
-    list_of_embryos[17].desired = add_streak(list_of_embryos[17].desired, 580, certain_width, uncertain_width)
-    list_of_embryos[17].desired = add_streak(list_of_embryos[17].desired, 20, certain_width, uncertain_width)
+    list_of_embryos[17].desired = add_streak(list_of_embryos[17].desired, 0, certain_width, uncertain_width)
+    
+    
     
     list_of_embryos[18].index = '18_'
-    list_of_embryos[18].name = 'BMP4 bead, post off-cent, 50ng'
-    list_of_embryos[18].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
-    list_of_embryos[18].inhibitor.add_bead(270, afigel_50_spread, bmp4_50_conc, afigel_width)
+    list_of_embryos[18].name = 'DM bead, ant'
+    list_of_embryos[18].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[18].inhibitor.add_bead(70, AG1X2_spread, DM_conc, AG1X2_width)
     list_of_embryos[18].desired = copy.deepcopy(no_streak)
+    list_of_embryos[18].desired = add_streak(list_of_embryos[18].desired, 370, certain_width, uncertain_width)
     list_of_embryos[18].desired = add_streak(list_of_embryos[18].desired, 0, certain_width, uncertain_width)
+    
+    
+    
 
     list_of_embryos[19].index = '19_'
-    list_of_embryos[19].name = 'BMP4 bead, post off-cent, 6ng'
+    list_of_embryos[19].name = 'BMP4 bead, post cent, 50ng'
     list_of_embryos[19].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
-    list_of_embryos[19].inhibitor.add_bead(270, afigel_6_spread, bmp4_6_conc, afigel_width)
+    list_of_embryos[19].inhibitor.add_bead(300, afigel_50_spread, bmp4_50_conc, afigel_width)
     list_of_embryos[19].desired = copy.deepcopy(no_streak)
-    list_of_embryos[19].desired = add_streak(list_of_embryos[19].desired, 0, certain_width, uncertain_width)
-    
+
     list_of_embryos[20].index = '20_'
-    list_of_embryos[20].name = 'SB bead, post'
-    list_of_embryos[20].set_starting_conc( inducer_postFocus_stage2, inhibitor_postFocus_stage2)
-    list_of_embryos[20].inducer.add_bead(300, AG1X2_spread, SB_conc, AG1X2_width)
+    list_of_embryos[20].name = 'BMP4 bead, post cent, 6ng'
+    list_of_embryos[20].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[20].inhibitor.add_bead(300, afigel_6_spread, bmp4_6_conc, afigel_width)
     list_of_embryos[20].desired = copy.deepcopy(no_streak)
+    list_of_embryos[20].desired = add_streak(list_of_embryos[20].desired, 580, certain_width, uncertain_width)
+    list_of_embryos[20].desired = add_streak(list_of_embryos[20].desired, 20, certain_width, uncertain_width)
+    
+    list_of_embryos[21].index = '21_'
+    list_of_embryos[21].name = 'BMP4 bead, post off-cent, 50ng'
+    list_of_embryos[21].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[21].inhibitor.add_bead(270, afigel_50_spread, bmp4_50_conc, afigel_width)
+    list_of_embryos[21].desired = copy.deepcopy(no_streak)
+    list_of_embryos[21].desired = add_streak(list_of_embryos[21].desired, 0, certain_width, uncertain_width)
+
+    list_of_embryos[22].index = '22_'
+    list_of_embryos[22].name = 'BMP4 bead, post off-cent, 6ng'
+    list_of_embryos[22].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[22].inhibitor.add_bead(270, afigel_6_spread, bmp4_6_conc, afigel_width)
+    list_of_embryos[22].desired = copy.deepcopy(no_streak)
+    list_of_embryos[22].desired = add_streak(list_of_embryos[22].desired, 0, certain_width, uncertain_width)
+    
+    
+    
+    list_of_embryos[23].index = '23_'
+    list_of_embryos[23].name = 'SB bead, post'
+    list_of_embryos[23].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[23].inducer.add_bead(300, AG1X2_spread, SB_conc, AG1X2_width)
+    list_of_embryos[23].desired = copy.deepcopy(no_streak)
     
 
-    list_of_embryos[21].index = '21_'
-    list_of_embryos[21].name = 'DM bead, ant'
-    list_of_embryos[21].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
-    list_of_embryos[21].inhibitor.add_bead(70, AG1X2_spread, DM_conc, AG1X2_width)
-    list_of_embryos[21].desired = copy.deepcopy(no_streak)
-    list_of_embryos[21].desired = add_streak(list_of_embryos[21].desired, 370, certain_width, uncertain_width)
-    list_of_embryos[21].desired = add_streak(list_of_embryos[21].desired, 0, certain_width, uncertain_width)
     
-    list_of_embryos[22].index = '22_'
-    list_of_embryos[22].name = 'DM whole mount'
-    list_of_embryos[22].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
-    flat_inhibitor = copy.deepcopy(list_of_embryos[22].inhibitor.conc)
+    flat_inhibitor = copy.deepcopy(list_of_embryos[0].inhibitor.conc)
     flat_inhibitor[:] = [0.02 for i in flat_inhibitor]
-    list_of_embryos[22].inhibitor.conc = flat_inhibitor
-    list_of_embryos[22].desired = [1 for i in no_streak]
+    flat_inducer = copy.deepcopy(list_of_embryos[0].inducer.conc)
+    flat_inducer[:] = [0.02 for i in flat_inducer]
+    
+    list_of_embryos[24].index = '24_'
+    list_of_embryos[24].name = 'DM whole mount'
+    list_of_embryos[24].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[24].inhibitor.conc = flat_inhibitor
+    list_of_embryos[24].desired = [1 for i in no_streak]
+    
+    list_of_embryos[25].index = '25_'
+    list_of_embryos[25].name = 'DM whole mount + activin bead'
+    list_of_embryos[25].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[25].inhibitor.conc = flat_inhibitor
+    list_of_embryos[25].inducer.add_bead(0, heparin_10_spread, activin_10_conc, heparin_width)
+    list_of_embryos[25].desired = copy.deepcopy(no_streak)
+    list_of_embryos[25].desired = add_streak(list_of_embryos[25].desired, 300, certain_width, uncertain_width)
+    
+    list_of_embryos[26].index = '26_'
+    list_of_embryos[26].name = 'DM whole mount + SB bead'
+    list_of_embryos[26].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[26].inhibitor.conc = flat_inhibitor
+    list_of_embryos[26].inducer.add_bead(0, AG1X2_spread, SB_conc, AG1X2_width)
+    list_of_embryos[26].desired = copy.deepcopy(no_streak)
+    list_of_embryos[26].desired = add_streak(list_of_embryos[26].desired, 0, certain_width, uncertain_width)
+    
+    list_of_embryos[27].index = '27_'
+    list_of_embryos[27].name = 'SB whole mount'
+    list_of_embryos[27].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[27].inducer.conc = flat_inducer
+    list_of_embryos[27].desired = copy.deepcopy(no_streak)
+    
+    list_of_embryos[28].index = '28_'
+    list_of_embryos[28].name = 'SB whole mount + BMP4 bead'
+    list_of_embryos[28].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[28].inducer.conc = flat_inducer
+    list_of_embryos[28].inhibitor.add_bead(0, afigel_25_spread, bmp4_25_conc, afigel_width)
+    list_of_embryos[28].desired = copy.deepcopy(no_streak)
+    
+    list_of_embryos[29].index = '29_'
+    list_of_embryos[29].name = 'SB whole mount + DM bead'
+    list_of_embryos[29].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[29].inducer.conc = flat_inducer
+    list_of_embryos[29].inhibitor.add_bead(0, AG1X2_spread, DM_conc, AG1X2_width)
+    list_of_embryos[29].desired = copy.deepcopy(no_streak)
 
     return list_of_embryos
     
@@ -507,25 +566,16 @@ def check_embryos_success(list_of_embryos):
     else:
         failureN += 1
         
+    if list_of_embryos[12].streakN == 3 and 'posterior' in list_of_embryos[12].streak_positions:
+        list_of_embryos[12].success = True
+        successN += 1
+    elif list_of_embryos[12].streakN == 2 and 'posterior' not in list_of_embryos[12].streak_positions:
+        list_of_embryos[12].success = True
+        successN += 1
+    else:
+        failureN += 1
+        
     
-    if list_of_embryos[23].streakN == 1 and 'posterior' in list_of_embryos[23].streak_positions:
-        list_of_embryos[23].success = True
-        successN += 1
-    elif list_of_embryos[23].streakN == 0:
-            list_of_embryos[23].success = True
-            successN += 1
-    else:
-        failureN += 1
-        
-        
-    if list_of_embryos[12].streakN == 0:
-        list_of_embryos[12].success = True
-        successN += 1
-    elif list_of_embryos[12].streakN == 1 and 'posterior' in list_of_embryos[12].streak_positions:
-        list_of_embryos[12].success = True
-        successN += 1
-    else:
-        failureN += 1
 
     if list_of_embryos[13].streakN == 0:
         list_of_embryos[13].success = True
@@ -536,27 +586,25 @@ def check_embryos_success(list_of_embryos):
     else:
         failureN += 1
         
-    if list_of_embryos[14].streakN == 2 and 'posterior' in list_of_embryos[14].streak_positions:
+    if list_of_embryos[14].streakN == 0:
         list_of_embryos[14].success = True
         successN += 1
-    elif list_of_embryos[14].streakN == 1 and 'posterior' not in list_of_embryos[14].streak_positions:
+    elif list_of_embryos[14].streakN == 1 and 'posterior' in list_of_embryos[14].streak_positions:
         list_of_embryos[14].success = True
         successN += 1
     else:
         failureN += 1
         
-        
-
-    if list_of_embryos[15].streakN == 0:
+    if list_of_embryos[15].streakN == 2 and 'posterior' in list_of_embryos[15].streak_positions:
         list_of_embryos[15].success = True
         successN += 1
-    elif list_of_embryos[15].streakN == 1 and 'posterior' in list_of_embryos[15].streak_positions:
+    elif list_of_embryos[15].streakN == 1 and 'posterior' not in list_of_embryos[15].streak_positions:
         list_of_embryos[15].success = True
         successN += 1
     else:
         failureN += 1
         
-    if list_of_embryos[16].streakN == 0:
+    if list_of_embryos[16].streakN == 2 and 'posterior' in list_of_embryos[16].streak_positions:
         list_of_embryos[16].success = True
         successN += 1
     elif list_of_embryos[16].streakN == 1 and 'posterior' not in list_of_embryos[16].streak_positions:
@@ -565,57 +613,112 @@ def check_embryos_success(list_of_embryos):
     else:
         failureN += 1
         
-    if list_of_embryos[17].streakN == 1 and 'posterior' not in list_of_embryos[17].streak_positions:
+
+
+    if list_of_embryos[17].streakN == 0:
         list_of_embryos[17].success = True
         successN += 1
-    elif list_of_embryos[17].streakN == 2 and 'posterior' not in list_of_embryos[17].streak_positions:
+    elif list_of_embryos[17].streakN == 1 and 'posterior' in list_of_embryos[17].streak_positions:
         list_of_embryos[17].success = True
         successN += 1
     else:
         failureN += 1
         
-    if list_of_embryos[18].streakN == 0:
+        
+        
+    if list_of_embryos[18].streakN == 1 and 'posterior' not in list_of_embryos[18].streak_positions:
         list_of_embryos[18].success = True
         successN += 1
-    elif list_of_embryos[18].streakN == 1 and 'posterior' not in list_of_embryos[18].streak_positions:
+    elif list_of_embryos[18].streakN == 2 and 'posterior' not in list_of_embryos[18].streak_positions:
         list_of_embryos[18].success = True
         successN += 1
     else:
         failureN += 1
         
-    if list_of_embryos[19].streakN == 1 and 'posterior' not in list_of_embryos[19].streak_positions:
+
+        
+    if list_of_embryos[19].streakN == 0:
         list_of_embryos[19].success = True
         successN += 1
-    elif list_of_embryos[19].streakN == 2 and 'posterior' not in list_of_embryos[19].streak_positions:
+    elif list_of_embryos[19].streakN == 1 and 'posterior' not in list_of_embryos[19].streak_positions:
         list_of_embryos[19].success = True
         successN += 1
     else:
         failureN += 1
-     
-    if list_of_embryos[20].streakN == 0:
-        list_of_embryos[20].success = True
-        successN += 1
-    elif list_of_embryos[20].streakN == 1 and 'posterior' not in list_of_embryos[20].streak_positions:
+        
+    if list_of_embryos[20].streakN == 1 and 'posterior' not in list_of_embryos[20].streak_positions:
         list_of_embryos[20].success = True
         successN += 1
     elif list_of_embryos[20].streakN == 2 and 'posterior' not in list_of_embryos[20].streak_positions:
         list_of_embryos[20].success = True
         successN += 1
     else:
-        failureN += 1   
-    
-
-    if list_of_embryos[21].streakN == 1 and 'posterior' not in list_of_embryos[21].streak_positions:
+        failureN += 1
+        
+    if list_of_embryos[21].streakN == 0:
         list_of_embryos[21].success = True
         successN += 1
-    elif list_of_embryos[21].streakN == 2 and 'posterior' in list_of_embryos[21].streak_positions:
+    elif list_of_embryos[21].streakN == 1 and 'posterior' not in list_of_embryos[21].streak_positions:
         list_of_embryos[21].success = True
         successN += 1
     else:
         failureN += 1
-    
-    if list_of_embryos[22].streakN == 1 and 'ring' in list_of_embryos[22].streak_positions:
+        
+    if list_of_embryos[22].streakN == 1 and 'posterior' not in list_of_embryos[22].streak_positions:
         list_of_embryos[22].success = True
+        successN += 1
+    elif list_of_embryos[22].streakN == 2 and 'posterior' not in list_of_embryos[22].streak_positions:
+        list_of_embryos[22].success = True
+        successN += 1
+    else:
+        failureN += 1
+        
+    if list_of_embryos[23].streakN == 0:
+        list_of_embryos[23].success = True
+        successN += 1
+    elif list_of_embryos[23].streakN == 1 and 'posterior' not in list_of_embryos[23].streak_positions:
+        list_of_embryos[23].success = True
+        successN += 1
+    elif list_of_embryos[23].streakN == 2 and 'posterior' not in list_of_embryos[23].streak_positions:
+        list_of_embryos[23].success = True
+        successN += 1
+    else:
+        failureN += 1
+     
+     
+    
+    if list_of_embryos[24].streakN == 1 and 'ring' in list_of_embryos[24].streak_positions:
+        list_of_embryos[24].success = True
+        successN += 1
+    else:
+        failureN += 1
+        
+    if list_of_embryos[25].streakN == 1 and 'anterior' in list_of_embryos[25].streak_positions:
+        list_of_embryos[25].success = True
+        successN += 1
+    else:
+        failureN += 1
+        
+    if list_of_embryos[26].streakN == 1 and 'posterior' in list_of_embryos[26].streak_positions:
+        list_of_embryos[26].success = True
+        successN += 1
+    else:
+        failureN += 1
+        
+    if list_of_embryos[27].streakN == 0:
+        list_of_embryos[27].success = True
+        successN += 1
+    else:
+        failureN += 1
+        
+    if list_of_embryos[28].streakN == 1 and 'anterior' in list_of_embryos[28].streak_positions:
+        list_of_embryos[28].success = True
+        successN += 1
+    else:
+        failureN += 1
+        
+    if list_of_embryos[29].streakN == 1 and 'anterior' in list_of_embryos[29].streak_positions:
+        list_of_embryos[29].success = True
         successN += 1
     else:
         failureN += 1
@@ -639,25 +742,25 @@ def define_experiment_groups(list_of_embryos):
     experiments[1].embryos = list_of_embryos[4:8]
     
     experiments[2].name = 'activin repeat of cell pellets in ant.'
-    experiments[2].embryos = list_of_embryos[8:12] + [list_of_embryos[23]]
+    experiments[2].embryos = list_of_embryos[8:13]
     
-    experiments[3].name = 'activin and BMP in ant., subtle'
-    experiments[3].embryos = list_of_embryos[12:15]
+    experiments[3].name = 'activin and BMP in ant., threshold'
+    experiments[3].embryos = list_of_embryos[13:17]
     
     experiments[4].name = 'BMP bead in anterior'
-    experiments[4].embryos = [list_of_embryos[15]]
+    experiments[4].embryos = [list_of_embryos[17]]
+    
+    experiments[5].name = 'DM bead in ant.'
+    experiments[5].embryos = [list_of_embryos[18]]
 
-    experiments[5].name = 'BMP bead in posterior'
-    experiments[5].embryos = list_of_embryos[16:20]
+    experiments[6].name = 'BMP bead in posterior'
+    experiments[6].embryos = list_of_embryos[19:23]
 
-    experiments[6].name = 'SB'
-    experiments[6].embryos = [list_of_embryos[20]]
+    experiments[7].name = 'SB'
+    experiments[7].embryos = [list_of_embryos[23]]
 
-    experiments[7].name = 'DM bead in ant.'
-    experiments[7].embryos = [list_of_embryos[21]]
-
-    experiments[8].name = 'DM whole mount'
-    experiments[8].embryos = [list_of_embryos[22]]
+    experiments[8].name = 'Whole mount + beads'
+    experiments[8].embryos = list_of_embryos[24:30]
     
     return experiments
     
@@ -701,16 +804,21 @@ def set_params_from_df(df, current_model):
         current_model.bead_params['bmp4_25_conc'] = df.iloc[0]['bmp4_25_conc']
     if 'bmp4_12_conc' in df.columns:
         current_model.bead_params['bmp4_12_conc'] = df.iloc[0]['bmp4_12_conc']
+    if 'bmp4_6_conc' in df.columns:
+        current_model.bead_params['bmp4_6_conc'] = df.iloc[0]['bmp4_6_conc']
     if 'bmp4_spread' in df.columns:
         current_model.bead_params['afigel_50_spread'] = df.iloc[0]['bmp4_spread']
         current_model.bead_params['afigel_25_spread'] = df.iloc[0]['bmp4_spread']
         current_model.bead_params['afigel_12_spread'] = df.iloc[0]['bmp4_spread']
+        current_model.bead_params['afigel_6_spread'] = df.iloc[0]['bmp4_spread']
     if 'bmp4_50_spread' in df.columns:
         current_model.bead_params['afigel_50_spread'] = df.iloc[0]['bmp4_50_spread']
     if 'bmp4_25_spread' in df.columns:
         current_model.bead_params['afigel_25_spread'] = df.iloc[0]['bmp4_25_spread']
     if 'bmp4_12_spread' in df.columns:
         current_model.bead_params['afigel_12_spread'] = df.iloc[0]['bmp4_12_spread']
+    if 'bmp4_6_spread' in df.columns:
+        current_model.bead_params['afigel_6_spread'] = df.iloc[0]['bmp4_6_spread']
     if 'n' in df.columns:
         current_model.nbhd_size = 2*np.floor(df.iloc[0]['n']) - 1
         
