@@ -21,91 +21,45 @@ from model_params import models
 anterior = range(150,451)
 whole_embryo = range(600)
 
-# select_embryos = [0]
-# sub_directory = 'results/dream/normal_embryo/00/'
-# select_embryos = [1]
-# sub_directory = 'results/dream/normal_embryo/01/'
-# select_embryos = [2]
-# sub_directory = 'results/dream/normal_embryo/02/'
-# select_embryos = [3]
-# sub_directory = 'results/dream/normal_embryo/03/'
-# select_embryos = [0,2,3]
-# sub_directory = 'results/dream/normal_embryo/no_01/'
-# select_embryos = [0,1,2,3]
-# sub_directory = 'results/dream/normal_embryo/with_01/'
-# likelihood_region = [whole_embryo for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$']
-
-# select_embryos = [8,9,10,11,23]
-# sub_directory = 'results/dream/activin_ant/'
-# likelihood_region = [anterior for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$',  'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'n']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
-
-# select_embryos = [8,9,10,11,23]
-# sub_directory = 'results/dream/activin_ant_1000/'
-# likelihood_region = [anterior for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$',  'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'n']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
-
-# select_embryos = [8,9,10,11,23]
+# select_embryos = [8,9,10,11,12]
 # sub_directory = 'results/dream/activin_ant_3000/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$',  'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'n']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
 
-# select_embryos = [8,9,10,11,23]
+# select_embryos = [8,9,10,11,12]
 # sub_directory = 'results/dream/activin_ant_bestModelA_3000/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$','n']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$']
 #
-# select_embryos = [8,9,10,11,23]
+# select_embryos = [8,9,10,11,12]
 # sub_directory = 'results/dream/activin_ant_bestModelB_3000/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$']
 
-# select_embryos = [8,9,10,11,23]
+# select_embryos = [8,9,10,11,12]
 # sub_directory = 'results/dream/activin_ant_3000_modelParamsOnly/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$']
 
-# select_embryos = [8,9,10,11,23]
+# select_embryos = [8,9,10,11,12]
 # sub_directory = 'results/dream/activin_ant_1000_1spread/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$',  'activin_10_conc', 'activin_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_spread', 'n']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_spread']
 
-select_embryos = [8,9,10,11,23,12,13,14]
+select_embryos = [8,9,10,11,12,13,14,15,16]
 sub_directory = 'results/dream/activin_ant_threshold_3000/'
 likelihood_region = [anterior for i in select_embryos]
 param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'n']
 param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
 
-# select_embryos = [16, 17]
-# sub_directory = 'results/dream/bmp4_post/'
-# likelihood_region = [whole_embryo for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'bmp4_50_conc', 'bmp4_25_conc', 'bmp4_spread', 'n']
-# param_names_no_nbhd= ['threshold', '$b_B$', '$b_V$', 'bmp4_50_conc', 'bmp4_25_conc', 'bmp4_spread']
-
-# select_embryos = [0, 22]
-# sub_directory = 'results/dream/DM_whole/'
-# likelihood_region = [whole_embryo for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n']
-# param_names_no_nbhd= ['threshold', '$b_B$', '$b_V$']
-
-# select_embryos = [8,9,10,11,23,12,13,14,15,16,17]
+# select_embryos = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
 # sub_directory = 'results/dream/all_exps/'
-# likelihood_region = [ anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior,  whole_embryo, whole_embryo]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_50_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'bmp4_50_spread', 'n']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_50_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'bmp4_50_spread', 'bmp4_25_spread']
-
-# select_embryos = [8,9,10,11,23,12,13,14,15,16,17]
-# sub_directory = 'results/dream/all_exps_1000/'
-# likelihood_region = [ anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior,  whole_embryo, whole_embryo]
+# likelihood_region = [ anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, whole_embryo, whole_embryo, whole_embryo, whole_embryo]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_50_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'bmp4_50_spread', 'n']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_50_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'bmp4_50_spread', 'bmp4_25_spread']
 
@@ -134,7 +88,7 @@ def likelihood_with_nbhd(param_vector):
 
     Delta = 0.05
 
-    embryoN = 24
+    embryoN = 30
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
 
@@ -190,7 +144,7 @@ def likelihood_no_nbhd(param_vector):
 
     Delta = 0.05
 
-    embryoN = 24
+    embryoN = 30
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
 

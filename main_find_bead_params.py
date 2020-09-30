@@ -23,20 +23,20 @@ anterior = range(150,451)
 whole_embryo = range(600)
 
 
-select_embryos = [8,9,10,11,23]
-sub_directory = 'results/dream/activin_ant_3000_find_bead/'
-likelihood_region = [anterior for i in select_embryos]
-param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
-
-# select_embryos = [8,9,10,11,23,12,13,14]
-# sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead/'
+# select_embryos = [8,9,10,11,12]
+# sub_directory = 'results/dream/activin_ant_3000_find_bead/'
 # likelihood_region = [anterior for i in select_embryos]
-# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
 
-# select_embryos = [8,9,10,11,23,12,13,14,15,16,17]
-# sub_directory = 'results/dream/all_exps_3000_find_bead/'
-# likelihood_region = [ anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior,  whole_embryo, whole_embryo]
-# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_50_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'bmp4_50_spread']
+select_embryos = [8,9,10,11,12,13,14,15,16]
+sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead/'
+likelihood_region = [anterior for i in select_embryos]
+param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
+
+# select_embryos = [8,9,10,11,12,13,14,15,16]
+# sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead_1_spread/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_10_conc', 'activin_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_spread']
 
 if not os.path.isdir(sub_directory):
     os.mkdir(sub_directory)
@@ -71,7 +71,7 @@ def likelihood(param_vector):
     total_logp_no_nbhd = np.ndarray((len(select_embryos)), dtype=float)
     
     # with nbhd
-    embryoN = 24
+    embryoN = 30
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     
@@ -84,7 +84,7 @@ def likelihood(param_vector):
         total_logp_with_nbhd[idx] = np.sum(np.log10(likelihood_with_nbhd))
         
     # no nbhd
-    embryoN = 24
+    embryoN = 30
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     
@@ -104,11 +104,11 @@ dream_out_suffix = 'dream_out/'
 dream_out_directory = save_directory + dream_out_suffix
 if not os.path.isdir(dream_out_directory):
     os.mkdir(dream_out_directory)
-else:
-    files = glob.glob(dream_out_directory + '*')
-    for f in files:
-        os.remove(f)
-run_pyDREAM(parameters_to_sample, likelihood, dream_params, dream_out_directory)
+# else:
+#     files = glob.glob(dream_out_directory + '*')
+#     for f in files:
+#         os.remove(f)
+# run_pyDREAM(parameters_to_sample, likelihood, dream_params, dream_out_directory)
 
 dream_df = save_pyDREAM_out_dataframe(param_names, dream_params, save_directory, dream_out_suffix)
 

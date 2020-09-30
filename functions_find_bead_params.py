@@ -54,13 +54,18 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     if 'bmp4_12_conc' in df.columns:
         model_with_nbhd.bead_params['bmp4_12_conc'] = df.iloc[0]['bmp4_12_conc']
         model_no_nbhd.bead_params['bmp4_12_conc'] = df.iloc[0]['bmp4_12_conc']
+    if 'bmp4_6_conc' in df.columns:
+        model_with_nbhd.bead_params['bmp4_6_conc'] = df.iloc[0]['bmp4_6_conc']
+        model_no_nbhd.bead_params['bmp4_6_conc'] = df.iloc[0]['bmp4_6_conc']
     if 'bmp4_spread' in df.columns:
         model_with_nbhd.bead_params['afigel_50_spread'] = df.iloc[0]['bmp4_spread']
         model_with_nbhd.bead_params['afigel_25_spread'] = df.iloc[0]['bmp4_spread']
         model_with_nbhd.bead_params['afigel_12_spread'] = df.iloc[0]['bmp4_spread']
+        model_with_nbhd.bead_params['afigel_6_spread'] = df.iloc[0]['bmp4_spread']
         model_no_nbhd.bead_params['afigel_50_spread'] = df.iloc[0]['bmp4_spread']
         model_no_nbhd.bead_params['afigel_25_spread'] = df.iloc[0]['bmp4_spread']
         model_no_nbhd.bead_params['afigel_12_spread'] = df.iloc[0]['bmp4_spread']
+        model_no_nbhd.bead_params['afigel_6_spread'] = df.iloc[0]['bmp4_spread']
     if 'bmp4_50_spread' in df.columns:
         model_with_nbhd.bead_params['afigel_50_spread'] = df.iloc[0]['bmp4_50_spread']
         model_no_nbhd.bead_params['afigel_50_spread'] = df.iloc[0]['bmp4_50_spread']
@@ -70,6 +75,9 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     if 'bmp4_12_spread' in df.columns:
         model_with_nbhd.bead_params['afigel_12_spread'] = df.iloc[0]['bmp4_12_spread']
         model_no_nbhd.bead_params['afigel_12_spread'] = df.iloc[0]['bmp4_12_spread']
+    if 'bmp4_6_spread' in df.columns:
+        model_with_nbhd.bead_params['afigel_6_spread'] = df.iloc[0]['bmp4_6_spread']
+        model_no_nbhd.bead_params['afigel_6_spread'] = df.iloc[0]['bmp4_6_spread']
         
     return model_with_nbhd, model_no_nbhd
 
@@ -92,7 +100,7 @@ def check_success_rate_2models(dream_out_df, select_embryos, model_with_nbhd, mo
     
     for index, row in top_params.iterrows():
     
-        embryoN = 24
+        embryoN = 30
         row_df = row.to_frame().T
         model_with_nbhd, model_no_nbhd = set_params_from_df_2models(row_df, model_with_nbhd, model_no_nbhd)
         
@@ -149,7 +157,7 @@ def run_model_best_params_max_success_2models(dream_success_df, select_embryos, 
         
     best_params = best_params.iloc[[-1],:]
     
-    embryoN = 24
+    embryoN = 30
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     

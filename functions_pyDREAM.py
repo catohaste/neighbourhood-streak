@@ -66,7 +66,7 @@ def run_model_best_params(dream_out_df, select_embryos, best_model, save_directo
 
     best_params = df.iloc[[0],:]
     
-    embryoN = 24
+    embryoN = 30
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     
