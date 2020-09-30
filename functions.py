@@ -565,11 +565,11 @@ def check_embryos_success(list_of_embryos):
         successN += 1
     else:
         failureN += 1
-        
-    if list_of_embryos[12].streakN == 3 and 'posterior' in list_of_embryos[12].streak_positions:
+    
+    if list_of_embryos[12].streakN == 0:
         list_of_embryos[12].success = True
-        successN += 1
-    elif list_of_embryos[12].streakN == 2 and 'posterior' not in list_of_embryos[12].streak_positions:
+        successN += 1    
+    elif list_of_embryos[12].streakN == 1 and 'posterior' in list_of_embryos[12].streak_positions:
         list_of_embryos[12].success = True
         successN += 1
     else:
