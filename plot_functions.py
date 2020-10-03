@@ -641,6 +641,7 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, directo
     
     font_sizes = set_figs_font_settings()
     rcParams['font.sans-serif'] = ['Arial']
+    # rcParams['font.sans-serif'] = ['Clear Sans']
     
     noc = list_of_embryos[0].number_of_cells
     half_noc = int(np.floor(noc / 2))
@@ -808,6 +809,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, direct
     
     font_sizes = set_figs_font_settings()
     rcParams['font.sans-serif'] = ['Arial']
+    # rcParams['font.sans-serif'] = ['Clear Sans']
     
     noc = list_of_embryos[0].number_of_cells
     half_noc = int(np.floor(noc / 2))
@@ -952,14 +954,14 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, direct
             
             
             # clear yaxis for certain embryos
-            yaxis_clear_embryos = [9,10,11,23,13,14]
+            yaxis_clear_embryos = [9,10,11,12,14,15,16]
             if emb_idx in yaxis_clear_embryos:
                 for ax_idx in range(3):
                     axs[ax_idx].yaxis.label.set_visible(False)
                     axs[ax_idx].set_yticklabels([])
                     
             # clear legend for certain embryos
-            legend_clear_embryos = [8,9,10,11,12,13]
+            legend_clear_embryos = [8,9,10,11,13,14,15]
             if emb_idx in legend_clear_embryos:
                 for ax_idx in range(3):
                     axs[ax_idx].get_legend().remove()
