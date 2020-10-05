@@ -696,7 +696,7 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, directo
             gray_where = np.array([i == -1 for i in plot_desired])
             certain_where = np.array([i == 1 for i in plot_desired])
             
-            protein_ymax = 1.2
+            protein_ymax = 1.4
             ax_pro_des.plot(range(0,noc), plot_inducer, linewidth=1, marker=None, color='C0', markersize = 1, label='Inducer')
             ax_pro_des.plot(range(0,noc), plot_inhibitor, linewidth=1, marker=None, color='C3', markersize = 1, label="Inhibitor")
             ax_pro_des.set_ylim([0,protein_ymax])

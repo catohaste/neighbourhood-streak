@@ -65,6 +65,7 @@ for model_idx, model in enumerate(models):
 # save_presentation_figs(models, embryos, model_values, model_ylim, 'results/presentation_figs/')
 
 paper_directory = 'results/paper_figures/'
+# paper_directory = 'results/report/'
 save_method_figs( models, embryos, model_values, model_ylim, paper_directory + 'method/' )
 save_results_figs( models, embryos, model_values, model_ylim, paper_directory + 'results/' )
 
