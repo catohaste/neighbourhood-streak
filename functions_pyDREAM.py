@@ -106,7 +106,7 @@ def check_success_rate(dream_out_df, select_embryos, current_model, save_directo
     
     for index, row in top_params.iterrows():
     
-        embryoN = 24
+        embryoN = 30
         embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
         initial_concentrations = define_initial_protein_concentrations(initial_params)
 
@@ -146,7 +146,7 @@ def run_model_best_params_max_success(dream_success_df, select_embryos, best_mod
         
     best_params = best_params.iloc[[-1],:]
     
-    embryoN = 24
+    embryoN = 30
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     

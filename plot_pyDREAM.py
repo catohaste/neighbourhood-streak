@@ -305,6 +305,7 @@ def logp_success_correlation(dream_success_df, param_names, model_color, figs_di
     
     df = dream_success_df
     
+    df = df.replace([np.inf, -np.inf], np.nan).dropna(subset=["logp"])
     df.sort_values(by='logp', ascending=False)
     
     logp_min = df.logp.min()
@@ -409,5 +410,21 @@ def create_pyDREAM_figs(dream_out_df, dream_success_df, dream_params, param_name
     plot_logp_over_time(dream_out_df, dream_params, figs_directory)
     plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
     logp_success_correlation(dream_success_df, param_names, model_color, figs_directory)
+    
+def create_pyDREAM_figs_2models(dream_out_df, dream_success_df, dream_params, param_names, param_lims, axes_labels, model_A_color, model_B_color, save_directory):
+    
+    figs_directory = save_directory + 'figs/'
+    if not os.path.isdir(figs_directory):
+        os.mkdir(figs_directory)
+        
+    # desired output
+    plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
+    plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
+    
+    # checks
+    plot_logp_over_time(dream_out_df, dream_params, figs_directory)
+    plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
+    # logp_success_correlation(dream_success_df, param_names, model_A_color, figs_directory)
+    # logp_success_correlation(dream_success_df, param_names, model_B_color, figs_directory)
     
     

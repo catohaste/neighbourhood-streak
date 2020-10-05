@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 from functions_pyDREAM import run_pyDREAM
 from functions_find_bead_params import set_params_from_df_2models, check_success_rate_2models, run_model_best_params_max_success_2models
-from plot_pyDREAM import save_pyDREAM_out_dataframe, create_pyDREAM_figs
+from plot_pyDREAM import save_pyDREAM_out_dataframe, create_pyDREAM_figs_2models
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups
@@ -117,7 +117,7 @@ verify_model_no_nbhd = deepcopy(models[1])
 dream_success_df = check_success_rate_2models(dream_df, select_embryos, verify_model_with_nbhd, verify_model_no_nbhd, save_directory)
 # run_model_best_params_max_success_2models(dream_success_df, select_embryos, verify_model_with_nbhd, verify_model_no_nbhd, save_directory + 'verify/')
 
-# create_pyDREAM_figs(dream_df, dream_success_df, dream_params, param_names_with_nbhd, param_lims, axes_labels, verify_model_with_nbhd.plot_color, save_directory)
+create_pyDREAM_figs_2models(dream_df, dream_success_df, dream_params, param_names, param_lims, axes_labels, verify_model_with_nbhd.plot_color, verify_model_no_nbhd.plot_color, save_directory)
 
 
 ##########################################################################################################
