@@ -49,6 +49,9 @@ class Embryo:
                 self.conc[pos_cell] =  self.conc[pos_cell] + bead_distribution_right[idx]
                 self.conc[neg_cell] =  self.conc[neg_cell] + bead_distribution_right[idx]
         
+        def check_below_zero(self):
+            self.conc = (self.conc <= 0) * 0.02 + np.multiply((self.conc > 0), self.conc)
+        
     def __init__(self, name, number_of_cells):
         self.name = name
         self.index = ''

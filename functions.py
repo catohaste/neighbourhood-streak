@@ -420,6 +420,12 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[29].inducer.conc = flat_inducer
     list_of_embryos[29].inhibitor.add_bead(0, AG1X2_spread, DM_conc, AG1X2_width)
     list_of_embryos[29].desired = copy.deepcopy(no_streak)
+    
+    # check none of the protein concentrations drop below 0
+    # if they do, fix the concentration at 0.02, to avoid inf problems
+    for embryo in list_of_embryos:
+        embryo.inhibitor.check_below_zero()
+        embryo.inducer.check_below_zero()
 
     return list_of_embryos
     
