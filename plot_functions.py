@@ -637,11 +637,10 @@ def save_presentation_figs_duo( model, list_of_embryos, model_values, model_ylim
             plt.close(fig_pro)
             plt.close(fig_pro_des)
             
-def save_method_figs( models, list_of_embryos, model_values, model_ylim, directory_name ):
+def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_string, directory_name ):
     
     font_sizes = set_figs_font_settings()
-    rcParams['font.sans-serif'] = ['Arial']
-    # rcParams['font.sans-serif'] = ['Clear Sans']
+    rcParams['font.sans-serif'] = [font_string]
     
     noc = list_of_embryos[0].number_of_cells
     half_noc = int(np.floor(noc / 2))
@@ -697,8 +696,8 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, directo
             certain_where = np.array([i == 1 for i in plot_desired])
             
             protein_ymax = 1.4
-            ax_pro_des.plot(range(0,noc), plot_inducer, linewidth=1, marker=None, color='C0', markersize = 1, label='Inducer')
-            ax_pro_des.plot(range(0,noc), plot_inhibitor, linewidth=1, marker=None, color='C3', markersize = 1, label="Inhibitor")
+            ax_pro_des.plot(range(0,noc), plot_inducer, linewidth=2, linestyle='solid', marker=None, color='C0', markersize = 1, label='Inducer')
+            ax_pro_des.plot(range(0,noc), plot_inhibitor, linewidth=2, linestyle='dashdot', marker=None, color='C3', markersize = 1, label="Inhibitor")
             ax_pro_des.set_ylim([0,protein_ymax])
             ax_pro_des.set_ylabel('Protein conc.')
             
@@ -737,7 +736,7 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, directo
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
             axs[0].set_ylabel('Model A value')
-            axs[0].plot(range(0,noc), plot_model, linewidth=1, marker=None, color=models[0].plot_color, markersize = 1, label='With\nnbhd')
+            axs[0].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1, label='With\nnbhd')
             axs[0].plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
             axs[0].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
@@ -767,7 +766,7 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, directo
             ''' model B '''
             plot_model = np.roll(model_values[1, emb_idx, :], roll_idx[pos_idx])
             axs[1].set_ylabel('Model B value')
-            axs[1].plot(range(0,noc), plot_model, linewidth=1, marker=None, color=models[1].plot_color, markersize = 1, label='Without\nnbhd')
+            axs[1].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1, label='Without\nnbhd')
             axs[1].plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
             # axs[2].set_title('Model ' + models[1].index_string + ', without nbhd', fontsize=font_sizes['BIGGER_SIZE'])
             axs[1].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
@@ -805,11 +804,10 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, directo
             plt.close(fig_full)
             plt.close(fig_pro_des)
             
-def save_results_figs( models, list_of_embryos, model_values, model_ylim, directory_name ):
+def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_string, directory_name ):
     
     font_sizes = set_figs_font_settings()
-    rcParams['font.sans-serif'] = ['Arial']
-    # rcParams['font.sans-serif'] = ['Clear Sans']
+    rcParams['font.sans-serif'] = [font_string]
     
     noc = list_of_embryos[0].number_of_cells
     half_noc = int(np.floor(noc / 2))
@@ -858,8 +856,8 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, direct
             certain_where = np.array([i == 1 for i in plot_desired])
             
             protein_ymax = 1.4
-            axs[0].plot(range(0,noc), plot_inducer, linewidth=1, marker=None, color='C0', markersize = 1, label='Inducer')
-            axs[0].plot(range(0,noc), plot_inhibitor, linewidth=1, marker=None, color='C3', markersize = 1, label="Inhibitor")
+            axs[0].plot(range(0,noc), plot_inducer, linewidth=2, marker=None, color='C0', markersize = 1, label='Inducer')
+            axs[0].plot(range(0,noc), plot_inhibitor, linewidth=2, linestyle='dashdot', marker=None, color='C3', markersize = 1, label="Inhibitor")
             axs[0].set_ylim([0,protein_ymax])
             axs[0].set_ylabel('Protein conc.')
             
@@ -897,7 +895,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, direct
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
             axs[1].set_ylabel('Model A value')
-            axs[1].plot(range(0,noc), plot_model, linewidth=1, marker=None, color=models[0].plot_color, markersize = 1, label='With\nnbhd')
+            axs[1].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1, label='With\nnbhd')
             axs[1].plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
             axs[1].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
@@ -927,7 +925,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, direct
             ''' model B '''
             plot_model = np.roll(model_values[1, emb_idx, :], roll_idx[pos_idx])
             axs[2].set_ylabel('Model B value')
-            axs[2].plot(range(0,noc), plot_model, linewidth=1, marker=None, color=models[1].plot_color, markersize = 1, label='Without\nnbhd')
+            axs[2].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1, label='Without\nnbhd')
             axs[2].plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
             axs[2].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
