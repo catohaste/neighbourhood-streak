@@ -3,6 +3,7 @@ import scipy.stats as stats
 
 
 param_priors_dict = {
+    
     '$b_B$': SampledParam(stats.uniform, loc=-3.0, scale=6.0),
     '$b_V$': SampledParam(stats.uniform, loc=-3.0, scale=6.0),
     'threshold': SampledParam(stats.uniform, loc=0.0, scale=0.5),
@@ -15,6 +16,9 @@ param_priors_dict = {
     'threshold$^A$': SampledParam(stats.uniform, loc=0.0, scale=0.5),
     'threshold$^B$': SampledParam(stats.uniform, loc=0.0, scale=0.5),
     
+    'vg1_cell_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
+    'bmp4_cell_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
+    'cell_pellet_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
     'activin_2_lambda': SampledParam(stats.uniform, loc=0.025, scale=1.0),
     'activin_10_lambda': SampledParam(stats.uniform, loc=0.025, scale=1.0),
     'activin_2_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
@@ -49,6 +53,9 @@ param_lims_dict = {
     'threshold$^A$': (0,0.5),
     'threshold$^B$': (0,0.5),
     
+    'vg1_cell_conc': (0,1),
+    'bmp4_cell_conc': (0,1),
+    'cell_pellet_spread': (1,43),
     'activin_2_lambda': (0,1),
     'activin_10_lambda': (0,1),
     'activin_2_conc': (0,1),
@@ -83,6 +90,9 @@ axes_labels_dict = {
     'threshold$^A$': 'threshold$^A$',
     'threshold$^B$': 'threshold$^B$',
 
+    'vg1_cell_conc': 'vg1\nconc',
+    'bmp4_cell_conc': 'bmp4\nconc',
+    'cell_pellet_spread': 'pellet\nspread',
     'activin_2_lambda': 'activin\n2\nlambda',
     'activin_10_lambda': 'activin\n10\nlambda',
     'activin_2_conc': 'activin\n2\nconc',

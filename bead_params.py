@@ -119,12 +119,12 @@ bead_params_B = {
 bead_params_fair = {
     
     # vg1
-    'cell_pellet_width' : 16,
+    'cell_pellet_width' : 30,
     
     'cell_pellet_spread' : 12,
     
-    'vg1_cell_conc' : 0.35, # cell_pellet 
-    'bmp4_cell_conc' : 0.35,
+    'vg1_cell_conc' : 0.5, # cell_pellet 
+    'bmp4_cell_conc' : 0.5,
 
     # bmp
     'afigel_width' : 7,
