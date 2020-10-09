@@ -29,7 +29,7 @@ whole_embryo = range(600)
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
 
 select_embryos = [8,9,10,11,12,13,14,15,16]
-sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead/'
+sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead_50_disp/'
 likelihood_region = [anterior for i in select_embryos]
 param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
 
@@ -104,11 +104,11 @@ dream_out_suffix = 'dream_out/'
 dream_out_directory = save_directory + dream_out_suffix
 if not os.path.isdir(dream_out_directory):
     os.mkdir(dream_out_directory)
-# else:
-#     files = glob.glob(dream_out_directory + '*')
-#     for f in files:
-#         os.remove(f)
-# run_pyDREAM(parameters_to_sample, likelihood, dream_params, dream_out_directory)
+else:
+    files = glob.glob(dream_out_directory + '*')
+    for f in files:
+        os.remove(f)
+run_pyDREAM(parameters_to_sample, likelihood, dream_params, dream_out_directory)
 
 dream_df = save_pyDREAM_out_dataframe(param_names, dream_params, save_directory, dream_out_suffix)
 
@@ -117,7 +117,7 @@ verify_model_no_nbhd = deepcopy(models[1])
 dream_success_df = check_success_rate_2models(dream_df, select_embryos, verify_model_with_nbhd, verify_model_no_nbhd, save_directory)
 # run_model_best_params_max_success_2models(dream_success_df, select_embryos, verify_model_with_nbhd, verify_model_no_nbhd, save_directory + 'verify/')
 
-create_pyDREAM_figs_2models(dream_df, dream_success_df, dream_params, param_names, param_lims, axes_labels, verify_model_with_nbhd.plot_color, verify_model_no_nbhd.plot_color, save_directory)
+# create_pyDREAM_figs_2models(dream_df, dream_success_df, dream_params, param_names, param_lims, axes_labels, verify_model_with_nbhd.plot_color, verify_model_no_nbhd.plot_color, save_directory)
 
 
 ##########################################################################################################
