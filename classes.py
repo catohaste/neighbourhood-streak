@@ -21,10 +21,10 @@ class Embryo:
             self.conc = start_conc.copy()
             self.number_of_cells = len(self.conc)
         
-        def add_bead(self, cells_from_centre, spread_cells, concentration, bead_width):
+        def add_bead(self, cells_from_anterior, spread_cells, concentration, bead_width):
             
             anterior_cell = int(self.number_of_cells / 2)
-            bead_centre = anterior_cell + cells_from_centre
+            bead_centre = anterior_cell + cells_from_anterior
             bead_half_width = int(np.floor(bead_width / 2))
             if bead_width % 2 == 0:
                 bead_cells = range(bead_centre - bead_half_width, bead_centre + bead_half_width)
@@ -36,6 +36,8 @@ class Embryo:
             dummy_cells = range(0,int(self.number_of_cells/2))
             bead_distribution_right = [concentration * np.exp((-1/spread_cells) * cell) for cell in dummy_cells]
             bead_effect_limit = int(np.ceil(- spread_cells * np.log(0.001)))
+            
+            print(bead_centre, bead_effect_limit)
                        
             # set concentration for bead cells
             for bead_cell in bead_cells:
