@@ -229,7 +229,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[7].desired = add_streak(list_of_embryos[7].desired, 324, certain_width, uncertain_width)
     
     
-    bead_disp = 50
+    bead_disp = 45
     list_of_embryos[8].index = '08_'
     list_of_embryos[8].name = 'C-A-C, 0-10-0'
     list_of_embryos[8].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
