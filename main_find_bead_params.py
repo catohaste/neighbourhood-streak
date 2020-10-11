@@ -22,20 +22,20 @@ from model_params import models
 anterior = range(150,451)
 whole_embryo = range(600)
 
-select_embryos = [4,5,6,7]
-sub_directory = 'results/dream/cell_pellets_3000_find_bead/'
-likelihood_region = [anterior for i in select_embryos]
-param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+# select_embryos = [4,5,6,7]
+# sub_directory = 'results/dream/cell_pellets_3000_find_bead/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
 # select_embryos = [8,9,10,11,12]
 # sub_directory = 'results/dream/activin_ant_3000_find_bead/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
 
-# select_embryos = [8,9,10,11,12,13,14,15,16]
-# sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead_45_disp/'
-# likelihood_region = [anterior for i in select_embryos]
-# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
+select_embryos = [8,9,10,11,12,13,14,15,16]
+sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead_40_disp/'
+likelihood_region = [anterior for i in select_embryos]
+param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
 
 # select_embryos = [8,9,10,11,12,13,14,15,16]
 # sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead_1_spread/'
