@@ -57,9 +57,9 @@ def run_pyDREAM(parameters_to_sample, likelihood_function, dream_params, save_di
                 
     return
     
-def run_model_best_params(dream_out_df, select_embryos, best_model, save_directory):
+def run_model_best_params(df_dream_out, select_embryos, best_model, save_directory):
     
-    df = dream_out_df
+    df = df_dream_out
     
     df = df.drop_duplicates()
     df = df.sort_values(by='logp', ascending=False)
@@ -90,9 +90,9 @@ def run_model_best_params(dream_out_df, select_embryos, best_model, save_directo
     best_params.to_csv(save_directory + 'best_params.tsv', sep='\t')
     
     
-def check_success_rate(dream_out_df, select_embryos, current_model, save_directory):
+def check_success_rate(select_embryos, current_model, save_directory):
     
-    df = dream_out_df
+    df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t')
     
     df = df.drop_duplicates()
     df = df.sort_values(by='logp', ascending=False)
@@ -127,11 +127,11 @@ def check_success_rate(dream_out_df, select_embryos, current_model, save_directo
     
     top_params.to_csv(save_directory + 'top_params.tsv', sep='\t')
     
-    return top_params
+    return
 
 def run_model_best_params_max_success(dream_success_df, select_embryos, best_model, save_directory):
     
-    df = dream_success_df
+    df = pd.csv_read(save_directory + 'top_params.tsv', sep='\t')
     
     best_params = df.iloc[[0],:]
     

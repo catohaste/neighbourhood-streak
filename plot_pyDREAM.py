@@ -50,7 +50,7 @@ def save_pyDREAM_out_dataframe(param_names, dream_params, save_directory, dream_
     
     pyDREAM_out_dataframe = df
     
-    return pyDREAM_out_dataframe
+    return
     
 
     
@@ -203,6 +203,9 @@ def plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes
     param_N = len(param_names)
     
     df = dream_success_df
+    max_success = np.max(df['success_proportion'])
+    df_max_success = df[df['success_proportion']==max_success]
+    
    
     """ find settings for the colorbar """
     success_min = df['success_proportion'].min()
@@ -211,8 +214,20 @@ def plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes
     cmin = 0
     cmax = 1
     
+    """ find settings for the logp colorbar """
+    logp_min = df_max_success['logp'].min()
+    logp_max = df_max_success['logp'].max()
+
+    cmin_logp = np.floor(logp_min / 10) * 10
+    cmax_logp = np.ceil(logp_max / 10) * 10
+    
+    cbar_cmap_logp = sns.cubehelix_palette(8, start=.5, rot=-.75, reverse=True, as_cmap=True)
+    cmap = sns.cubehelix_palette(8, start=2.8, rot=-.1, dark=0.8, light=0.2, reverse=False, as_cmap=True)
+    kde_cmap = sns.cubehelix_palette(8, start=2.8, rot=-.1, reverse=True, as_cmap=True)
+    distplot_palette = sns.cubehelix_palette(8, start=2.8, rot=-.1, light=0.5, reverse=True, as_cmap=False)
     
     fig, axes = plt.subplots(nrows=param_N, ncols=param_N, figsize=(14,9))
+    fig_max_success, axes_max_success = plt.subplots(nrows=param_N, ncols=param_N, figsize=(14,9))
     
     param_pair_indices = combinations(range(param_N), 2)
     for param_pair_index in param_pair_indices:
@@ -236,55 +251,76 @@ def plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes
         ymin = ymin - 0.05*yheight
         ymax = ymax + 0.05*yheight
 
-        cmap = sns.cubehelix_palette(8, start=2.8, rot=-.1, dark=0.8, light=0.2, reverse=False, as_cmap=True)
-        kde_cmap = sns.cubehelix_palette(8, start=2.8, rot=-.1, reverse=True, as_cmap=True)
-        distplot_palette = sns.cubehelix_palette(8, start=2.8, rot=-.1, light=0.5, reverse=True, as_cmap=False)
+        
         axes[par1_idx, par2_idx].scatter(x=df[par2],y=df[par1], c=df['success_proportion'], cmap=cmap, vmin=cmin, vmax=cmax, s=2)
+        axes_max_success[par1_idx, par2_idx].scatter(x=df_max_success[par2],y=df_max_success[par1], c=df_max_success['logp'], cmap=cbar_cmap_logp, vmin=cmin_logp, vmax=cmax_logp, s=2)
+        
         axes[par1_idx, par2_idx].set_xlim([xmin, xmax])
         axes[par1_idx, par2_idx].set_ylim([ymin, ymax])
+        axes_max_success[par1_idx, par2_idx].set_xlim([xmin, xmax])
+        axes_max_success[par1_idx, par2_idx].set_ylim([ymin, ymax])
 
         axes[par1_idx, par2_idx].set_xticklabels([])
         axes[par1_idx, par2_idx].set_yticklabels([])
+        axes_max_success[par1_idx, par2_idx].set_xticklabels([])
+        axes_max_success[par1_idx, par2_idx].set_yticklabels([])
 
         sns.kdeplot(ax=axes[par2_idx, par1_idx], data=df[par1], data2=df[par2], shade=False, cmap=kde_cmap)
+        sns.kdeplot(ax=axes_max_success[par2_idx, par1_idx], data=df_max_success[par1], data2=df_max_success[par2], shade=False)
         axes[par2_idx, par1_idx].set_xlim([ymin, ymax])
         axes[par2_idx, par1_idx].set_ylim([xmin, xmax])
+        axes_max_success[par2_idx, par1_idx].set_xlim([ymin, ymax])
+        axes_max_success[par2_idx, par1_idx].set_ylim([xmin, xmax])
         
         axes[par2_idx, par1_idx].set_xlabel('')
         axes[par2_idx, par1_idx].set_ylabel('')
+        axes_max_success[par2_idx, par1_idx].set_xlabel('')
+        axes_max_success[par2_idx, par1_idx].set_ylabel('')
         
         if par2_idx is not (param_N - 1):
             axes[par2_idx, par1_idx].set_xticklabels([])
+            axes_max_success[par2_idx, par1_idx].set_xticklabels([])
         if par1_idx is not 0:
             axes[par2_idx, par1_idx].set_yticklabels([])
+            axes_max_success[par2_idx, par1_idx].set_yticklabels([])
 
     for par_idx, par in enumerate(param_names):
 
         sns.distplot( df[par], ax=axes[par_idx, par_idx], color=distplot_palette[5])
+        sns.distplot( df_max_success[par], ax=axes_max_success[par_idx, par_idx])
         xmin, xmax = param_lims[par_idx]
         xheight = xmax - xmin
         xmin = xmin - 0.05 * xheight
         xmax = xmax + 0.05 * xheight
         axes[par_idx, par_idx].set_xlim([xmin,xmax])
+        axes_max_success[par_idx, par_idx].set_xlim([xmin,xmax])
 
         axes[par_idx, par_idx].set_xlabel('')
         axes[par_idx, par_idx].set_ylabel('')
+        axes_max_success[par_idx, par_idx].set_xlabel('')
+        axes_max_success[par_idx, par_idx].set_ylabel('')
         
         if par_idx is 0:
             old_ymin, old_ymax = axes[par_idx, par_idx].get_ylim()
             old_yheight = old_ymax - old_ymin
             axes[par_idx, par_idx].set_yticks([old_ymin + 0.05*old_yheight, old_ymax - 0.05*old_yheight ])
             axes[par_idx, par_idx].set_yticklabels([str(param_lims[par_idx][0]), str(param_lims[par_idx][1])])
+            axes_max_success[par_idx, par_idx].set_yticks([old_ymin + 0.05*old_yheight, old_ymax - 0.05*old_yheight ])
+            axes_max_success[par_idx, par_idx].set_yticklabels([str(param_lims[par_idx][0]), str(param_lims[par_idx][1])])
         
         if par_idx is not (param_N - 1):
             axes[par_idx, par_idx].set_xticklabels([])
+            axes_max_success[par_idx, par_idx].set_xticklabels([])
         if par_idx is not 0: 
             axes[par_idx, par_idx].set_yticklabels([])
+            axes_max_success[par_idx, par_idx].set_yticklabels([])
         
     for par_idx, axis_label in enumerate(axes_labels):
 
         axes[-1, par_idx].set_xlabel(axis_label)
         axes[par_idx, 0].set_ylabel(axis_label)
+        axes_max_success[-1, par_idx].set_xlabel(axis_label)
+        axes_max_success[par_idx, 0].set_ylabel(axis_label)
         
     fig.subplots_adjust(right=0.8)
     cbar_ax = fig.add_axes([0.85, 0.25, 0.03, 0.6])
@@ -292,10 +328,21 @@ def plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes
     cbar = fig.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), cax=cbar_ax)
     cbar_ax.get_yaxis().labelpad = -80
     cbar_ax.set_ylabel('success rate', rotation=90)
+    
+    
+    fig_max_success.subplots_adjust(right=0.8)
+    cbar_ax_max_success = fig_max_success.add_axes([0.85, 0.25, 0.03, 0.6])
+    norm = colors.Normalize(vmin=cmin_logp, vmax=cmax_logp, clip=False)
+    cbar_max_success = fig_max_success.colorbar(cm.ScalarMappable(norm=norm, cmap=cbar_cmap_logp), cax=cbar_ax_max_success, extend='min')
+    cbar_ax_max_success.get_yaxis().labelpad = -100
+    cbar_ax_max_success.set_ylabel('log$_{10}$(Likelihood)', rotation=90)
         
     # plt.tight_layout()
-    plt.savefig(figs_directory + 'param_pair_grid_success.png')
-    plt.close()
+    fig.savefig(figs_directory + 'param_pair_grid_success.png')
+    fig_max_success.savefig(figs_directory + 'param_pair_grid_max_success.png')
+    
+    plt.close(fig)
+    plt.close(fig_max_success)
     
     return
     
@@ -396,7 +443,10 @@ def plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels
     
 
 
-def create_pyDREAM_figs(dream_out_df, dream_success_df, dream_params, param_names, param_lims, axes_labels, model_color, save_directory):
+def create_pyDREAM_figs(dream_params, param_names, param_lims, axes_labels, model_color, save_directory):
+    
+    dream_out_df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t')
+    dream_success_df = pd.read_csv(save_directory + 'top_params.tsv', sep='\t')
     
     figs_directory = save_directory + 'figs/'
     if not os.path.isdir(figs_directory):
@@ -418,12 +468,12 @@ def create_pyDREAM_figs_2models(dream_out_df, dream_success_df, dream_params, pa
         os.mkdir(figs_directory)
         
     # desired output
-    plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
+    # plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
     plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
     
     # checks
-    plot_logp_over_time(dream_out_df, dream_params, figs_directory)
-    plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
+    # plot_logp_over_time(dream_out_df, dream_params, figs_directory)
+    # plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
     # logp_success_correlation(dream_success_df, param_names, model_A_color, figs_directory)
     # logp_success_correlation(dream_success_df, param_names, model_B_color, figs_directory)
     
