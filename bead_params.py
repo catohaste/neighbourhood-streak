@@ -149,7 +149,7 @@ bead_params_fair = {
     'activin_2_conc' : 0.360975325889631,
     
     # DM and SB
-    'AG1X2_width' : 5,
+    'AG1X2_width' : 7,
     
     'AG1X2_spread' : 6,
     
