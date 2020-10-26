@@ -742,11 +742,11 @@ def check_embryos_success(list_of_embryos):
 
 def define_experiment_groups(list_of_embryos):
     
-    expN = 9
+    expN = 8
     experiments = [Experiment('title') for i in range(expN)]
     
     experiments[0].name = 'normal embryos'
-    experiments[0].embryos = list_of_embryos[0:4]
+    experiments[0].embryos = list_of_embryos[1:4]
 
     experiments[1].name = 'cVg1 cell pellets in ant.'
     experiments[1].embryos = list_of_embryos[4:8]
@@ -758,19 +758,16 @@ def define_experiment_groups(list_of_embryos):
     experiments[3].embryos = list_of_embryos[13:17]
     
     experiments[4].name = 'BMP bead in anterior'
-    experiments[4].embryos = [list_of_embryos[17]]
-    
-    experiments[5].name = 'DM bead in ant.'
-    experiments[5].embryos = [list_of_embryos[18]]
+    experiments[4].embryos = list_of_embryos[17:19]
 
-    experiments[6].name = 'BMP bead in posterior'
-    experiments[6].embryos = list_of_embryos[19:23]
+    experiments[5].name = 'BMP bead in posterior'
+    experiments[5].embryos = [list_of_embryos[0]] + list_of_embryos[19:23]
 
-    experiments[7].name = 'SB'
-    experiments[7].embryos = [list_of_embryos[23]]
+    experiments[6].name = 'SB'
+    experiments[6].embryos = [list_of_embryos[23]]
 
-    experiments[8].name = 'Whole mount + beads'
-    experiments[8].embryos = list_of_embryos[24:30]
+    experiments[7].name = 'Whole mount + beads'
+    experiments[7].embryos = list_of_embryos[24:30]
     
     return experiments
     

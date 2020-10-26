@@ -952,14 +952,14 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             
             
             # clear yaxis for certain embryos
-            yaxis_clear_embryos = [9,10,11,12,14,15,16]
+            yaxis_clear_embryos = [9,10,11,12,14,15,16,18,19,20,21,22]
             if emb_idx in yaxis_clear_embryos:
                 for ax_idx in range(3):
                     axs[ax_idx].yaxis.label.set_visible(False)
                     axs[ax_idx].set_yticklabels([])
                     
             # clear legend for certain embryos
-            legend_clear_embryos = [8,9,10,11,13,14,15]
+            legend_clear_embryos = [8,9,10,11,13,14,15,17,0,19,20,21]
             if emb_idx in legend_clear_embryos:
                 for ax_idx in range(3):
                     axs[ax_idx].get_legend().remove()
