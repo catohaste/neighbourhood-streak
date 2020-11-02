@@ -38,7 +38,7 @@ whole_embryo = range(600)
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
 
 select_embryos = [8,9,10,11,12,13,14,15,16,17,18]
-sub_directory = 'results/dream/activin_ant_bmp4_ant_threshold_3000_find_bead_1_conc_disp_50/'
+sub_directory = 'results/dream/activin_ant_bmp4_ant_threshold_3000_find_bead_1_conc_disp_45/'
 likelihood_region = [anterior for i in select_embryos]
 param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_conc', 'activin_2_spread', 'activin_10_spread', 'bmp4_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread']
 
