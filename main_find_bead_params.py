@@ -114,12 +114,11 @@ else:
         os.remove(f)
 run_pyDREAM(parameters_to_sample, likelihood, dream_params, dream_out_directory)
 
-dream_df = save_pyDREAM_out_dataframe(param_names, dream_params, save_directory, dream_out_suffix)
+save_pyDREAM_out_dataframe(param_names, dream_params, save_directory, dream_out_suffix)
 
 verify_model_with_nbhd = deepcopy(models[0])
 verify_model_no_nbhd = deepcopy(models[1])
-dream_success_df = check_success_rate_2models(dream_df, select_embryos, verify_model_with_nbhd, verify_model_no_nbhd, save_directory)
-# run_model_best_params_max_success_2models(dream_success_df, select_embryos, verify_model_with_nbhd, verify_model_no_nbhd, save_directory + 'verify/')
+dream_success_df = check_success_rate_2models(select_embryos, verify_model_with_nbhd, verify_model_no_nbhd, save_directory)
 
 # create_pyDREAM_figs_2models(dream_df, dream_success_df, dream_params, param_names, param_lims, axes_labels, verify_model_with_nbhd.plot_color, verify_model_no_nbhd.plot_color, save_directory)
 

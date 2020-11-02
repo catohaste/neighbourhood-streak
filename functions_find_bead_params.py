@@ -82,9 +82,9 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     return model_with_nbhd, model_no_nbhd
 
     
-def check_success_rate_2models(dream_out_df, select_embryos, model_with_nbhd, model_no_nbhd, save_directory):
+def check_success_rate_2models(select_embryos, model_with_nbhd, model_no_nbhd, save_directory):
     
-    df = dream_out_df
+    df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t')
     
     df = df.drop_duplicates()
     df = df.sort_values(by='logp', ascending=False)
