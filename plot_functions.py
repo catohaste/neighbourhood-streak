@@ -22,7 +22,7 @@ def set_figs_font_settings():
     rcParams['font.sans-serif'] = ['Arial']
     # rcParams['font.sans-serif'] = ['Clear Sans']
     plt.rc('font', size=font_sizes['SMALL_SIZE'])          # controls default text sizes
-    plt.rc('axes', titlesize=font_sizes['SMALL_SIZE'])     # fontsize of the axes title
+    plt.rc('axes', titlesize=font_sizes['MEDIUM_SIZE'])     # fontsize of the axes title
     plt.rc('axes', labelsize=font_sizes['MEDIUM_SIZE'])    # fontsize of the x and y labels
     plt.rc('xtick', labelsize=font_sizes['SMALL_SIZE'])    # fontsize of the tick labels
     plt.rc('ytick', labelsize=font_sizes['SMALL_SIZE'])    # fontsize of the tick labels
@@ -817,6 +817,8 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
         directory_name = directory_name + '/'
     if not os.path.isdir(directory_name):
         os.mkdir(directory_name)        # I have no idea why this is necessary
+    
+    inset_axes = [10, 11]
         
     for pos_idx, position in enumerate(['anterior_view', 'posterior_view']):
         
@@ -892,6 +894,9 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             bar_height_proportion = 0.12
             bar_bottom_proportion = 0.155
             
+            axs[0].set_title(embryo.fig_title, fontweight='bold')
+            # fig_full.suptitle('C-A-C')
+            
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
             axs[1].set_ylabel('Model A value')
@@ -920,6 +925,21 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             axs[1].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model < models[0].threshold , facecolor='lightgray', alpha=1, step='mid')
             axs[1].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model >= models[0].threshold ,facecolor=brachyury_color_A, edgecolor=brachyury_color_A, alpha=1, step='mid', linewidth=1)
             
+            if emb_idx in inset_axes:
+                
+                # inset axes....
+                axins = axs[1].inset_axes([0.02, 0.25, 0.35, 0.3])
+                axins.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1)
+                axins.plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
+                # axins.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
+                # sub region of the original image
+                x1, x2, y1, y2 = 230, 370, 0, model_ymax
+                axins.set_xlim(x1, x2)
+                axins.set_ylim(y1, y2)
+                axins.set_xticklabels('')
+                axins.set_yticklabels('')
+
+                axs[1].indicate_inset_zoom(axins)
 
         
             ''' model B '''

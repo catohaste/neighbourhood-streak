@@ -60,6 +60,7 @@ class Embryo:
         self.number_of_cells = number_of_cells
         self.auto_model_ylim = [-0.2,0.15]
         self.plot_model_ylim = [-0.2,0.15]
+        self.fig_title = name
         self.success = False
         
         self.streak_positions = []
