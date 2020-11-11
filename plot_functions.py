@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as path_effects
+import matplotlib.font_manager as font_manager
 from matplotlib import rcParams
 from scipy import stats
 import copy
@@ -989,11 +990,12 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             
             add_text_embryos = [item for item in range(len(list_of_embryos)) if item not in legend_clear_embryos]
             if emb_idx in add_text_embryos:
-                desired = axs[0].text(408, text_yloc_pro, 'Desired streak', backgroundcolor='lightgray', color=desired_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
-                predicted_A = axs[1].text(388, text_yloc_A, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_A, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
-                predicted_B = axs[2].text(388, text_yloc_B, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_B, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
+                font_props = font_manager.FontProperties(size=font_sizes['SMALLEST_SIZE'], weight='semibold')
+                desired = axs[0].text(408, text_yloc_pro, 'Desired streak', backgroundcolor='lightgray', color=desired_color, fontproperties=font_props)
+                predicted_A = axs[1].text(388, text_yloc_A, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_A, fontproperties=font_props)
+                predicted_B = axs[2].text(388, text_yloc_B, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_B, fontproperties=font_props)
                 
-                outline_width = 0
+                outline_width = 0.1
                 desired.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
                                        path_effects.Normal()])
                 predicted_A.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
