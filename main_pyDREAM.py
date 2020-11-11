@@ -45,11 +45,17 @@ whole_embryo = range(600)
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
 
-select_embryos = [8,9,10,11,12,13,14,15,16]
-sub_directory = 'results/dream/activin_ant_threshold_3000_disp_50/'
+# select_embryos = [8,9,10,11,12,13,14,15,16]
+# sub_directory = 'results/dream/activin_ant_threshold_3000_disp_50/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
+# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
+
+select_embryos = [8,9,10,11,12,13,14,15,16,17,18]
+sub_directory = 'results/dream/activin_ant_bmp4_ant_threshold_1000_1_conc_disp_50/'
 likelihood_region = [anterior for i in select_embryos]
-param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
-param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
+param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_conc', 'activin_2_spread', 'activin_10_spread','bmp4_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread']
+param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_conc', 'activin_2_spread', 'activin_10_spread','bmp4_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread']
 
 # select_embryos = [8,9,10,11,12,13,14,15,16]
 # sub_directory = 'results/dream/activin_ant_threshold_3000_modelParamsOnly/'
@@ -68,7 +74,7 @@ if not os.path.isdir(sub_directory):
 
 dream_params = {
     'nchains' : 5,
-    'niterations' : 3000,
+    'niterations' : 1000,
     'GRlim' : 1.2 # GR Convergence limit
 }
 
@@ -111,19 +117,19 @@ def likelihood_with_nbhd(param_vector):
 
 dream_out_suffix = 'dream_out/'
 dream_out_directory = save_directory + dream_out_suffix
-if not os.path.isdir(dream_out_directory):
-    os.mkdir(dream_out_directory)
-else:
-    files = glob.glob(dream_out_directory + '*')
-    for f in files:
-        os.remove(f)
-run_pyDREAM(parameters_to_sample, likelihood_with_nbhd, dream_params, dream_out_directory)
-
-dream_df = save_pyDREAM_out_dataframe(param_names_with_nbhd, dream_params, save_directory, dream_out_suffix)
+# if not os.path.isdir(dream_out_directory):
+#     os.mkdir(dream_out_directory)
+# else:
+#     files = glob.glob(dream_out_directory + '*')
+#     for f in files:
+#         os.remove(f)
+# run_pyDREAM(parameters_to_sample, likelihood_with_nbhd, dream_params, dream_out_directory)
+#
+# dream_df = save_pyDREAM_out_dataframe(param_names_with_nbhd, dream_params, save_directory, dream_out_suffix)
 
 verify_model_with_nbhd = deepcopy(models[0])
-dream_success_df = check_success_rate(dream_df, select_embryos, verify_model_with_nbhd, save_directory)
-run_model_best_params_max_success(dream_success_df, select_embryos, verify_model_with_nbhd, save_directory + 'verify/')
+# check_success_rate(select_embryos, verify_model_with_nbhd, save_directory)
+run_model_best_params_max_success(select_embryos, verify_model_with_nbhd, save_directory)
 
 create_pyDREAM_figs(dream_params, param_names_with_nbhd, param_lims, axes_labels, verify_model_with_nbhd.plot_color, save_directory)
 
@@ -179,7 +185,7 @@ save_pyDREAM_out_dataframe(param_names_no_nbhd, dream_params, save_directory, dr
 
 verify_model_no_nbhd = deepcopy(models[1])
 check_success_rate(select_embryos, verify_model_no_nbhd, save_directory)
-run_model_best_params_max_success(select_embryos, verify_model_no_nbhd, save_directory + 'verify/')
+run_model_best_params_max_success(select_embryos, verify_model_no_nbhd, save_directory)
 
 create_pyDREAM_figs(dream_params, param_names_no_nbhd, param_lims, axes_labels, verify_model_no_nbhd.plot_color, save_directory)
 

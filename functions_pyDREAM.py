@@ -129,9 +129,10 @@ def check_success_rate(select_embryos, current_model, save_directory):
     
     return
 
-def run_model_best_params_max_success(dream_success_df, select_embryos, best_model, save_directory):
+def run_model_best_params_max_success(select_embryos, best_model, save_directory):
     
-    df = pd.csv_read(save_directory + 'top_params.tsv', sep='\t')
+    df = pd.read_csv(save_directory + 'top_params.tsv', sep='\t')
+    out_directory = save_directory + 'verify/'
     
     best_params = df.iloc[[0],:]
     
@@ -156,7 +157,7 @@ def run_model_best_params_max_success(dream_success_df, select_embryos, best_mod
     for idx, emb_idx in enumerate(select_embryos):
         embryo = embryos[emb_idx]
         run_model(embryo, best_model)
-        save_standard_figs(embryo, best_model, save_directory)
+        save_standard_figs(embryo, best_model, out_directory)
         embryo.find_streaks()
     
     successN, failureN = check_embryos_success(embryos)
@@ -165,7 +166,7 @@ def run_model_best_params_max_success(dream_success_df, select_embryos, best_mod
         exp.find_plot_model_ylim()
     
     for idx, emb_idx in enumerate(select_embryos):
-        save_model_figs(embryos[emb_idx], best_model, save_directory,'')
+        save_model_figs(embryos[emb_idx], best_model, out_directory,'')
         
-    best_params.to_csv(save_directory + 'best_params.tsv', sep='\t')
+    best_params.to_csv(out_directory + 'best_params.tsv', sep='\t')
 
