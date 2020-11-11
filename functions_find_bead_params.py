@@ -28,6 +28,11 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
         model_no_nbhd.threshold = df.iloc[0]['threshold$^B$']
     if 'n' in df.columns:
         model_with_nbhd.nbhd_size = 2*np.floor(df.iloc[0]['n']) - 1
+    if 'activin_conc' in df.columns:
+        model_with_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_conc']
+        model_no_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_conc']
+        model_with_nbhd.bead_params['activin_10_conc'] = df.iloc[0]['activin_10_conc']
+        model_no_nbhd.bead_params['activin_10_conc'] = df.iloc[0]['activin_10_conc']
     if 'activin_2_conc' in df.columns:
         model_with_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_2_conc']
         model_no_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_2_conc']
@@ -45,6 +50,15 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     if 'activin_10_spread' in df.columns:
         model_with_nbhd.bead_params['heparin_10_spread'] = df.iloc[0]['activin_10_spread']
         model_no_nbhd.bead_params['heparin_10_spread'] = df.iloc[0]['activin_10_spread']
+    if 'bmp4_conc' in df.columns:
+        model_with_nbhd.bead_params['bmp4_6_conc'] = df.iloc[0]['bmp4_conc']
+        model_no_nbhd.bead_params['bmp4_6_conc'] = df.iloc[0]['bmp4_conc']
+        model_with_nbhd.bead_params['bmp4_12_conc'] = df.iloc[0]['bmp4_conc']
+        model_no_nbhd.bead_params['bmp4_12_conc'] = df.iloc[0]['bmp4_conc']
+        model_with_nbhd.bead_params['bmp4_25_conc'] = df.iloc[0]['bmp4_conc']
+        model_no_nbhd.bead_params['bmp4_25_conc'] = df.iloc[0]['bmp4_conc']
+        model_with_nbhd.bead_params['bmp4_50_conc'] = df.iloc[0]['bmp4_conc']
+        model_no_nbhd.bead_params['bmp4_50_conc'] = df.iloc[0]['bmp4_conc']
     if 'bmp4_50_conc' in df.columns:
         model_with_nbhd.bead_params['bmp4_50_conc'] = df.iloc[0]['bmp4_50_conc']
         model_no_nbhd.bead_params['bmp4_50_conc'] = df.iloc[0]['bmp4_50_conc']
@@ -78,6 +92,12 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     if 'bmp4_6_spread' in df.columns:
         model_with_nbhd.bead_params['afigel_6_spread'] = df.iloc[0]['bmp4_6_spread']
         model_no_nbhd.bead_params['afigel_6_spread'] = df.iloc[0]['bmp4_6_spread']
+    if 'DM_conc' in df.columns:
+        model_with_nbhd.bead_params['DM_conc'] = df.iloc[0]['DM_conc']
+        model_no_nbhd.bead_params['DM_conc'] = df.iloc[0]['DM_conc']
+    if 'AG1X2_spread' in df.columns:
+        model_with_nbhd.bead_params['AG1X2_spread'] = df.iloc[0]['AG1X2_spread']
+        model_no_nbhd.bead_params['AG1X2_spread'] = df.iloc[0]['AG1X2_spread']
         
     return model_with_nbhd, model_no_nbhd
 
