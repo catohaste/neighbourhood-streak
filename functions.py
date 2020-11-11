@@ -233,7 +233,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[7].desired = add_streak(list_of_embryos[7].desired, 345, certain_width, uncertain_width)
     
     
-    bead_disp = 35
+    bead_disp = 50
     list_of_embryos[8].index = '08_'
     list_of_embryos[8].name = 'C-A-C, 0-10-0'
     list_of_embryos[8].fig_title = 'C-A-C'
@@ -635,7 +635,7 @@ def check_embryos_success(list_of_embryos):
         failureN += 1
         
 
-
+    # list_of_embryos[17].success = True
     if list_of_embryos[17].streakN == 0:
         list_of_embryos[17].success = True
         successN += 1
