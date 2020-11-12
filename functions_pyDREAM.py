@@ -91,18 +91,20 @@ def run_model_best_params(df_dream_out, select_embryos, best_model, save_directo
     
     
 def check_success_rate(select_embryos, current_model, save_directory):
-    
-    df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t')
-    
+        
+    df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t', index_col=0, header=0)
+    df = df.drop(columns=['chainID'])
     df = df.drop_duplicates()
     df = df.sort_values(by='logp', ascending=False)
     
     top_params_N = int(np.ceil(len(df) * 1))
-    
-    top_params = df.iloc[:top_params_N,1:]
+    top_params = df.iloc[:top_params_N,:]
+
     for idx, emb_idx in enumerate(select_embryos):
-        top_params[str(emb_idx)] = False
-    top_params['success_proportion'] = np.nan
+        colN = len(top_params.columns)
+        top_params.insert(colN, str(emb_idx) , False)
+    colN = len(top_params.columns)
+    top_params.insert(colN, 'success_proportion' , np.nan)
     
     for index, row in top_params.iterrows():
     

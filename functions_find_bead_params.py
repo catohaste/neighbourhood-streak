@@ -31,8 +31,8 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     if 'activin_conc' in df.columns:
         model_with_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_conc']
         model_no_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_conc']
-        model_with_nbhd.bead_params['activin_10_conc'] = df.iloc[0]['activin_10_conc']
-        model_no_nbhd.bead_params['activin_10_conc'] = df.iloc[0]['activin_10_conc']
+        model_with_nbhd.bead_params['activin_10_conc'] = df.iloc[0]['activin_conc']
+        model_no_nbhd.bead_params['activin_10_conc'] = df.iloc[0]['activin_conc']
     if 'activin_2_conc' in df.columns:
         model_with_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_2_conc']
         model_no_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_2_conc']
@@ -104,19 +104,22 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     
 def check_success_rate_2models(select_embryos, model_with_nbhd, model_no_nbhd, save_directory):
     
-    df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t')
-    
+    df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t', index_col=0, header=0)
+    df = df.drop(columns=['chainID'])
     df = df.drop_duplicates()
     df = df.sort_values(by='logp', ascending=False)
     
     top_params_N = int(np.ceil(len(df) * 1))
+    top_params = df.iloc[:top_params_N,:]
     
-    top_params = df.iloc[:top_params_N,1:]
+    colN = len(top_params.columns)
     for idx, emb_idx in enumerate(select_embryos):
-        top_params['A_' + str(emb_idx)] = False
-        top_params['B_' + str(emb_idx)] = False
-    top_params['A_success_proportion'] = np.nan
-    top_params['B_success_proportion'] = np.nan
+        colN = len(top_params.columns)
+        top_params.insert(colN, 'A_' + str(emb_idx) , False)
+        top_params.insert(colN + 1, 'B_' + str(emb_idx) , False)
+    colN = len(top_params.columns)
+    top_params.insert(colN, 'A_success_proportion' , np.nan)
+    top_params.insert(colN + 1, 'B_success_proportion' , np.nan)
     
     for index, row in top_params.iterrows():
     
@@ -159,44 +162,3 @@ def check_success_rate_2models(select_embryos, model_with_nbhd, model_no_nbhd, s
     top_params.to_csv(save_directory + 'top_params.tsv', sep='\t')
     
     return top_params
-
-def run_model_best_params_max_success_2models(dream_success_df, select_embryos, model_with_nbhd, model_no_nbhd, save_directory):
-    
-    df = dream_success_df
-    
-    best_params = df.iloc[[0],:]
-    
-    max_success = df.success_proportion.max()
-    
-    if df.at[0,'success_proportion'] != max_success:
-        
-        best_success = df[df['success_proportion'] == max_success]
-        best_success = best_success.sort_values(by='logp', ascending=False)
-        
-        best_params = pd.concat([best_params, best_success.iloc[[0],:]])
-        
-    best_params = best_params.iloc[[-1],:]
-    
-    embryoN = 30
-    embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
-    initial_concentrations = define_initial_protein_concentrations(initial_params)
-    
-    best_model = set_params_from_df(best_params, best_model)
-    
-    embryos = setup_embryos(embryos, best_model, initial_concentrations)
-    for idx, emb_idx in enumerate(select_embryos):
-        embryo = embryos[emb_idx]
-        run_model(embryo, best_model)
-        save_standard_figs(embryo, best_model, save_directory)
-        embryo.find_streaks()
-    
-    successN, failureN = check_embryos_success(embryos)
-    experiments = define_experiment_groups(embryos)
-    for exp in experiments:
-        exp.find_plot_model_ylim()
-    
-    for idx, emb_idx in enumerate(select_embryos):
-        save_model_figs(embryos[emb_idx], best_model, save_directory,'')
-        
-    best_params.to_csv(save_directory + 'best_params.tsv', sep='\t')
-
