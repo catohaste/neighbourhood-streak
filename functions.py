@@ -790,15 +790,9 @@ def set_params_from_df(df, current_model):
         current_model.inducer_scaling = 10.0 ** df.iloc[0]['$b_V$']
     if 'threshold' in df.columns:
         current_model.threshold = df.iloc[0]['threshold']
-    if 'activin_2_lambda' in df.columns:
-        current_model.bead_params['activin_2_conc'] = df.iloc[0]['activin_2_lambda']
-        current_model.bead_params['heparin_2_spread'] = 1 / df.iloc[0]['activin_2_lambda']
-    if 'activin_10_lambda' in df.columns:
-        current_model.bead_params['activin_10_conc'] = df.iloc[0]['activin_10_lambda']
-        current_model.bead_params['heparin_10_spread'] = 1 / df.iloc[0]['activin_10_lambda']
     if 'activin_conc' in df.columns:
-        current_model.bead_params['heparin_2_spread'] = df.iloc[0]['activin_conc']
-        current_model.bead_params['heparin_10_spread'] = df.iloc[0]['activin_conc']
+        current_model.bead_params['activin_2_conc'] = df.iloc[0]['activin_conc']
+        current_model.bead_params['activin_10_conc'] = df.iloc[0]['activin_conc']
     if 'activin_2_conc' in df.columns:
         current_model.bead_params['activin_2_conc'] = df.iloc[0]['activin_2_conc']
     if 'activin_10_conc' in df.columns:
@@ -810,15 +804,6 @@ def set_params_from_df(df, current_model):
         current_model.bead_params['heparin_2_spread'] = df.iloc[0]['activin_2_spread']
     if 'activin_10_spread' in df.columns:
         current_model.bead_params['heparin_10_spread'] = df.iloc[0]['activin_10_spread']
-    if 'bmp4_50_lambda' in df.columns:
-        current_model.bead_params['bmp4_50_conc'] = df.iloc[0]['bmp4_50_lambda']
-        current_model.bead_params['afigel_50_spread'] = 1 / df.iloc[0]['bmp4_50_lambda']
-    if 'bmp4_25_lambda' in df.columns:
-        current_model.bead_params['bmp4_25_conc'] = df.iloc[0]['bmp4_25_lambda']
-        current_model.bead_params['afigel_25_spread'] = 1 / df.iloc[0]['bmp4_25_lambda']
-    if 'bmp4_12_lambda' in df.columns:
-        current_model.bead_params['bmp4_12_conc'] = df.iloc[0]['bmp4_12_lambda']
-        current_model.bead_params['afigel_12_spread'] = 1 / df.iloc[0]['bmp4_12_lambda']
     if 'bmp4_conc' in df.columns:
         current_model.bead_params['bmp4_50_conc'] = df.iloc[0]['bmp4_conc']
         current_model.bead_params['bmp4_25_conc'] = df.iloc[0]['bmp4_conc']
