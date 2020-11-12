@@ -1,4 +1,5 @@
 from classes import Model
+import numpy as np
 
 from bead_params import bead_params_init, bead_params_A, bead_params_B, bead_params_fair
 
@@ -12,7 +13,7 @@ models[0].index_string = 'A'
 models[0].plot_color = 'C1'
 models[0].bead_params = bead_params_fair
 models[0].threshold = 0.498959407670072
-models[0].nbhd_size = 2*70 - 1
+models[0].nbhd_size = 2*np.floor(70) - 1
 models[0].inducer_scaling = 10.0 ** (-0.369861982125379)
 models[0].inhibitor_scaling = 10.0 ** 2.03049314837895
 

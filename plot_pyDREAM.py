@@ -203,6 +203,7 @@ def plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes
     param_N = len(param_names)
     
     df = dream_success_df
+    df = df.dropna(subset=['success_proportion'])
     max_success = np.max(df['success_proportion'])
     df_max_success = df[df['success_proportion']==max_success]
     
