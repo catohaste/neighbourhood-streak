@@ -233,7 +233,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[7].desired = add_streak(list_of_embryos[7].desired, 345, certain_width, uncertain_width)
     
     
-    bead_disp = 50
+    bead_disp = 40
     list_of_embryos[8].index = '08_'
     list_of_embryos[8].name = 'C-A-C, 0-10-0'
     list_of_embryos[8].fig_title = 'C-A-C'

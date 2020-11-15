@@ -38,9 +38,14 @@ whole_embryo = range(600)
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread']
 
 select_embryos = [8,9,10,11,12,13,14,15,16,17,18]
-sub_directory = 'results/dream/activin_ant_bmp4_ant_threshold_3000_1_conc_disp_50_find_bead/'
+sub_directory = 'results/dream/activin_ant_bmp4_ant_threshold_3000_disp_40_find_bead/'
 likelihood_region = [anterior for i in select_embryos]
-param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_conc', 'activin_2_spread', 'activin_10_spread', 'bmp4_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread']
+param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread']
+
+# select_embryos = [8,9,10,11,12,13,14,15,16,17,18]
+# sub_directory = 'results/dream/activin_ant_bmp4_ant_threshold_3000_1_conc_disp_40_find_bead/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_conc', 'activin_2_spread', 'activin_10_spread', 'bmp4_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread']
 
 if not os.path.isdir(sub_directory):
     os.mkdir(sub_directory)
@@ -106,15 +111,15 @@ def likelihood(param_vector):
 
 dream_out_suffix = 'dream_out/'
 dream_out_directory = save_directory + dream_out_suffix
-# if not os.path.isdir(dream_out_directory):
-#     os.mkdir(dream_out_directory)
-# else:
-#     files = glob.glob(dream_out_directory + '*')
-#     for f in files:
-#         os.remove(f)
-# run_pyDREAM(parameters_to_sample, likelihood, dream_params, dream_out_directory)
-#
-# save_pyDREAM_out_dataframe(param_names, dream_params, save_directory, dream_out_suffix)
+if not os.path.isdir(dream_out_directory):
+    os.mkdir(dream_out_directory)
+else:
+    files = glob.glob(dream_out_directory + '*')
+    for f in files:
+        os.remove(f)
+run_pyDREAM(parameters_to_sample, likelihood, dream_params, dream_out_directory)
+
+save_pyDREAM_out_dataframe(param_names, dream_params, save_directory, dream_out_suffix)
 
 verify_model_with_nbhd = deepcopy(models[0])
 verify_model_no_nbhd = deepcopy(models[1])
