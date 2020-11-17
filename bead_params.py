@@ -160,81 +160,81 @@ bead_params_fair = {
 bead_params_best_for_A = {
     
     # vg1
-    'cell_pellet_width' : 16,
-    
-    'cell_pellet_spread' : 12,
-    
-    'vg1_cell_conc' : 0.35, # cell_pellet 
-    'bmp4_cell_conc' : 0.35,
+    'cell_pellet_width' : 30,
+
+    'cell_pellet_spread' : 8,
+
+    'vg1_cell_conc' : 0.4, # cell_pellet 
+    'bmp4_cell_conc' : 0.4,
 
     # bmp
-    'afigel_width' : 5,
-    
-    'afigel_50_spread' : 32,
-    'afigel_25_spread' : 32,
-    'afigel_12_spread' : 4,
-    'afigel_6_spread' : 2,
-    
-    'bmp4_50_conc' : 0.8,  # afigel
-    'bmp4_25_conc' : 0.95,
-    'bmp4_12_conc' : 0.2, # 0.125,
-    'bmp4_6_conc' : 0.05,
+    'afigel_width' : 7,
+
+    'afigel_50_spread' : 40,
+    'afigel_25_spread' : 42.6283983297466,
+    'afigel_12_spread' : 17.3377177450197,
+    'afigel_6_spread' : 13.4201431297484,
+
+    'bmp4_50_conc' : 0.9,  # afigel
+    'bmp4_25_conc' : 0.99016961087713,
+    'bmp4_12_conc' : 0.708091333924036, # 0.125,
+    'bmp4_6_conc' : 0.924612483333301,
 
     # activin
     'heparin_width' : 9,
-    
-    'heparin_10_spread' : 6, # 0.143, # heparin
-    'heparin_2_spread' : 4,
-    
-    'activin_10_conc' : 0.09, # 0.143, # heparin
-    'activin_2_conc' : 0.04,
-    
+
+    'heparin_10_spread' : 9.79365778680702, # 0.143, # heparin
+    'heparin_2_spread' : 2.6710597531105100,
+
+    'activin_10_conc' : 0.14512945663227400, # 0.143, # heparin
+    'activin_2_conc' : 0.08814740954141620,
+
     # DM and SB
-    'AG1X2_width' : 5,
-    
-    'AG1X2_spread' : 10,
-    
-    'DM_conc' : -0.35,  # AG1X2
+    'AG1X2_width' : 7,
+
+    'AG1X2_spread' : 9.67438454951806,
+
+    'DM_conc' : -0.398812868682321,  # AG1X2
     'SB_conc' : -0.5 # AG1X2
 }
 
 bead_params_best_for_B = {
-    
+
     # vg1
-    'cell_pellet_width' : 16,
-    
-    'cell_pellet_spread' : 12,
-    
-    'vg1_cell_conc' : 0.35, # cell_pellet 
-    'bmp4_cell_conc' : 0.35,
+    'cell_pellet_width' : 30,
+
+    'cell_pellet_spread' : 8,
+
+    'vg1_cell_conc' : 0.4, # cell_pellet 
+    'bmp4_cell_conc' : 0.4,
 
     # bmp
-    'afigel_width' : 5,
-    
-    'afigel_50_spread' : 32,
-    'afigel_25_spread' : 32,
-    'afigel_12_spread' : 4,
-    'afigel_6_spread' : 2,
-    
-    'bmp4_50_conc' : 0.8,  # afigel
-    'bmp4_25_conc' : 0.95,
-    'bmp4_12_conc' : 0.2, # 0.125,
-    'bmp4_6_conc' : 0.05,
+    'afigel_width' : 7,
+
+    'afigel_50_spread' : 40,
+    'afigel_25_spread' : 42.6283983297466,
+    'afigel_12_spread' : 17.3377177450197,
+    'afigel_6_spread' : 13.4201431297484,
+
+    'bmp4_50_conc' : 0.9,  # afigel
+    'bmp4_25_conc' : 0.99016961087713,
+    'bmp4_12_conc' : 0.708091333924036, # 0.125,
+    'bmp4_6_conc' : 0.924612483333301,
 
     # activin
     'heparin_width' : 9,
-    
-    'heparin_10_spread' : 6, # 0.143, # heparin
-    'heparin_2_spread' : 4,
-    
-    'activin_10_conc' : 0.09, # 0.143, # heparin
-    'activin_2_conc' : 0.04,
-    
+
+    'heparin_10_spread' : 9.79365778680702, # 0.143, # heparin
+    'heparin_2_spread' : 2.6710597531105100,
+
+    'activin_10_conc' : 0.14512945663227400, # 0.143, # heparin
+    'activin_2_conc' : 0.08814740954141620,
+
     # DM and SB
-    'AG1X2_width' : 5,
-    
-    'AG1X2_spread' : 10,
-    
-    'DM_conc' : -0.35,  # AG1X2
+    'AG1X2_width' : 7,
+
+    'AG1X2_spread' : 9.67438454951806,
+
+    'DM_conc' : -0.398812868682321,  # AG1X2
     'SB_conc' : -0.5 # AG1X2
 }
