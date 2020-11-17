@@ -85,7 +85,7 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
     plt.rc('axes', labelsize=font_size['SMALL_SIZE'])    # fontsize of the x and y labels
     
     param_N = len(param_names)
-    
+
     df = dream_out_df
     df = df.drop_duplicates()
     df = df.sort_values(by='logp', ascending=True)
@@ -449,12 +449,15 @@ def create_pyDREAM_figs(dream_params, param_names, param_lims, axes_labels, mode
     dream_out_df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t')
     dream_success_df = pd.read_csv(save_directory + 'top_params.tsv', sep='\t')
     
+    dream_success_df = dream_success_df.drop_duplicates()
+    dream_success_df = dream_success_df.sort_values(by='logp', ascending=False)
+    
     figs_directory = save_directory + 'figs/'
     if not os.path.isdir(figs_directory):
         os.mkdir(figs_directory)
         
     # desired output
-    plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
+    plot_param_pair_grid_logp(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
     plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
     
     # checks
