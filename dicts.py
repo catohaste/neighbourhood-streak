@@ -40,7 +40,7 @@ param_priors_dict = {
     'bmp4_25_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
     'bmp4_12_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
     'bmp4_6_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
-    'DM_conc': SampledParam(stats.uniform, loc=-0.4, scale=0.4),
+    'DM_conc': SampledParam(stats.uniform, loc=-0.5, scale=0.5),
     'AG1X2_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0)
 }
 
@@ -81,7 +81,7 @@ param_lims_dict = {
     'bmp4_25_spread': (1,43),
     'bmp4_12_spread': (1,43),
     'bmp4_6_spread': (1,43),
-    'DM_conc': (-0.4,0.0),
+    'DM_conc': (-0.5,0.0),
     'AG1X2_spread': (1,43)
 }
 

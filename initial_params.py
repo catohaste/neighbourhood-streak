@@ -21,12 +21,12 @@ IP['inducer_stageX_max'] = 0.7
 IP['inducer_stageX_min'] = 0.1
 
 '''stage XII '''
-IP['inhibitor_stageXII_max'] = 0.65
-IP['inhibitor_stageXII_min'] = 0.1
+IP['inhibitor_stageXII_max'] = 0.55
+IP['inhibitor_stageXII_min'] = 0.15
 
-IP['inducer_stageXII_baseline'] = 0.05
-IP['inducer_stageXII_conc_coeff'] = 70  
-IP['inducer_stageXII_std'] = 35
+IP['inducer_stageXII_baseline'] = 0.05 # 0.05
+IP['inducer_stageXII_conc_coeff'] = 80 # 70  
+IP['inducer_stageXII_std'] = 45 #35
 
 '''stage 2 '''
 IP['inhibitor_stage2_max'] = 0.9

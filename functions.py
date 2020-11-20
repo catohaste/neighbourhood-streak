@@ -162,8 +162,8 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     
     list_of_embryos[0].index = '00_'
-    list_of_embryos[0].name = 'Stage EG&K X, antfocus'
-    list_of_embryos[0].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[0].name = 'Stage EG&K XII, antfocus'
+    list_of_embryos[0].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[0].desired = copy.deepcopy(no_streak)
     list_of_embryos[0].desired = add_streak(list_of_embryos[0].desired, 0, certain_width, uncertain_width)
 
@@ -190,7 +190,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     list_of_embryos[4].index = '04_'
     list_of_embryos[4].name = '2 Vg1 pellets, ant'
-    list_of_embryos[4].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[4].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[4].inducer.add_bead(-15, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[4].inducer.add_bead(15, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[4].desired = copy.deepcopy(no_streak)
@@ -199,7 +199,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
 
     list_of_embryos[5].index = '05_'
     list_of_embryos[5].name = '4 Vg1 pellets, ant'
-    list_of_embryos[5].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[5].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[5].inducer.add_bead(-45, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[5].inducer.add_bead(-15, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[5].inducer.add_bead(15, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
@@ -209,7 +209,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
 
     list_of_embryos[6].index = '06_'
     list_of_embryos[6].name = '4 Vg1 pellets, ant, w ctrl'
-    list_of_embryos[6].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[6].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[6].inducer.add_bead(-60, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[6].inducer.add_bead(-30, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[6].inducer.add_bead(30, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
@@ -221,7 +221,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
 
     list_of_embryos[7].index = '07_'
     list_of_embryos[7].name = '4 Vg1 pellets, ant, w BMP4'
-    list_of_embryos[7].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[7].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[7].inducer.add_bead(-60, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[7].inducer.add_bead(-30, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[7].inhibitor.add_bead(0, cell_pellet_spread, bmp4_cell_conc, cell_pellet_width)
@@ -233,11 +233,11 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[7].desired = add_streak(list_of_embryos[7].desired, 345, certain_width, uncertain_width)
     
     
-    bead_disp = 40
+    bead_disp = 50
     list_of_embryos[8].index = '08_'
     list_of_embryos[8].name = 'C-A-C, 0-10-0'
     list_of_embryos[8].fig_title = 'C-A-C'
-    list_of_embryos[8].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[8].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[8].inducer.add_bead(0, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[8].desired = copy.deepcopy(no_streak)
     list_of_embryos[8].desired = add_streak(list_of_embryos[8].desired, 300, certain_width, uncertain_width)
@@ -246,7 +246,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[9].index = '09_'
     list_of_embryos[9].name = 'A-A-A, 10-10-10'
     list_of_embryos[9].fig_title = 'A-A-A'
-    list_of_embryos[9].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[9].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[9].inducer.add_bead(-bead_disp, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[9].inducer.add_bead(0, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[9].inducer.add_bead(bead_disp, heparin_10_spread, activin_10_conc, heparin_width)
@@ -256,7 +256,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[10].index = '10_'
     list_of_embryos[10].name = 'A-C-A, 10-0-10'
     list_of_embryos[10].fig_title = 'A-C-A'
-    list_of_embryos[10].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[10].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[10].inducer.add_bead(-bead_disp, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[10].inducer.add_bead(bead_disp, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[10].desired = copy.deepcopy(no_streak)
@@ -267,7 +267,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[11].index = '11_'
     list_of_embryos[11].name = 'A-B-A, 10-12-10'
     list_of_embryos[11].fig_title = 'A-B-A'
-    list_of_embryos[11].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[11].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[11].inducer.add_bead(-bead_disp, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[11].inhibitor.add_bead(0, afigel_12_spread, bmp4_12_conc, afigel_width)
     list_of_embryos[11].inducer.add_bead(bead_disp, heparin_10_spread, activin_10_conc, heparin_width)
@@ -279,7 +279,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[12].index = '12_'
     list_of_embryos[12].name = 'A-B-A, 10-25-10'
     list_of_embryos[12].fig_title = 'A-B*-A'
-    list_of_embryos[12].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[12].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[12].inducer.add_bead(-bead_disp, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[12].inhibitor.add_bead(0, afigel_25_spread, bmp4_25_conc, afigel_width)
     list_of_embryos[12].inducer.add_bead(bead_disp, heparin_10_spread, activin_10_conc, heparin_width)
@@ -291,7 +291,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[13].index = '13_'
     list_of_embryos[13].name = 'B-C-B, 6-0-6'
     list_of_embryos[13].fig_title = 'B-C-B'
-    list_of_embryos[13].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[13].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[13].inhibitor.add_bead(-bead_disp, afigel_6_spread, bmp4_6_conc, afigel_width)
     list_of_embryos[13].inhibitor.add_bead(bead_disp, afigel_6_spread, bmp4_6_conc, afigel_width)
     list_of_embryos[13].desired = copy.deepcopy(no_streak)
@@ -300,7 +300,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[14].index = '14_'
     list_of_embryos[14].name = 'C-A-C, 0-2-0'
     list_of_embryos[14].fig_title = 'C-A-C'
-    list_of_embryos[14].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[14].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[14].inducer.add_bead(0, heparin_2_spread, activin_2_conc, heparin_width)
     list_of_embryos[14].desired = copy.deepcopy(no_streak)
     list_of_embryos[14].desired = add_streak(list_of_embryos[14].desired, 0, certain_width, uncertain_width)
@@ -308,7 +308,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[15].index = '15_'
     list_of_embryos[15].name = 'B-A-B, 6-2-6'
     list_of_embryos[15].fig_title = 'B-A-B'
-    list_of_embryos[15].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[15].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[15].inhibitor.add_bead(-bead_disp, afigel_6_spread, bmp4_6_conc, afigel_width)
     list_of_embryos[15].inducer.add_bead(0, heparin_2_spread, activin_2_conc, heparin_width)
     list_of_embryos[15].inhibitor.add_bead(bead_disp, afigel_6_spread, bmp4_6_conc, afigel_width)
@@ -319,7 +319,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[16].index = '16_'
     list_of_embryos[16].name = 'B-A-B, 12-2-12'
     list_of_embryos[16].fig_title = 'B*-A-B*'
-    list_of_embryos[16].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[16].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[16].inhibitor.add_bead(-bead_disp, afigel_12_spread, bmp4_12_conc, afigel_width)
     list_of_embryos[16].inducer.add_bead(0, heparin_2_spread, activin_2_conc, heparin_width)
     list_of_embryos[16].inhibitor.add_bead(bead_disp, afigel_12_spread, bmp4_12_conc, afigel_width)
@@ -332,8 +332,8 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[17].index = '17_'
     list_of_embryos[17].name = 'BMP4 bead, ant'
     list_of_embryos[17].fig_title = 'BMP4 bead'
-    list_of_embryos[17].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
-    list_of_embryos[17].inhibitor.add_bead(-70, afigel_25_spread, bmp4_25_conc, afigel_width)
+    list_of_embryos[17].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
+    list_of_embryos[17].inhibitor.add_bead(-70, afigel_12_spread, bmp4_12_conc, afigel_width)
     list_of_embryos[17].desired = copy.deepcopy(no_streak)
     list_of_embryos[17].desired = add_streak(list_of_embryos[17].desired, 0, certain_width, uncertain_width)
     
@@ -342,7 +342,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[18].index = '18_'
     list_of_embryos[18].name = 'DM bead, ant'
     list_of_embryos[18].fig_title = 'DM bead'
-    list_of_embryos[18].set_starting_conc(inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[18].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[18].inhibitor.add_bead(70, AG1X2_spread, DM_conc, AG1X2_width)
     list_of_embryos[18].desired = copy.deepcopy(no_streak)
     list_of_embryos[18].desired = add_streak(list_of_embryos[18].desired, 370, certain_width, uncertain_width)
@@ -353,13 +353,13 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
 
     list_of_embryos[19].index = '19_'
     list_of_embryos[19].name = 'BMP4 bead, post cent, 50ng'
-    list_of_embryos[19].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[19].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[19].inhibitor.add_bead(300, afigel_50_spread, bmp4_50_conc, afigel_width)
     list_of_embryos[19].desired = copy.deepcopy(no_streak)
 
     list_of_embryos[20].index = '20_'
     list_of_embryos[20].name = 'BMP4 bead, post cent, 6ng'
-    list_of_embryos[20].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[20].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[20].inhibitor.add_bead(300, afigel_6_spread, bmp4_6_conc, afigel_width)
     list_of_embryos[20].desired = copy.deepcopy(no_streak)
     list_of_embryos[20].desired = add_streak(list_of_embryos[20].desired, 580, certain_width, uncertain_width)
@@ -367,14 +367,14 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     list_of_embryos[21].index = '21_'
     list_of_embryos[21].name = 'BMP4 bead, post off-cent, 50ng'
-    list_of_embryos[21].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[21].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[21].inhibitor.add_bead(270, afigel_50_spread, bmp4_50_conc, afigel_width)
     list_of_embryos[21].desired = copy.deepcopy(no_streak)
     list_of_embryos[21].desired = add_streak(list_of_embryos[21].desired, 0, certain_width, uncertain_width)
 
     list_of_embryos[22].index = '22_'
     list_of_embryos[22].name = 'BMP4 bead, post off-cent, 6ng'
-    list_of_embryos[22].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[22].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[22].inhibitor.add_bead(270, afigel_6_spread, bmp4_6_conc, afigel_width)
     list_of_embryos[22].desired = copy.deepcopy(no_streak)
     list_of_embryos[22].desired = add_streak(list_of_embryos[22].desired, 0, certain_width, uncertain_width)
@@ -383,7 +383,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     list_of_embryos[23].index = '23_'
     list_of_embryos[23].name = 'SB bead, post'
-    list_of_embryos[23].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX)
+    list_of_embryos[23].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[23].inducer.add_bead(300, AG1X2_spread, SB_conc, AG1X2_width)
     list_of_embryos[23].desired = copy.deepcopy(no_streak)
     
@@ -396,13 +396,13 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     list_of_embryos[24].index = '24_'
     list_of_embryos[24].name = 'DM whole mount'
-    list_of_embryos[24].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[24].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[24].inhibitor.conc = flat_inhibitor
     list_of_embryos[24].desired = [1 for i in no_streak]
     
     list_of_embryos[25].index = '25_'
     list_of_embryos[25].name = 'DM whole mount + activin bead'
-    list_of_embryos[25].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[25].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[25].inhibitor.conc = flat_inhibitor
     list_of_embryos[25].inducer.add_bead(0, heparin_10_spread, activin_10_conc, heparin_width)
     list_of_embryos[25].desired = copy.deepcopy(no_streak)
@@ -410,7 +410,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     list_of_embryos[26].index = '26_'
     list_of_embryos[26].name = 'DM whole mount + SB bead'
-    list_of_embryos[26].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[26].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[26].inhibitor.conc = flat_inhibitor
     list_of_embryos[26].inducer.add_bead(0, AG1X2_spread, SB_conc, AG1X2_width)
     list_of_embryos[26].desired = copy.deepcopy(no_streak)
@@ -418,20 +418,20 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     list_of_embryos[27].index = '27_'
     list_of_embryos[27].name = 'SB whole mount'
-    list_of_embryos[27].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[27].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[27].inducer.conc = flat_inducer
     list_of_embryos[27].desired = copy.deepcopy(no_streak)
     
     list_of_embryos[28].index = '28_'
     list_of_embryos[28].name = 'SB whole mount + BMP4 bead'
-    list_of_embryos[28].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[28].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[28].inducer.conc = flat_inducer
     list_of_embryos[28].inhibitor.add_bead(0, afigel_25_spread, bmp4_25_conc, afigel_width)
     list_of_embryos[28].desired = copy.deepcopy(no_streak)
     
     list_of_embryos[29].index = '29_'
     list_of_embryos[29].name = 'SB whole mount + DM bead'
-    list_of_embryos[29].set_starting_conc( inducer_antFocus_stageX, inhibitor_antFocus_stageX )
+    list_of_embryos[29].set_starting_conc( inducer_postFocus_stageXII, inhibitor_antFocus_stageXII )
     list_of_embryos[29].inducer.conc = flat_inducer
     list_of_embryos[29].inhibitor.add_bead(0, AG1X2_spread, DM_conc, AG1X2_width)
     list_of_embryos[29].desired = copy.deepcopy(no_streak)
