@@ -47,16 +47,16 @@ for model_idx, model in enumerate(models):
     
     for embryo in embryos:
         run_model(embryo, model)
-        save_standard_figs(embryo, model, save_directory)
+        # save_standard_figs(embryo, model, save_directory)
         embryo.find_streaks()
-    
+        
     successN, failureN = check_embryos_success(embryos)
     experiments = define_experiment_groups(embryos)
     for exp in experiments:
         exp.find_plot_model_ylim()
     
-    for embryo in embryos:
-        save_model_figs(embryo, model, save_directory,'')
+    # for embryo in embryos:
+    #     save_model_figs(embryo, model, save_directory,'')
         
     model_values[model_idx,:,:], model_ylim[model_idx,:,:] = create_presentation_fig_arrays(embryos)
     temp_model_values, temp_model_ylim = create_presentation_fig_arrays(embryos)
