@@ -333,7 +333,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[17].name = 'BMP4 bead, ant'
     list_of_embryos[17].fig_title = 'BMP4 bead'
     list_of_embryos[17].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
-    list_of_embryos[17].inhibitor.add_bead(-70, afigel_12_spread, bmp4_12_conc, afigel_width)
+    list_of_embryos[17].inhibitor.add_bead(0, afigel_12_spread, bmp4_12_conc, afigel_width)
     list_of_embryos[17].desired = copy.deepcopy(no_streak)
     list_of_embryos[17].desired = add_streak(list_of_embryos[17].desired, 0, certain_width, uncertain_width)
     
@@ -343,9 +343,9 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     list_of_embryos[18].name = 'DM bead, ant'
     list_of_embryos[18].fig_title = 'DM bead'
     list_of_embryos[18].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
-    list_of_embryos[18].inhibitor.add_bead(70, AG1X2_spread, DM_conc, AG1X2_width)
+    list_of_embryos[18].inhibitor.add_bead(40, AG1X2_spread, DM_conc, AG1X2_width)
     list_of_embryos[18].desired = copy.deepcopy(no_streak)
-    list_of_embryos[18].desired = add_streak(list_of_embryos[18].desired, 370, certain_width, uncertain_width)
+    list_of_embryos[18].desired = add_streak(list_of_embryos[18].desired, 340, certain_width, uncertain_width)
     list_of_embryos[18].desired = add_streak(list_of_embryos[18].desired, 0, certain_width, uncertain_width)
     
     
