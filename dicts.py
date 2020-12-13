@@ -1,7 +1,8 @@
 from pydream.parameters import SampledParam
 import scipy.stats as stats
 
-
+# bead_spread_lim = 42.0
+bead_spread_lim = 55.0
 param_priors_dict = {
     
     '$b_B$': SampledParam(stats.uniform, loc=-3.0, scale=6.0),
@@ -18,15 +19,15 @@ param_priors_dict = {
     
     'vg1_cell_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
     'bmp4_cell_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
-    'cell_pellet_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
+    'cell_pellet_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
     'activin_2_lambda': SampledParam(stats.uniform, loc=0.025, scale=1.0),
     'activin_10_lambda': SampledParam(stats.uniform, loc=0.025, scale=1.0),
     'activin_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
     'activin_2_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
     'activin_10_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
-    'activin_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
-    'activin_2_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
-    'activin_10_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
+    'activin_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
+    'activin_2_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
+    'activin_10_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
     'bmp4_50_lambda': SampledParam(stats.uniform, loc=0.025, scale=1.0),
     'bmp4_25_lambda': SampledParam(stats.uniform, loc=0.025, scale=1.0),
     'bmp4_12_lambda': SampledParam(stats.uniform, loc=0.025, scale=1.0),
@@ -35,13 +36,13 @@ param_priors_dict = {
     'bmp4_25_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
     'bmp4_12_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
     'bmp4_6_conc': SampledParam(stats.uniform, loc=0.0, scale=1.0),
-    'bmp4_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
-    'bmp4_50_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
-    'bmp4_25_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
-    'bmp4_12_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
-    'bmp4_6_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0),
+    'bmp4_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
+    'bmp4_50_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
+    'bmp4_25_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
+    'bmp4_12_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
+    'bmp4_6_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim),
     'DM_conc': SampledParam(stats.uniform, loc=-0.5, scale=0.5),
-    'AG1X2_spread': SampledParam(stats.uniform, loc=1.0, scale=42.0)
+    'AG1X2_spread': SampledParam(stats.uniform, loc=1.0, scale=bead_spread_lim)
 }
 
 param_lims_dict = {
@@ -59,15 +60,15 @@ param_lims_dict = {
     
     'vg1_cell_conc': (0,1),
     'bmp4_cell_conc': (0,1),
-    'cell_pellet_spread': (1,43),
+    'cell_pellet_spread': (1, bead_spread_lim + 1),
     'activin_2_lambda': (0,1),
     'activin_10_lambda': (0,1),
     'activin_conc': (0,1),
     'activin_2_conc': (0,1),
     'activin_10_conc': (0,1),
-    'activin_spread': (1,43),
-    'activin_2_spread': (1,43),
-    'activin_10_spread': (1,43),
+    'activin_spread': (1,bead_spread_lim + 1),
+    'activin_2_spread': (1,bead_spread_lim + 1),
+    'activin_10_spread': (1,bead_spread_lim + 1),
     'bmp4_50_lambda': (0,1),
     'bmp4_25_lambda': (0,1),
     'bmp4_12_lambda': (0,1),
@@ -76,13 +77,13 @@ param_lims_dict = {
     'bmp4_25_conc': (0,1),
     'bmp4_12_conc': (0,1),
     'bmp4_6_conc': (0,1),
-    'bmp4_spread': (1,43),
-    'bmp4_50_spread': (1,43),
-    'bmp4_25_spread': (1,43),
-    'bmp4_12_spread': (1,43),
-    'bmp4_6_spread': (1,43),
+    'bmp4_spread': (1,bead_spread_lim + 1),
+    'bmp4_50_spread': (1,bead_spread_lim + 1),
+    'bmp4_25_spread': (1,bead_spread_lim + 1),
+    'bmp4_12_spread': (1,bead_spread_lim + 1),
+    'bmp4_6_spread': (1,bead_spread_lim + 1),
     'DM_conc': (-0.5,0.0),
-    'AG1X2_spread': (1,43)
+    'AG1X2_spread': (1,bead_spread_lim + 1)
 }
 
 axes_labels_dict = {

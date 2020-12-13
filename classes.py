@@ -35,7 +35,7 @@ class Embryo:
 
             dummy_cells = range(0,int(self.number_of_cells/2))
             bead_distribution_right = [concentration * np.exp((-1/spread_cells) * cell) for cell in dummy_cells]
-            bead_effect_limit = int(np.ceil(- spread_cells * np.log(0.001)))
+            bead_effect_limit = int(np.ceil(- spread_cells * np.log(0.005)))
             
             # print(bead_centre, bead_effect_limit)
                        
