@@ -17,10 +17,8 @@ from functions import define_initial_protein_concentrations, setup_embryos, run_
 from plot_functions import save_standard_figs, save_model_figs, create_presentation_fig_arrays, save_presentation_figs, save_presentation_figs_duo, save_method_figs, save_results_figs
 
 # set up save directory
-# sub_directory = 'report/'
 # x = datetime.datetime.now()
 # sub_directory = x.strftime('%Y') + '_' + x.strftime('%m') + '_' + x.strftime('%d') + '_' + x.strftime('%H') + x.strftime('%M') + x.strftime('%S') + '/'
-# sub_directory = 'dream/verify/'
 sub_directory = 'testing/'
 
 if sub_directory[-1] != '/':
@@ -47,30 +45,29 @@ for model_idx, model in enumerate(models):
     
     for embryo in embryos:
         run_model(embryo, model)
-        # save_standard_figs(embryo, model, save_directory)
         embryo.find_streaks()
         
     successN, failureN = check_embryos_success(embryos)
     experiments = define_experiment_groups(embryos)
     for exp in experiments:
         exp.find_plot_model_ylim()
-    
-    # for embryo in embryos:
-    #     save_model_figs(embryo, model, save_directory,'')
         
     model_values[model_idx,:,:], model_ylim[model_idx,:,:] = create_presentation_fig_arrays(embryos)
     temp_model_values, temp_model_ylim = create_presentation_fig_arrays(embryos)
-    # save_presentation_figs_duo(model, embryos, temp_model_values, temp_model_ylim, 'results/presentation_figs_duo/')
         
 # save_presentation_figs(models, embryos, model_values, model_ylim, 'results/presentation_figs/')
 
-paper_directory = 'results/paper_figures/'
+paper_directory = 'results/testing/'
 save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
 save_results_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'results/' )
 
-paper_directory = 'results/report/'
-save_method_figs( models, embryos, model_values, model_ylim, 'Clear Sans', paper_directory + 'method/' )
-save_results_figs( models, embryos, model_values, model_ylim, 'Clear Sans', paper_directory + 'results/' )
+# paper_directory = 'results/paper_figures/'
+# save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
+# save_results_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'results/' )
+#
+# paper_directory = 'results/report/'
+# save_method_figs( models, embryos, model_values, model_ylim, 'Clear Sans', paper_directory + 'method/' )
+# save_results_figs( models, embryos, model_values, model_ylim, 'Clear Sans', paper_directory + 'results/' )
 
 code_directory = save_directory + 'code/'
 paper_code_directory = paper_directory + 'code/'
