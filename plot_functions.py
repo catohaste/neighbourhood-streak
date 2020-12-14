@@ -184,9 +184,8 @@ def save_presentation_figs( models, list_of_embryos, model_values, model_ylim, d
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
             axs[1].set_ylabel('Model A value')
-            axs[1].plot(range(0,noc), plot_model, linewidth=1, marker=None, color=models[0].plot_color, markersize = 1, label='With\nnbhd')
+            axs[1].plot(range(0,noc), plot_model, linewidth=1, marker=None, color=models[0].plot_color, markersize = 1, label=models[0].label)
             axs[1].plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-            # axs[1].set_title('Model ' + models[0].index_string + ', with nbhd', fontsize=font_sizes['BIGGER_SIZE'])
             axs[1].legend(loc='upper right', fontsize=font_sizes['SMALLEST_SIZE'])
 
             # [ymin, ymax] = [model_ylim[0, emb_idx, 0], model_ylim[0, emb_idx, 1]]
@@ -218,9 +217,8 @@ def save_presentation_figs( models, list_of_embryos, model_values, model_ylim, d
             ''' model B '''
             plot_model = np.roll(model_values[1, emb_idx, :], roll_idx[pos_idx])
             axs[2].set_ylabel('Model B value')
-            axs[2].plot(range(0,noc), plot_model, linewidth=1, marker=None, color=models[1].plot_color, markersize = 1, label='Without\nnbhd')
+            axs[2].plot(range(0,noc), plot_model, linewidth=1, marker=None, color=models[1].plot_color, markersize = 1, label=models[1].label)
             axs[2].plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-            # axs[2].set_title('Model ' + models[1].index_string + ', without nbhd', fontsize=font_sizes['BIGGER_SIZE'])
             axs[2].legend(loc='upper right', fontsize=font_sizes['SMALLEST_SIZE'])
 
             # [ymin, ymax] = [model_ylim[1, emb_idx, 0], model_ylim[1, emb_idx, 1]]
@@ -366,7 +364,7 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_st
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
             axs[0].set_ylabel('Model A value')
-            axs[0].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1, label='With\nnbhd')
+            axs[0].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1, label=models[0].label)
             axs[0].plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
             axs[0].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
@@ -396,9 +394,8 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_st
             ''' model B '''
             plot_model = np.roll(model_values[1, emb_idx, :], roll_idx[pos_idx])
             axs[1].set_ylabel('Model B value')
-            axs[1].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1, label='Without\nnbhd')
+            axs[1].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1, label=models[1].label)
             axs[1].plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-            # axs[2].set_title('Model ' + models[1].index_string + ', without nbhd', fontsize=font_sizes['BIGGER_SIZE'])
             axs[1].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
             # get rid of the frame
@@ -530,7 +527,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
             axs[1].set_ylabel('Model A value')
-            axs[1].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1, label='With\nnbhd')
+            axs[1].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1, label=models[0].label)
             axs[1].plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
             axs[1].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
@@ -555,27 +552,27 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             axs[1].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model < models[0].threshold , facecolor='lightgray', alpha=1, step='mid')
             axs[1].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model >= models[0].threshold ,facecolor=brachyury_color_A, edgecolor=brachyury_color_A, alpha=1, step='mid', linewidth=1)
             
-            if emb_idx in inset_axes:
-                
-                # inset axes....
-                axins = axs[1].inset_axes([0.02, 0.25, 0.35, 0.35])
-                axins.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1)
-                axins.plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-                # axins.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
-                # sub region of the original image
-                x1, x2, y1, y2 = 230, 370, 0.2, model_ymax
-                axins.set_xlim(x1, x2)
-                axins.set_ylim(y1, y2)
-                axins.set_xticklabels('')
-                axins.set_yticklabels('')
-
-                axs[1].indicate_inset_zoom(axins)
+            # if emb_idx in inset_axes:
+            #
+            #     # inset axes....
+            #     axins = axs[1].inset_axes([0.02, 0.6, 0.35, 0.35])
+            #     axins.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1)
+            #     axins.plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
+            #     # axins.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
+            #     # sub region of the original image
+            #     x1, x2, y1, y2 = 230, 370, 0.2, 0.35
+            #     axins.set_xlim(x1, x2)
+            #     axins.set_ylim(y1, y2)
+            #     axins.set_xticklabels('')
+            #     axins.set_yticklabels('')
+            #
+            #     axs[1].indicate_inset_zoom(axins)
 
         
             ''' model B '''
             plot_model = np.roll(model_values[1, emb_idx, :], roll_idx[pos_idx])
             axs[2].set_ylabel('Model B value')
-            axs[2].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1, label='Without\nnbhd')
+            axs[2].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1, label=models[1].label)
             axs[2].plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
             axs[2].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
@@ -599,6 +596,22 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             brachyury_color_B = models[1].plot_color # 'C4'  # purple
             axs[2].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model < models[1].threshold , facecolor='lightgray', alpha=1, step='mid')
             axs[2].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model >= models[1].threshold ,facecolor=brachyury_color_B, edgecolor=brachyury_color_B, alpha=1, step='mid', linewidth=1)
+            
+            if emb_idx in inset_axes:
+                
+                # inset axes....
+                axins = axs[2].inset_axes([0.02, 0.25, 0.35, 0.35])
+                axins.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1)
+                axins.plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
+                # axins.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
+                # sub region of the original image
+                x1, x2, y1, y2 = 230, 370, 0.2, model_ymax
+                axins.set_xlim(x1, x2)
+                axins.set_ylim(y1, y2)
+                axins.set_xticklabels('')
+                axins.set_yticklabels('')
+
+                axs[2].indicate_inset_zoom(axins)
             
             
             # clear yaxis for certain embryos

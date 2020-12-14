@@ -9,12 +9,12 @@ from shutil import copy2
 import os.path
 
 from initial_params import initial_params
-from bead_params import bead_params_init, bead_params_A, bead_params_B
+# from bead_params import bead_params_init, bead_params_A, bead_params_B
 from model_params import modelN, models
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
-from plot_functions import save_standard_figs, save_model_figs, create_presentation_fig_arrays, save_presentation_figs, save_presentation_figs_duo, save_method_figs, save_results_figs
+from plot_functions import create_presentation_fig_arrays, save_presentation_figs, save_method_figs, save_results_figs
 
 # set up save directory
 # x = datetime.datetime.now()
@@ -34,11 +34,6 @@ model_values = np.ndarray((modelN, embryoN, initial_params['number_of_cells']), 
 model_ylim = np.ndarray((modelN, embryoN, 2), dtype=float)
 
 for model_idx, model in enumerate(models):
-    
-    # if model_idx == 1:
-    #     param_filename = 'results/dream/activin_ant_threshold_1000/no_nbhd/verify/best_params.tsv'
-    #     df_best_params = pd.read_csv(param_filename, sep='\t')
-    #     model = set_params_from_df(df_best_params, model)
     
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     embryos = setup_embryos(embryos, model, initial_concentrations)
