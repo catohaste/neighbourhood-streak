@@ -63,23 +63,25 @@ whole_embryo = range(600)
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'DM_conc', 'AG1X2_spread']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'DM_conc', 'AG1X2_spread']
 
-# select_embryos = [8,9,10,11,12,13,14,15,16,17,18]
-# sub_directory = 'results/dream/activin_ant_bmp4_ant_12_threshold_3000_stage_XII_disp_50/'
-# likelihood_region = [anterior for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread']
-
-select_embryos = [8,9,10,11,12]
-sub_directory = 'results/dream/bead_lim_005_activin_ant_3000_stage_XII_disp_50/'
+select_embryos = [4,5,6,7,8,9,10,11,12,13,14,15,17,18]
+sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_reduced_5000_stage_XII_disp_50/'
 likelihood_region = [anterior for i in select_embryos]
-param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
-param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
+param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
 # select_embryos = [4,5,6,7,8,9,10,11,12]
 # sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_3000_stage_XII_disp_50/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+
+
+
+# select_embryos = [8,9,10,11,12]
+# sub_directory = 'results/dream/bead_lim_005_activin_ant_3000_stage_XII_disp_35/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
+# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
 
 # select_embryos = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
 # sub_directory = 'results/dream/all_exps/'
@@ -92,7 +94,7 @@ if not os.path.isdir(sub_directory):
 
 dream_params = {
     'nchains' : 5,
-    'niterations' : 3000,
+    'niterations' : 5000,
     'GRlim' : 1.2 # GR Convergence limit
 }
 
@@ -107,7 +109,7 @@ axes_labels = [axes_labels_dict[key] for key in param_names_with_nbhd]
 param_lims = [param_lims_dict[key] for key in param_names_with_nbhd]
 parameters_to_sample = [param_priors_dict[key] for key in param_names_with_nbhd]
 
-like_model_with_nbhd = deepcopy(models[0])
+like_model_with_nbhd = deepcopy(models[1])
 def likelihood_with_nbhd(param_vector):
 
     Delta = 0.05
@@ -145,11 +147,11 @@ run_pyDREAM(parameters_to_sample, likelihood_with_nbhd, dream_params, dream_out_
 
 dream_df = save_pyDREAM_out_dataframe(param_names_with_nbhd, dream_params, save_directory, dream_out_suffix)
 
-verify_model_with_nbhd = deepcopy(models[0])
+verify_model_with_nbhd = deepcopy(models[1])
 check_success_rate(select_embryos, verify_model_with_nbhd, save_directory)
-run_model_best_params_max_success(select_embryos, verify_model_with_nbhd, save_directory)
+# run_model_best_params_max_success(select_embryos, verify_model_with_nbhd, save_directory)
 
-create_pyDREAM_figs(dream_params, param_names_with_nbhd, param_lims, axes_labels, verify_model_with_nbhd.plot_color, save_directory)
+# create_pyDREAM_figs(dream_params, param_names_with_nbhd, param_lims, axes_labels, verify_model_with_nbhd.plot_color, save_directory)
 
 
 #### no_nbhd ###########################################################################################
@@ -163,7 +165,7 @@ axes_labels = [axes_labels_dict[key] for key in param_names_no_nbhd]
 param_lims = [param_lims_dict[key] for key in param_names_no_nbhd]
 parameters_to_sample = [param_priors_dict[key] for key in param_names_no_nbhd]
 
-like_model_no_nbhd = deepcopy(models[1])
+like_model_no_nbhd = deepcopy(models[0])
 def likelihood_no_nbhd(param_vector):
 
     Delta = 0.05
@@ -201,11 +203,11 @@ run_pyDREAM(parameters_to_sample, likelihood_no_nbhd, dream_params, dream_out_di
 
 save_pyDREAM_out_dataframe(param_names_no_nbhd, dream_params, save_directory, dream_out_suffix)
 
-verify_model_no_nbhd = deepcopy(models[1])
+verify_model_no_nbhd = deepcopy(models[0])
 check_success_rate(select_embryos, verify_model_no_nbhd, save_directory)
-run_model_best_params_max_success(select_embryos, verify_model_no_nbhd, save_directory)
+# run_model_best_params_max_success(select_embryos, verify_model_no_nbhd, save_directory)
 
-create_pyDREAM_figs(dream_params, param_names_no_nbhd, param_lims, axes_labels, verify_model_no_nbhd.plot_color, save_directory)
+# create_pyDREAM_figs(dream_params, param_names_no_nbhd, param_lims, axes_labels, verify_model_no_nbhd.plot_color, save_directory)
 
 ##########################################################################################################
 

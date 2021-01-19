@@ -27,15 +27,30 @@ whole_embryo = range(600)
 # likelihood_region = [anterior for i in select_embryos]
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
-select_embryos = [4,5,6,7]
-sub_directory = 'results/dream/cell_pellets_3000_find_bead/'
-likelihood_region = [anterior for i in select_embryos]
-param_names = ['vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+# select_embryos = [4,5,6,7]
+# sub_directory = 'results/dream/cell_pellets_3000_find_bead/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
 # select_embryos = [8,9,10,11,12]
-# sub_directory = 'results/dream/activin_ant_3000_find_bead/'
+# sub_directory = 'results/dream/bead_lim_005_activin_ant_3000_stage_XII_disp_35_find_bead/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
+
+# select_embryos = [4,5,6,7,8,9,10,11,12]
+# sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_3000_stage_XII_disp_50_find_bead/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_10_conc', 'activin_10_spread','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+
+select_embryos = [4,5,6,7,8,9,10,11,12,13,14,15,17,18]
+sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_reduced_5000_stage_XII_disp_50_find_bead/'
+likelihood_region = [anterior for i in select_embryos]
+param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+
+# select_embryos = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+# sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_3000_stage_XII_disp_50_find_bead/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
 # select_embryos = [8,9,10,11,12,13,14,15,16]
 # sub_directory = 'results/dream/activin_ant_threshold_3000_find_bead_40_disp/'
@@ -63,7 +78,7 @@ if not os.path.isdir(sub_directory):
 
 dream_params = {
     'nchains' : 5,
-    'niterations' : 3000,
+    'niterations' : 5000,
     'GRlim' : 1.2 # GR Convergence limit
 }
 
@@ -76,8 +91,8 @@ axes_labels = [axes_labels_dict[key] for key in param_names]
 param_lims = [param_lims_dict[key] for key in param_names]
 parameters_to_sample = [param_priors_dict[key] for key in param_names]
 
-like_model_with_nbhd = deepcopy(models[0])
-like_model_no_nbhd = deepcopy(models[1])
+like_model_with_nbhd = deepcopy(models[1])
+like_model_no_nbhd = deepcopy(models[0])
 def likelihood(param_vector):
 
     Delta = 0.05
@@ -132,8 +147,8 @@ run_pyDREAM(parameters_to_sample, likelihood, dream_params, dream_out_directory)
 
 save_pyDREAM_out_dataframe(param_names, dream_params, save_directory, dream_out_suffix)
 
-verify_model_with_nbhd = deepcopy(models[0])
-verify_model_no_nbhd = deepcopy(models[1])
+verify_model_with_nbhd = deepcopy(models[1])
+verify_model_no_nbhd = deepcopy(models[0])
 dream_success_df = check_success_rate_2models(select_embryos, verify_model_with_nbhd, verify_model_no_nbhd, save_directory)
 
 # create_pyDREAM_figs_2models(dream_df, dream_success_df, dream_params, param_names, param_lims, axes_labels, verify_model_with_nbhd.plot_color, verify_model_no_nbhd.plot_color, save_directory)

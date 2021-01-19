@@ -7,7 +7,6 @@ from pydream.convergence import Gelman_Rubin
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
-from plot_functions import save_standard_figs, save_model_figs
 
 from initial_params import initial_params
 from model_params import models

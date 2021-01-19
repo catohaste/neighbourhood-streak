@@ -7,7 +7,6 @@ from pydream.convergence import Gelman_Rubin
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
-from plot_functions import save_standard_figs, save_model_figs
 
 from initial_params import initial_params
 from model_params import models
@@ -159,7 +158,7 @@ def run_model_best_params_max_success(select_embryos, best_model, save_directory
     for idx, emb_idx in enumerate(select_embryos):
         embryo = embryos[emb_idx]
         run_model(embryo, best_model)
-        save_standard_figs(embryo, best_model, out_directory)
+        # save_standard_figs(embryo, best_model, out_directory)
         embryo.find_streaks()
     
     successN, failureN = check_embryos_success(embryos)
@@ -167,8 +166,8 @@ def run_model_best_params_max_success(select_embryos, best_model, save_directory
     for exp in experiments:
         exp.find_plot_model_ylim()
     
-    for idx, emb_idx in enumerate(select_embryos):
-        save_model_figs(embryos[emb_idx], best_model, out_directory,'')
+    # for idx, emb_idx in enumerate(select_embryos):
+        # save_model_figs(embryos[emb_idx], best_model, out_directory,'')
         
     best_params.to_csv(out_directory + 'best_params.tsv', sep='\t')
 
