@@ -1,8 +1,8 @@
 from pydream.parameters import SampledParam
 import scipy.stats as stats
 
-# bead_spread_lim = 42.0
-bead_spread_lim = 55.0
+# bead_spread_lim = 42.0 # for bead_lim 0.001
+bead_spread_lim = 55.0 # for bead_lim 0.005
 param_priors_dict = {
     
     '$b_B$': SampledParam(stats.uniform, loc=-3.0, scale=6.0),
