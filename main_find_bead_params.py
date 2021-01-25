@@ -23,29 +23,39 @@ anterior = range(150,451)
 whole_embryo = range(600)
 
 # select_embryos = [4,5,6,7]
-# sub_directory = 'results/dream/cell_pellets_3000_find_bead/'
+# sub_directory = 'results/dream/bead_lim_005_cell_pellet_5000_stage_XII_disp_50_find_bead/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
-# select_embryos = [4,5,6,7]
-# sub_directory = 'results/dream/cell_pellets_3000_find_bead/'
-# likelihood_region = [anterior for i in select_embryos]
-# param_names = ['vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
-
 # select_embryos = [8,9,10,11,12]
-# sub_directory = 'results/dream/bead_lim_005_activin_ant_3000_stage_XII_disp_35_find_bead/'
+# sub_directory = 'results/dream/bead_lim_005_activin_ant_5000_stage_XII_disp_50_find_bead/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
+
+# select_embryos = [13,14,15,16]
+# sub_directory = 'results/dream/bead_lim_005_threshold_5000_stage_XII_disp_50_find_bead/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'bmp4_6_conc', 'bmp4_12_conc', 'bmp4_6_spread', 'bmp4_12_spread']
+
+# select_embryos = [13,14,15]
+# sub_directory = 'results/dream/bead_lim_005_threshold_reduced_5000_stage_XII_disp_50_find_bead/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'bmp4_6_conc', 'bmp4_6_spread']
+
+select_embryos = [17,18]
+sub_directory = 'results/dream/bead_lim_005_bmp4_ant_5000_stage_XII_disp_50_find_bead/'
+likelihood_region = [anterior for i in select_embryos]
+param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'bmp4_12_conc', 'bmp4_12_spread', 'DM_conc', 'AG1X2_spread']
 
 # select_embryos = [4,5,6,7,8,9,10,11,12]
 # sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_3000_stage_XII_disp_50_find_bead/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_10_conc', 'activin_10_spread','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
-select_embryos = [4,5,6,7,8,9,10,11,12,13,14,15,17,18]
-sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_reduced_5000_stage_XII_disp_50_find_bead/'
-likelihood_region = [anterior for i in select_embryos]
-param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+# select_embryos = [4,5,6,7,8,9,10,11,12,13,14,15,17,18]
+# sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_reduced_10000_stage_XII_disp_50_find_bead/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$',  'n', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc','bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
 # select_embryos = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
 # sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_3000_stage_XII_disp_50_find_bead/'
