@@ -117,7 +117,7 @@ def check_success_rate_2models(select_embryos, model_with_nbhd, model_no_nbhd, s
         top_params.insert(colN, 'A_' + str(emb_idx) , False)
     for idx, emb_idx in enumerate(select_embryos):
         colN = len(top_params.columns)
-        top_params.insert(colN + 1, 'B_' + str(emb_idx) , False)
+        top_params.insert(colN, 'B_' + str(emb_idx) , False)
     colN = len(top_params.columns)
     top_params.insert(colN, 'A_success_proportion' , np.nan)
     top_params.insert(colN + 1, 'B_success_proportion' , np.nan)
