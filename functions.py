@@ -190,6 +190,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
     
     list_of_embryos[4].index = '04_'
     list_of_embryos[4].name = '2 Vg1 pellets, ant'
+    list_of_embryos[4].fig_title = '2 cVG1 pellets'
     list_of_embryos[4].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[4].inducer.add_bead(-15, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[4].inducer.add_bead(15, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
@@ -199,6 +200,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
 
     list_of_embryos[5].index = '05_'
     list_of_embryos[5].name = '4 Vg1 pellets, ant'
+    list_of_embryos[5].fig_title = '4 cVG1 pellets'
     list_of_embryos[5].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[5].inducer.add_bead(-45, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[5].inducer.add_bead(-15, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
@@ -209,6 +211,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
 
     list_of_embryos[6].index = '06_'
     list_of_embryos[6].name = '4 Vg1 pellets, ant, w ctrl'
+    list_of_embryos[6].fig_title = '4 cVG1 pellets + space'
     list_of_embryos[6].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[6].inducer.add_bead(-60, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[6].inducer.add_bead(-30, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
@@ -221,6 +224,7 @@ def setup_embryos(list_of_embryos, Model, initial_concentrations):
 
     list_of_embryos[7].index = '07_'
     list_of_embryos[7].name = '4 Vg1 pellets, ant, w BMP4'
+    list_of_embryos[7].fig_title = '4 cVG1 pellets + BMP4'
     list_of_embryos[7].set_starting_conc(inducer_postFocus_stageXII, inhibitor_antFocus_stageXII)
     list_of_embryos[7].inducer.add_bead(-60, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
     list_of_embryos[7].inducer.add_bead(-30, cell_pellet_spread, vg1_cell_conc, cell_pellet_width)
@@ -836,6 +840,12 @@ def set_params_from_df(df, current_model):
         current_model.bead_params['AG1X2_spread'] = df.iloc[0]['AG1X2_spread']
     if 'n' in df.columns:
         current_model.nbhd_size = 2*np.floor(df.iloc[0]['n']) - 1
+    if 'cell_pellet_spread' in df.columns:
+        current_model.bead_params['cell_pellet_spread'] = df.iloc[0]['cell_pellet_spread']
+    if 'vg1_cell_conc' in df.columns:
+        current_model.bead_params['vg1_cell_conc'] = df.iloc[0]['vg1_cell_conc']
+    if 'bmp4_cell_conc' in df.columns:
+        current_model.bead_params['bmp4_cell_conc'] = df.iloc[0]['bmp4_cell_conc']
         
     return current_model
     

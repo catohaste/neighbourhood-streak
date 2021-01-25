@@ -97,6 +97,15 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     if 'AG1X2_spread' in df.columns:
         model_with_nbhd.bead_params['AG1X2_spread'] = df.iloc[0]['AG1X2_spread']
         model_no_nbhd.bead_params['AG1X2_spread'] = df.iloc[0]['AG1X2_spread']
+    if 'cell_pellet_spread' in df.columns:
+        model_with_nbhd.bead_params['cell_pellet_spread'] = df.iloc[0]['cell_pellet_spread']
+        model_no_nbhd.bead_params['cell_pellet_spread'] = df.iloc[0]['cell_pellet_spread']
+    if 'vg1_cell_conc' in df.columns:
+        model_with_nbhd.bead_params['vg1_cell_conc'] = df.iloc[0]['vg1_cell_conc']
+        model_no_nbhd.bead_params['vg1_cell_conc'] = df.iloc[0]['vg1_cell_conc']
+    if 'bmp4_cell_conc' in df.columns:
+        model_with_nbhd.bead_params['bmp4_cell_conc'] = df.iloc[0]['bmp4_cell_conc']
+        model_no_nbhd.bead_params['bmp4_cell_conc'] = df.iloc[0]['bmp4_cell_conc']
         
     return model_with_nbhd, model_no_nbhd
 
