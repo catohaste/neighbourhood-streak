@@ -105,21 +105,21 @@ models[1].inhibitor_scaling = 10.0 ** 1.80154516772199
 # models[0].label = 'Without\nnbhd'
 # models[0].index_string = 'A'
 # models[0].plot_color = 'C8'
-# models[0].bead_params = bead_params_fair
-# models[0].threshold = 0.298905377484657
+# models[0].bead_params = bead_params_activin_ant
+# models[0].threshold = 0.496121824802409
 # models[0].nbhd_size = None
-# models[0].inducer_scaling = 10.0 ** (1.07852964487069)
-# models[0].inhibitor_scaling = 10.0 ** (0.82009652169455)
+# models[0].inducer_scaling = 10.0 ** (1.57477776175289)
+# models[0].inhibitor_scaling = 10.0 ** (0.826017091134685)
 #
 # models[1].name = 'inducer_SMAD_nbhd'
 # models[1].label = 'With\nnbhd'
 # models[1].index_string = 'B'
 # models[1].plot_color = 'C1'
-# models[1].bead_params = bead_params_fair
-# models[1].threshold = 0.489438862449442
-# models[1].nbhd_size = 2*np.floor(52.7675295356746) - 1
-# models[1].inducer_scaling = 10.0 ** (-2.47545875046506)
-# models[1].inhibitor_scaling = 10.0 ** 1.80154516772199
+# models[1].bead_params = bead_params_activin_ant
+# models[1].threshold = 0.431647005869817
+# models[1].nbhd_size = 2*np.floor(130.477438526608) - 1
+# models[1].inducer_scaling = 10.0 ** (-1.62424826505605)
+# models[1].inhibitor_scaling = 10.0 ** 2.22004529783025
 
 ################################################################################################
 ##### bmp4 ant #################################################################################
@@ -128,21 +128,21 @@ models[1].inhibitor_scaling = 10.0 ** 1.80154516772199
 # models[0].label = 'Without\nnbhd'
 # models[0].index_string = 'A'
 # models[0].plot_color = 'C8'
-# models[0].bead_params = bead_params_fair
-# models[0].threshold = 0.298905377484657
+# models[0].bead_params = bead_params_bmp4_ant
+# models[0].threshold = 0.485598910878967
 # models[0].nbhd_size = None
-# models[0].inducer_scaling = 10.0 ** (1.07852964487069)
-# models[0].inhibitor_scaling = 10.0 ** (0.82009652169455)
+# models[0].inducer_scaling = 10.0 ** (2.67031533897687)
+# models[0].inhibitor_scaling = 10.0 ** (2.22676213806672)
 #
 # models[1].name = 'inducer_SMAD_nbhd'
 # models[1].label = 'With\nnbhd'
 # models[1].index_string = 'B'
 # models[1].plot_color = 'C1'
-# models[1].bead_params = bead_params_fair
-# models[1].threshold = 0.489438862449442
-# models[1].nbhd_size = 2*np.floor(52.7675295356746) - 1
-# models[1].inducer_scaling = 10.0 ** (-2.47545875046506)
-# models[1].inhibitor_scaling = 10.0 ** 1.80154516772199
+# models[1].bead_params = bead_params_bmp4_ant
+# models[1].threshold = 0.245747297043042
+# models[1].nbhd_size = 2*np.floor(33.4112433863738) - 1
+# models[1].inducer_scaling = 10.0 ** (-2.70035400851161)
+# models[1].inhibitor_scaling = 10.0 ** 2.39830585243343
 
 ################################################################################################
 ##### threshold ################################################################################
@@ -151,20 +151,20 @@ models[1].inhibitor_scaling = 10.0 ** 1.80154516772199
 # models[0].label = 'Without\nnbhd'
 # models[0].index_string = 'A'
 # models[0].plot_color = 'C8'
-# models[0].bead_params = bead_params_fair
-# models[0].threshold = 0.298905377484657
+# models[0].bead_params = bead_params_threshold
+# models[0].threshold = 0.456084933585625
 # models[0].nbhd_size = None
-# models[0].inducer_scaling = 10.0 ** (1.07852964487069)
-# models[0].inhibitor_scaling = 10.0 ** (0.82009652169455)
+# models[0].inducer_scaling = 10.0 ** (0.912230470757642)
+# models[0].inhibitor_scaling = 10.0 ** (-2.87675720588008)
 #
 # models[1].name = 'inducer_SMAD_nbhd'
 # models[1].label = 'With\nnbhd'
 # models[1].index_string = 'B'
 # models[1].plot_color = 'C1'
-# models[1].bead_params = bead_params_fair
-# models[1].threshold = 0.489438862449442
-# models[1].nbhd_size = 2*np.floor(52.7675295356746) - 1
-# models[1].inducer_scaling = 10.0 ** (-2.47545875046506)
-# models[1].inhibitor_scaling = 10.0 ** 1.80154516772199
+# models[1].bead_params = bead_params_threshold
+# models[1].threshold = 0.450426293687721
+# models[1].nbhd_size = 2*np.floor(62.0953642599517) - 1
+# models[1].inducer_scaling = 10.0 ** (1.30491072217825)
+# models[1].inhibitor_scaling = 10.0 ** 1.43501518320614
 
 ################################################################################################
