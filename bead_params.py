@@ -124,39 +124,39 @@ bead_params_all_exps = {
     # vg1
     'cell_pellet_width' : 30,
     
-    'cell_pellet_spread' : 23.1982681897682,
+    'cell_pellet_spread' : 5.42032971592437,
     
-    'vg1_cell_conc' : 0.59474841251661, # cell_pellet 
-    'bmp4_cell_conc' : 0.709944612721701,
+    'vg1_cell_conc' : 0.171456086847675, # cell_pellet 
+    'bmp4_cell_conc' : 0.753633584011169,
 
     # bmp
     'afigel_width' : 7,
     
     'afigel_50_spread' : 40,    # unused
-    'afigel_25_spread' : 52.104054405184,
-    'afigel_12_spread' : 7.56592055048768,
-    'afigel_6_spread' : 8.12703482365632,
+    'afigel_25_spread' : 52.9293657715552,
+    'afigel_12_spread' : 6.56697618751276,
+    'afigel_6_spread' : 4.56485844833583,
     
     'bmp4_50_conc' : 0.9,  # unused # afigel
-    'bmp4_25_conc' : 0.753881497135208,
-    'bmp4_12_conc' : 0.654662069443632, # 0.125,
-    'bmp4_6_conc' : 0.686197808523482,
+    'bmp4_25_conc' : 0.382089126623482,
+    'bmp4_12_conc' : 0.690422383925117, # 0.125,
+    'bmp4_6_conc' : 0.852292823968516,
 
     # activin
     'heparin_width' : 9,
     
-    'heparin_10_spread' : 26.2076237282151, # 0.143, # heparin
-    'heparin_2_spread' : 37.0974682692167,
+    'heparin_10_spread' : 20.3013585839127, # 0.143, # heparin
+    'heparin_2_spread' : 33.8871618410997,
     
-    'activin_10_conc' : 0.46292245853416, # 0.143, # heparin
-    'activin_2_conc' : 0.528709356400615,
+    'activin_10_conc' : 0.272624010707405, # 0.143, # heparin
+    'activin_2_conc' : 0.255657902982518,
     
     # DM and SB
     'AG1X2_width' : 7,
     
-    'AG1X2_spread' : 52.5385697426049,
+    'AG1X2_spread' : 30.6036923876064,
     
-    'DM_conc' : -0.496891765965946,  # AG1X2
+    'DM_conc' : -0.491199006175875,  # AG1X2
     'SB_conc' : -0.5 # AG1X2
 }
 
@@ -165,10 +165,10 @@ bead_params_cell_pellet = {
     # vg1
     'cell_pellet_width' : 30,
     
-    'cell_pellet_spread' : 7,
+    'cell_pellet_spread' : 7.34075549541568,
     
-    'vg1_cell_conc' : 0.390605285016128, # cell_pellet 
-    'bmp4_cell_conc' : 0.573597304673746,
+    'vg1_cell_conc' : 0.863267625118639, # cell_pellet 
+    'bmp4_cell_conc' : 0.538293642879425,
 
     # bmp
     'afigel_width' : 7,
