@@ -360,13 +360,13 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_st
             bar_height_proportion = 0.15
             bar_bottom_proportion = 0.2
             
-            predicted_s_loc = 372
+            predicted_s_loc = 340
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
-            axs[0].set_ylabel('Model A value')
+            axs[0].set_ylabel('Model A value\n(absolute)')
             axs[0].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1, label=models[0].label)
             axs[0].plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-            axs[0].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
+            # axs[0].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
             # get rid of the frame
             axs[0].spines['top'].set_visible(False)
@@ -393,10 +393,10 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_st
         
             ''' model B '''
             plot_model = np.roll(model_values[1, emb_idx, :], roll_idx[pos_idx])
-            axs[1].set_ylabel('Model B value')
+            axs[1].set_ylabel('Model B value\n(relative)')
             axs[1].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1, label=models[1].label)
             axs[1].plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-            axs[1].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
+            # axs[1].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
             # get rid of the frame
             axs[1].spines['top'].set_visible(False)
@@ -488,7 +488,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             axs[0].plot(range(0,noc), plot_inducer, linewidth=2, marker=None, color='C0', markersize = 1, label='Inducer')
             axs[0].plot(range(0,noc), plot_inhibitor, linewidth=2, linestyle='dashdot', marker=None, color='C3', markersize = 1, label="Inhibitor")
             axs[0].set_ylim([0,protein_ymax])
-            axs[0].set_ylabel('Protein conc.')
+            axs[0].set_ylabel('Protein conc.\n')
             
             # get rid of the frame
             axs[0].spines['top'].set_visible(False)
@@ -526,10 +526,15 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
-            axs[1].set_ylabel('Model A value')
+            
+            # plt.rc('text', usetex=True)
+#             axs[1].set_ylabel(r'{\fontsize{20pt}{3em}\selectfont{Arial}Model A value\n}{\fontsize{16pt}{3em}\selectfont{Arial}(absolute)}')
+            # plt.rc('text', usetex=False)
+            axs[1].set_ylabel('Model A value\n(absolute)')
+            
             axs[1].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1, label=models[0].label)
             axs[1].plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-            axs[1].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
+            # axs[1].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
             # get rid of the frame
             axs[1].spines['top'].set_visible(False)
@@ -571,10 +576,10 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
         
             ''' model B '''
             plot_model = np.roll(model_values[1, emb_idx, :], roll_idx[pos_idx])
-            axs[2].set_ylabel('Model B value')
+            axs[2].set_ylabel('Model B value\n(relative)')
             axs[2].plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1, label=models[1].label)
             axs[2].plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-            axs[2].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
+            # axs[2].legend(loc='upper right', bbox_to_anchor=(1,legend_height), fontsize=font_sizes['SMALLEST_SIZE'])
             
             # get rid of the frame
             axs[2].spines['top'].set_visible(False)
@@ -605,7 +610,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
                 axins.plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
                 # axins.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
                 # sub region of the original image
-                x1, x2, y1, y2 = 230, 370, 0.2, model_ymax
+                x1, x2, y1, y2 = 230, 370, 0.2, 0.65
                 axins.set_xlim(x1, x2)
                 axins.set_ylim(y1, y2)
                 axins.set_xticklabels('')
@@ -615,7 +620,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             
             
             # clear yaxis for certain embryos
-            yaxis_clear_embryos = [9,10,11,12,14,15,16,18,19,20,21,22]
+            yaxis_clear_embryos = [5,6,7,9,10,11,12,14,15,16,19,20,21,22]
             if emb_idx in yaxis_clear_embryos:
                 for ax_idx in range(3):
                     axs[ax_idx].yaxis.label.set_visible(False)
@@ -623,28 +628,36 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
                     
             # clear legend for certain embryos
             # legend_clear_embryos = [8,9,10,11,13,14,15,17,0,19,20,21]
-            legend_clear_embryos = [8,9,10,13,14,17,0,19,20,21]
+            legend_clear_embryos = [4,5,6,8,9,10,11,13,14,0,19,20,21]
             if emb_idx in legend_clear_embryos:
-                for ax_idx in range(3):
+                for ax_idx in range(1):
                     axs[ax_idx].get_legend().remove()
+                # for ax_idx in range(3):
+#                     axs[ax_idx].get_legend().remove()
                     
             # only add text for certain embryos
             
             add_text_embryos = [item for item in range(len(list_of_embryos)) if item not in legend_clear_embryos]
             if emb_idx in add_text_embryos:
-                font_props = font_manager.FontProperties(size=font_sizes['SMALLEST_SIZE'], weight='semibold')
-                # desired = axs[0].text(408, text_yloc_pro, 'Desired streak', backgroundcolor='lightgray', color=desired_color, fontproperties=font_props)
-                desired = axs[0].text(350, text_yloc_pro, 'Hypothesized streak', backgroundcolor='lightgray', color=desired_color, fontproperties=font_props)
-                predicted_A = axs[1].text(398, text_yloc_A, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_A, fontproperties=font_props)
-                predicted_B = axs[2].text(398, text_yloc_B, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_B, fontproperties=font_props)
-                
-                outline_width = 0.1
-                desired.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
-                                       path_effects.Normal()])
-                predicted_A.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
-                                       path_effects.Normal()])
-                predicted_B.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
-                                       path_effects.Normal()])
+                if emb_idx in [17,18]:
+                    text_xloc_pro = 290             # for bmp ant plots
+                    text_xloc_model = 350
+                else:    
+                    font_props = font_manager.FontProperties(size=font_sizes['SMALLEST_SIZE'], weight='semibold')
+                    # desired = axs[0].text(408, text_yloc_pro, 'Desired streak', backgroundcolor='lightgray', color=desired_color, fontproperties=font_props)
+                    text_xloc_pro = 350           # for most plots
+                    text_xloc_model = 398
+                    desired = axs[0].text(text_xloc_pro, text_yloc_pro, 'Hypothesized streak', backgroundcolor='lightgray', color=desired_color, fontproperties=font_props)
+                    predicted_A = axs[1].text(text_xloc_model, text_yloc_A, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_A, fontproperties=font_props)
+                    predicted_B = axs[2].text(text_xloc_model, text_yloc_B, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_B, fontproperties=font_props)
+            
+                    outline_width = 0.1
+                    desired.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
+                                           path_effects.Normal()])
+                    predicted_A.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
+                                           path_effects.Normal()])
+                    predicted_B.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
+                                           path_effects.Normal()])
                                        
             
             fig_full.tight_layout()
