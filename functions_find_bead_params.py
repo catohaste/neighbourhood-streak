@@ -26,7 +26,7 @@ def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     if 'threshold$^B$' in df.columns:
         model_no_nbhd.threshold = df.iloc[0]['threshold$^B$']
     if 'n' in df.columns:
-        model_with_nbhd.nbhd_size = 2*np.floor(df.iloc[0]['n']) - 1
+        model_with_nbhd.nbhd_size = 2*np.floor(df.iloc[0]['n']) + 1
     if 'activin_conc' in df.columns:
         model_with_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_conc']
         model_no_nbhd.bead_params['activin_2_conc'] = df.iloc[0]['activin_conc']

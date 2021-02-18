@@ -794,6 +794,8 @@ def set_params_from_df(df, current_model):
         current_model.inducer_scaling = 10.0 ** df.iloc[0]['$b_V$']
     if 'threshold' in df.columns:
         current_model.threshold = df.iloc[0]['threshold']
+    if 'n' in df.columns:
+        current_model.nbhd_size = 2*np.floor(df.iloc[0]['n']) + 1
     if 'activin_conc' in df.columns:
         current_model.bead_params['activin_2_conc'] = df.iloc[0]['activin_conc']
         current_model.bead_params['activin_10_conc'] = df.iloc[0]['activin_conc']
@@ -838,8 +840,6 @@ def set_params_from_df(df, current_model):
         current_model.bead_params['DM_conc'] = df.iloc[0]['DM_conc']
     if 'AG1X2_spread' in df.columns:
         current_model.bead_params['AG1X2_spread'] = df.iloc[0]['AG1X2_spread']
-    if 'n' in df.columns:
-        current_model.nbhd_size = 2*np.floor(df.iloc[0]['n']) - 1
     if 'cell_pellet_spread' in df.columns:
         current_model.bead_params['cell_pellet_spread'] = df.iloc[0]['cell_pellet_spread']
     if 'vg1_cell_conc' in df.columns:

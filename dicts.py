@@ -8,7 +8,7 @@ param_priors_dict = {
     '$b_B$': SampledParam(stats.uniform, loc=-3.0, scale=6.0),
     '$b_V$': SampledParam(stats.uniform, loc=-3.0, scale=6.0),
     'threshold': SampledParam(stats.uniform, loc=0.0, scale=0.5),
-    'n': SampledParam(stats.uniform, loc=2.0, scale=148.0),
+    'n': SampledParam(stats.uniform, loc=1.0, scale=148.0),
     
     '$b_B^A$': SampledParam(stats.uniform, loc=-3.0, scale=6.0),
     '$b_B^B$': SampledParam(stats.uniform, loc=-3.0, scale=6.0),
@@ -49,7 +49,7 @@ param_lims_dict = {
     '$b_B$': (-3, 3),
     '$b_V$': (-3, 3),
     'threshold': (0,0.5),
-    'n': (2, 75),
+    'n': (3, 299),
     
     '$b_B^A$': (-3, 3),
     '$b_B^B$': (-3, 3),

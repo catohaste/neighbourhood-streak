@@ -48,32 +48,32 @@ models = [Model() for i in range(modelN)]
 # models[1].plot_color = 'C1'
 # models[1].bead_params = bead_params_play
 # models[1].threshold = 0.473131763864675
-# models[1].nbhd_size = 2*np.floor(55.8743571703637) - 1
+# models[1].nbhd_size = 2*np.floor(55.8743571703637) + 1
 # models[1].inducer_scaling = 10.0 ** (0.313337594353507)
 # models[1].inhibitor_scaling = 10.0 ** 1.66978719065307
 
 #############################################################################################
 ##### all exps ##############################################################################
 
-models[0].name = 'inducer_SMAD'
-models[0].label = 'Without\nnbhd'
-models[0].index_string = 'A'
-models[0].plot_color = 'C8'
-models[0].bead_params = bead_params_all_exps
-models[0].threshold = 0.427922233370511
-models[0].nbhd_size = None
-models[0].inducer_scaling = 10.0 ** (2.40585923229449)
-models[0].inhibitor_scaling = 10.0 ** (2.28635614897028)
-
-models[1].name = 'inducer_SMAD_nbhd'
-models[1].label = 'With\nnbhd'
-models[1].index_string = 'B'
-models[1].plot_color = 'C1'
-models[1].bead_params = bead_params_all_exps
-models[1].threshold = 0.454828043213113
-models[1].nbhd_size = 2*np.floor(62.8098261951711) - 1
-models[1].inducer_scaling = 10.0 ** (-1.79339961627464)
-models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
+# models[0].name = 'inducer_SMAD'
+# models[0].label = 'Without\nnbhd'
+# models[0].index_string = 'A'
+# models[0].plot_color = 'C8'
+# models[0].bead_params = bead_params_all_exps
+# models[0].threshold = 0.427922233370511
+# models[0].nbhd_size = None
+# models[0].inducer_scaling = 10.0 ** (2.40585923229449)
+# models[0].inhibitor_scaling = 10.0 ** (2.28635614897028)
+#
+# models[1].name = 'inducer_SMAD_nbhd'
+# models[1].label = 'With\nnbhd'
+# models[1].index_string = 'B'
+# models[1].plot_color = 'C1'
+# models[1].bead_params = bead_params_all_exps
+# models[1].threshold = 0.454828043213113
+# models[1].nbhd_size = 2*np.floor(62.8098261951711) + 1
+# models[1].inducer_scaling = 10.0 ** (-1.79339961627464)
+# models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
 
 ################################################################################################
 ##### cell pellet ##############################################################################
@@ -94,7 +94,7 @@ models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
 # models[1].plot_color = 'C1'
 # models[1].bead_params = bead_params_cell_pellet
 # models[1].threshold = 0.393571985176569
-# models[1].nbhd_size = 2*np.floor(54.64537867601) - 1
+# models[1].nbhd_size = 2*np.floor(54.64537867601) + 1
 # models[1].inducer_scaling = 10.0 ** (-1.52246347208299)
 # models[1].inhibitor_scaling = 10.0 ** -0.853972635479188
 
@@ -117,7 +117,7 @@ models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
 # models[1].plot_color = 'C1'
 # models[1].bead_params = bead_params_activin_ant
 # models[1].threshold = 0.431647005869817
-# models[1].nbhd_size = 2*np.floor(130.477438526608) - 1
+# models[1].nbhd_size = 2*np.floor(130.477438526608) + 1
 # models[1].inducer_scaling = 10.0 ** (-1.62424826505605)
 # models[1].inhibitor_scaling = 10.0 ** 2.22004529783025
 
@@ -140,31 +140,31 @@ models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
 # models[1].plot_color = 'C1'
 # models[1].bead_params = bead_params_bmp4_ant
 # models[1].threshold = 0.245747297043042
-# models[1].nbhd_size = 2*np.floor(33.4112433863738) - 1
+# models[1].nbhd_size = 2*np.floor(33.4112433863738) + 1
 # models[1].inducer_scaling = 10.0 ** (-2.70035400851161)
 # models[1].inhibitor_scaling = 10.0 ** 2.39830585243343
 
 ################################################################################################
 ##### threshold ################################################################################
 
-# models[0].name = 'inducer_SMAD'
-# models[0].label = 'Without\nnbhd'
-# models[0].index_string = 'A'
-# models[0].plot_color = 'C8'
-# models[0].bead_params = bead_params_threshold
-# models[0].threshold = 0.456084933585625
-# models[0].nbhd_size = None
-# models[0].inducer_scaling = 10.0 ** (0.912230470757642)
-# models[0].inhibitor_scaling = 10.0 ** (-2.87675720588008)
-#
-# models[1].name = 'inducer_SMAD_nbhd'
-# models[1].label = 'With\nnbhd'
-# models[1].index_string = 'B'
-# models[1].plot_color = 'C1'
-# models[1].bead_params = bead_params_threshold
-# models[1].threshold = 0.450426293687721
-# models[1].nbhd_size = 2*np.floor(62.0953642599517) - 1
-# models[1].inducer_scaling = 10.0 ** (1.30491072217825)
-# models[1].inhibitor_scaling = 10.0 ** 1.43501518320614
+models[0].name = 'inducer_SMAD'
+models[0].label = 'Without\nnbhd'
+models[0].index_string = 'A'
+models[0].plot_color = 'C8'
+models[0].bead_params = bead_params_threshold
+models[0].threshold = 0.456084933585625
+models[0].nbhd_size = None
+models[0].inducer_scaling = 10.0 ** (0.912230470757642)
+models[0].inhibitor_scaling = 10.0 ** (-2.87675720588008)
+
+models[1].name = 'inducer_SMAD_nbhd'
+models[1].label = 'With\nnbhd'
+models[1].index_string = 'B'
+models[1].plot_color = 'C1'
+models[1].bead_params = bead_params_threshold
+models[1].threshold = 0.450426293687721
+models[1].nbhd_size = 2*np.floor(62.0953642599517) + 1
+models[1].inducer_scaling = 10.0 ** (1.30491072217825)
+models[1].inhibitor_scaling = 10.0 ** 1.43501518320614
 
 ################################################################################################
