@@ -1,15 +1,13 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import stats
-import pandas as pd
 import copy
-import datetime
-from pprint import pprint
-from shutil import copy2
 import os.path
+from shutil import copy2
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from scipy import stats
 
 from initial_params import initial_params
-# from bead_params import bead_params_init, bead_params_A, bead_params_B
 from model_params import modelN, models
 
 from classes import Embryo
@@ -17,13 +15,9 @@ from functions import define_initial_protein_concentrations, setup_embryos, run_
 from plot_functions import create_presentation_fig_arrays, save_presentation_figs, save_method_figs, save_results_figs
 
 # set up save directory
-# x = datetime.datetime.now()
-# sub_directory = x.strftime('%Y') + '_' + x.strftime('%m') + '_' + x.strftime('%d') + '_' + x.strftime('%H') + x.strftime('%M') + x.strftime('%S') + '/'
 sub_directory = 'testing/'
-
 if sub_directory[-1] != '/':
     sub_directory = sub_directory + '/'
-
 save_directory = 'results/' + sub_directory
 
 # initialize embryos
