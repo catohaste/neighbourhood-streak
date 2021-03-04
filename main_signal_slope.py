@@ -12,7 +12,7 @@ from model_params import modelN, models
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
-from plot_functions import create_presentation_fig_arrays, save_presentation_figs, save_method_figs, save_results_figs
+from plot_functions import create_presentation_fig_arrays, save_presentation_figs, save_method_figs, save_results_figs, set_up_protein_fig, set_up_fig_trio
 
 # set up save directory
 sub_directory = 'testing/'
@@ -27,10 +27,17 @@ embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(emb
 model_values = np.ndarray((modelN, embryoN, initial_params['number_of_cells']), dtype=float)
 model_ylim = np.ndarray((modelN, embryoN, 2), dtype=float)
 
+select_embryos = [0]
+
 for model_idx, model in enumerate(models):
     
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     embryos = setup_embryos(embryos, model, initial_concentrations)
+    
+    # for embryo_idx in select_embryos:
+    #     embryo = embryos[embryo_idx]
+    #     fig_pro = set_up_protein_fig(embryo)
+    #     plt.show()
     
     for embryo in embryos:
         run_model(embryo, model)
@@ -43,6 +50,11 @@ for model_idx, model in enumerate(models):
         
     model_values[model_idx,:,:], model_ylim[model_idx,:,:] = create_presentation_fig_arrays(embryos)
     temp_model_values, temp_model_ylim = create_presentation_fig_arrays(embryos)
+    
+# for embryo_idx in select_embryos:
+#     embryo = embryos[embryo_idx]
+#     fig_trio = set_up_fig_trio(embryo, models)
+#     plt.show()
         
 # save_presentation_figs(models, embryos, model_values, model_ylim, 'results/presentation_figs/')
 
@@ -68,8 +80,8 @@ code_directory = save_directory + 'code/'
 # report_code_directory = report_directory + 'code/'
 if not os.path.isdir(code_directory):
     os.mkdir(code_directory)
-# if not os.path.isdir(paper_code_directory):
-#     os.mkdir(paper_code_directory)
+if not os.path.isdir(paper_code_directory):
+    os.mkdir(paper_code_directory)
 # if not os.path.isdir(report_code_directory):
 #  os.mkdir(report_code_directory)
 
