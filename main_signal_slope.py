@@ -36,8 +36,6 @@ for model_idx, model in enumerate(models):
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     embryos = setup_embryos(embryos, model, initial_concentrations)
     
-    print(vars(embryos[0]))
-    
     # for embryo_idx in select_embryos:
     #     embryo = embryos[embryo_idx]
     #     fig_pro = set_up_protein_fig(embryo)
