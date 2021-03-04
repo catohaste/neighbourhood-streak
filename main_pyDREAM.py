@@ -104,7 +104,7 @@ def likelihood_with_nbhd(param_vector):
         embryo = embryos[emb_idx]
         run_model(embryo, like_model_with_nbhd)
 
-        likelihood = [0.5 * (1 + np.tanh( embryo.desired[cell_idx] * (embryo.model_value[cell_idx] - like_model_with_nbhd.threshold) * (1.0 / Delta) ) ) for cell_idx in likelihood_region[idx]]
+        likelihood = [0.5 * (1 + np.tanh( embryo.target[cell_idx] * (embryo.model_value[cell_idx] - like_model_with_nbhd.threshold) * (1.0 / Delta) ) ) for cell_idx in likelihood_region[idx]]
         total_logp[idx] = np.sum(np.log10(likelihood))
 
     return np.sum(total_logp)
@@ -160,7 +160,7 @@ def likelihood_no_nbhd(param_vector):
         embryo = embryos[emb_idx]
         run_model(embryo, like_model_no_nbhd)
 
-        likelihood = [0.5 * (1 + np.tanh( embryo.desired[cell_idx] * (embryo.model_value[cell_idx] - like_model_no_nbhd.threshold) * (1.0 / Delta) ) ) for cell_idx in likelihood_region[idx]]
+        likelihood = [0.5 * (1 + np.tanh( embryo.target[cell_idx] * (embryo.model_value[cell_idx] - like_model_no_nbhd.threshold) * (1.0 / Delta) ) ) for cell_idx in likelihood_region[idx]]
         total_logp[idx] = np.sum(np.log10(likelihood))
 
     return np.sum(total_logp)

@@ -75,7 +75,7 @@ def plot_proteins(ax_pro, embryo, protein_settings):
     ''' proteins '''
     plot_inducer = np.roll(embryo.inducer.conc, roll_idx)
     plot_inhibitor = np.roll(embryo.inhibitor.conc,roll_idx)
-    plot_hypoth = np.roll(embryo.desired,roll_idx)
+    plot_target = np.roll(embryo.target,roll_idx)
     
     ax_pro.set_title(embryo.name, fontsize=font_sizes['BIGGER_SIZE'])
     ax_pro.plot(range(0,noc), plot_inducer, linewidth=2, marker=None, color='C0', markersize = 1, label='Inducer')
@@ -86,7 +86,7 @@ def plot_proteins(ax_pro, embryo, protein_settings):
     if protein_settings["legend"]:
         ax_pro.legend(loc='upper right')
         
-    if protein_settings["include_hypoth"]:
+    if protein_settings["include_target"]:
     
         # # With bar and text below
         # [protein_ymin, protein_ymax] = axs[0].get_ylim()
@@ -99,9 +99,9 @@ def plot_proteins(ax_pro, embryo, protein_settings):
         # bar_top = bar_bottom + bar_height
         # text_yloc = new_protein_ymin + 0.05*fig_height_large
     
-        hypoth_color = 'C4'  # purple
-        gray_where = np.array([i == -1 for i in plot_hypoth])
-        streak_where = np.array([i == 1 for i in plot_hypoth])
+        target_color = 'C4'  # purple
+        gray_where = np.array([i == -1 for i in plot_target])
+        streak_where = np.array([i == 1 for i in plot_target])
         
         # With bar and text below
         [protein_ymin, protein_ymax] = ax_pro.get_ylim()
@@ -114,8 +114,8 @@ def plot_proteins(ax_pro, embryo, protein_settings):
         bar_top = bar_bottom + bar_height
         text_yloc = new_protein_ymin + 0.045*fig_height_large
         ax_pro.fill_between(np.arange(noc), bar_bottom, bar_top, where=gray_where , facecolor='lightgray', alpha=1, step='mid')
-        ax_pro.fill_between(np.arange(noc), bar_bottom, bar_top, where=streak_where, facecolor=hypoth_color, edgecolor=hypoth_color, alpha=1, step='mid', linewidth=1)
-        ax_pro.text(315, text_yloc, 'Hypothesized streak', backgroundcolor='lightgray', color=hypoth_color, fontsize=font_sizes['SMALL_SIZE'], fontweight='bold')
+        ax_pro.fill_between(np.arange(noc), bar_bottom, bar_top, where=streak_where, facecolor=target_color, edgecolor=target_color, alpha=1, step='mid', linewidth=1)
+        ax_pro.text(315, text_yloc, 'Target streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALL_SIZE'], fontweight='bold')
         
         # get rid of the frame
         ax_pro.spines['top'].set_visible(False)
@@ -215,7 +215,7 @@ def set_up_protein_fig(embryo):
         "font_sizes" : font_sizes,
         "view" : 'anterior',
         "legend" : True,
-        "include_hypoth" : True,
+        "include_target" : True,
         "x_label" : True
     }
     
@@ -246,7 +246,7 @@ def set_up_fig_trio(embryo, models):
         "font_sizes" : font_sizes,
         "view" : 'anterior',
         "legend" : True,
-        "include_hypoth" : True,
+        "include_target" : True,
         "x_label" : False
     }
     
@@ -327,7 +327,7 @@ def save_presentation_figs( models, list_of_embryos, model_values, model_ylim, d
             ''' proteins '''
             plot_inducer = np.roll(embryo.inducer.conc, roll_idx[pos_idx])
             plot_inhibitor = np.roll(embryo.inhibitor.conc,roll_idx[pos_idx])
-            plot_desired = np.roll(embryo.desired,roll_idx[pos_idx])
+            plot_target = np.roll(embryo.target,roll_idx[pos_idx])
             axs[0].set_title(embryo.name, fontsize=font_sizes['BIGGER_SIZE'])
             axs[0].plot(range(0,noc), plot_inducer, linewidth=1, marker=None, color='C0', markersize = 1, label='Inducer')
             axs[0].plot(range(0,noc), plot_inhibitor, linewidth=1, marker=None, color='C3', markersize = 1, label="Inhibitor")
@@ -367,14 +367,14 @@ def save_presentation_figs( models, list_of_embryos, model_values, model_ylim, d
             bar_top = bar_bottom + bar_height
             text_yloc = new_protein_ymin + 0.05*fig_height_large
 
-            desired_color = 'C4'  # purple
-            gray_where = np.array([i == -1 for i in plot_desired])
-            certain_where = np.array([i == 1 for i in plot_desired])
-            # uncertain_where = np.array([i == 0 for i in embryo.desired])
+            target_color = 'C4'  # purple
+            gray_where = np.array([i == -1 for i in plot_target])
+            certain_where = np.array([i == 1 for i in plot_target])
+            # uncertain_where = np.array([i == 0 for i in embryo.target])
             axs[0].fill_between(np.arange(noc), bar_bottom, bar_top, where=gray_where , facecolor='lightgray', alpha=1, step='mid')
-            axs[0].fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=desired_color, edgecolor=desired_color, alpha=1, step='mid', linewidth=1)
-            # axs[0].fill_between(np.arange(noc), bar_bottom, bar_top, where=uncertain_where, facecolor=desired_color, edgecolor=desired_color, alpha=0.4, step='mid', linewidth=1)
-            axs[0].text(393, text_yloc, 'Hypothesized streak', backgroundcolor='lightgray', color=desired_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
+            axs[0].fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=target_color, edgecolor=target_color, alpha=1, step='mid', linewidth=1)
+            # axs[0].fill_between(np.arange(noc), bar_bottom, bar_top, where=uncertain_where, facecolor=target_color, edgecolor=target_color, alpha=0.4, step='mid', linewidth=1)
+            axs[0].text(393, text_yloc, 'Target streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
             axs[0].legend(loc='upper right', fontsize=font_sizes['SMALLEST_SIZE'])
 
             # [ymin, ymax] = ax_pro_des.get_ylim()
@@ -397,8 +397,8 @@ def save_presentation_figs( models, list_of_embryos, model_values, model_ylim, d
             bar_top = bar_bottom + bar_height
             text_yloc = new_protein_ymin + 0.045*fig_height_large
             ax_pro_des.fill_between(np.arange(noc), bar_bottom, bar_top, where=gray_where , facecolor='lightgray', alpha=1, step='mid')
-            ax_pro_des.fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=desired_color, edgecolor=desired_color, alpha=1, step='mid', linewidth=1)
-            ax_pro_des.text(397, text_yloc, 'Hypothesized streak', backgroundcolor='lightgray', color=desired_color, fontsize=font_sizes['SMALL_SIZE'], fontweight='bold')
+            ax_pro_des.fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=target_color, edgecolor=target_color, alpha=1, step='mid', linewidth=1)
+            ax_pro_des.text(397, text_yloc, 'Target streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALL_SIZE'], fontweight='bold')
             ax_pro_des.legend(loc='upper right')
 
             ''' model A '''
@@ -536,10 +536,10 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_st
             ''' proteins '''
             plot_inducer = np.roll(embryo.inducer.conc, roll_idx[pos_idx])
             plot_inhibitor = np.roll(embryo.inhibitor.conc,roll_idx[pos_idx])
-            plot_desired = np.roll(embryo.desired,roll_idx[pos_idx])
-            desired_color = 'C4'  # purple
-            gray_where = np.array([i == -1 for i in plot_desired])
-            certain_where = np.array([i == 1 for i in plot_desired])
+            plot_target = np.roll(embryo.target,roll_idx[pos_idx])
+            target_color = 'C4'  # purple
+            gray_where = np.array([i == -1 for i in plot_target])
+            certain_where = np.array([i == 1 for i in plot_target])
 
             protein_ymax = 1.4
             ax_pro_des.plot(range(0,noc), plot_inducer, linewidth=2, linestyle='solid', marker=None, color='C0', markersize = 1, label='Inducer')
@@ -566,9 +566,9 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_st
             bar_top = bar_bottom + bar_height
             text_yloc = new_protein_ymin + 0.045*fig_height_large
             ax_pro_des.fill_between(np.arange(noc), bar_bottom, bar_top, where=gray_where , facecolor='lightgray', alpha=1, step='mid')
-            ax_pro_des.fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=desired_color, edgecolor=desired_color, alpha=1, step='mid', linewidth=1)
-            # ax_pro_des.text(388, text_yloc, 'Desired streak', backgroundcolor='lightgray', color=desired_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
-            ax_pro_des.text(320, text_yloc, 'Hypothesized streak', backgroundcolor='lightgray', color=desired_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
+            ax_pro_des.fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=target_color, edgecolor=target_color, alpha=1, step='mid', linewidth=1)
+            # ax_pro_des.text(388, text_yloc, 'Desired streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
+            ax_pro_des.text(320, text_yloc, 'Target streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
 
             ax_pro_des.legend(loc='upper right', fontsize=font_sizes['SMALLEST_SIZE'])
 
@@ -699,10 +699,10 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             ''' proteins '''
             plot_inducer = np.roll(embryo.inducer.conc, roll_idx[pos_idx])
             plot_inhibitor = np.roll(embryo.inhibitor.conc,roll_idx[pos_idx])
-            plot_desired = np.roll(embryo.desired,roll_idx[pos_idx])
-            desired_color = 'C4'  # purple
-            gray_where = np.array([i == -1 for i in plot_desired])
-            certain_where = np.array([i == 1 for i in plot_desired])
+            plot_target = np.roll(embryo.target,roll_idx[pos_idx])
+            target_color = 'C4'  # purple
+            gray_where = np.array([i == -1 for i in plot_target])
+            certain_where = np.array([i == 1 for i in plot_target])
 
             protein_ymax = 1.55
             axs[0].plot(range(0,noc), plot_inducer, linewidth=2, marker=None, color='C0', markersize = 1, label='Inducer')
@@ -729,7 +729,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             bar_top = bar_bottom + bar_height
             text_yloc_pro = new_protein_ymin + 0.04*fig_height_large
             axs[0].fill_between(np.arange(noc), bar_bottom, bar_top, where=gray_where , facecolor='lightgray', alpha=1, step='mid')
-            axs[0].fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=desired_color, edgecolor=desired_color, alpha=1, step='mid', linewidth=1)
+            axs[0].fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=target_color, edgecolor=target_color, alpha=1, step='mid', linewidth=1)
 
             axs[0].legend(loc='upper right', fontsize=font_sizes['SMALLEST_SIZE'])
 
@@ -864,15 +864,15 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
                     text_xloc_model = 350
                 else:
                     font_props = font_manager.FontProperties(size=font_sizes['SMALLEST_SIZE'], weight='semibold')
-                    # desired = axs[0].text(408, text_yloc_pro, 'Desired streak', backgroundcolor='lightgray', color=desired_color, fontproperties=font_props)
+                    # target = axs[0].text(408, text_yloc_pro, 'Desired streak', backgroundcolor='lightgray', color=target_color, fontproperties=font_props)
                     text_xloc_pro = 350           # for most plots
                     text_xloc_model = 398
-                    desired = axs[0].text(text_xloc_pro, text_yloc_pro, 'Hypothesized streak', backgroundcolor='lightgray', color=desired_color, fontproperties=font_props)
+                    target = axs[0].text(text_xloc_pro, text_yloc_pro, 'Target streak', backgroundcolor='lightgray', color=target_color, fontproperties=font_props)
                     predicted_A = axs[1].text(text_xloc_model, text_yloc_A, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_A, fontproperties=font_props)
                     predicted_B = axs[2].text(text_xloc_model, text_yloc_B, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_B, fontproperties=font_props)
 
                     outline_width = 0.1
-                    desired.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
+                    target.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
                                            path_effects.Normal()])
                     predicted_A.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
                                            path_effects.Normal()])

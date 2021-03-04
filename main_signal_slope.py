@@ -24,6 +24,8 @@ save_directory = 'results/' + sub_directory
 embryoN = 30
 embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
 
+
+
 model_values = np.ndarray((modelN, embryoN, initial_params['number_of_cells']), dtype=float)
 model_ylim = np.ndarray((modelN, embryoN, 2), dtype=float)
 
@@ -33,6 +35,8 @@ for model_idx, model in enumerate(models):
     
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     embryos = setup_embryos(embryos, model, initial_concentrations)
+    
+    print(vars(embryos[0]))
     
     # for embryo_idx in select_embryos:
     #     embryo = embryos[embryo_idx]
@@ -80,8 +84,8 @@ code_directory = save_directory + 'code/'
 # report_code_directory = report_directory + 'code/'
 if not os.path.isdir(code_directory):
     os.mkdir(code_directory)
-if not os.path.isdir(paper_code_directory):
-    os.mkdir(paper_code_directory)
+# if not os.path.isdir(paper_code_directory):
+#     os.mkdir(paper_code_directory)
 # if not os.path.isdir(report_code_directory):
 #  os.mkdir(report_code_directory)
 
