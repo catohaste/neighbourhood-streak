@@ -37,20 +37,20 @@ models = [Model() for i in range(modelN)]
 # models[0].index_string = 'A'
 # models[0].plot_color = 'C8'
 # models[0].bead_params = bead_params_play
-# models[0].threshold = 0.473131763864675
+# models[0].threshold = 0.497687138515397
 # models[0].nbhd_size = None
-# models[0].inducer_scaling = 10.0 ** (0.313337594353507)
-# models[0].inhibitor_scaling = 10.0 ** (1.66978719065307)
+# models[0].inducer_scaling = 10.0 ** (1.29838186230979)
+# models[0].inhibitor_scaling = 10.0 ** (1.45030857599371)
 #
 # models[1].name = 'inducer_SMAD_nbhd'
 # models[1].label = 'With\nnbhd'
 # models[1].index_string = 'B'
 # models[1].plot_color = 'C1'
 # models[1].bead_params = bead_params_play
-# models[1].threshold = 0.473131763864675
-# models[1].nbhd_size = 2*np.floor(55.8743571703637) + 1
-# models[1].inducer_scaling = 10.0 ** (0.313337594353507)
-# models[1].inhibitor_scaling = 10.0 ** 1.66978719065307
+# models[1].threshold = 0.421573076609568
+# models[1].nbhd_size = 2*np.floor(56.5325206131255) + 1
+# models[1].inducer_scaling = 10.0 ** (-2.61174561686766)
+# models[1].inhibitor_scaling = 10.0 ** -0.329085126426299
 
 #############################################################################################
 ##### all exps ##############################################################################
@@ -83,20 +83,20 @@ models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
 # models[0].index_string = 'A'
 # models[0].plot_color = 'C8'
 # models[0].bead_params = bead_params_cell_pellet
-# models[0].threshold = 0.433178335645485
+# models[0].threshold = 0.497687138515397
 # models[0].nbhd_size = None
-# models[0].inducer_scaling = 10.0 ** (2.07820907837438)
-# models[0].inhibitor_scaling = 10.0 ** (2.61989801957726)
+# models[0].inducer_scaling = 10.0 ** (1.29838186230979)
+# models[0].inhibitor_scaling = 10.0 ** (1.45030857599371)
 #
 # models[1].name = 'inducer_SMAD_nbhd'
 # models[1].label = 'With\nnbhd'
 # models[1].index_string = 'B'
 # models[1].plot_color = 'C1'
 # models[1].bead_params = bead_params_cell_pellet
-# models[1].threshold = 0.393571985176569
-# models[1].nbhd_size = 2*np.floor(54.64537867601) + 1
-# models[1].inducer_scaling = 10.0 ** (-1.52246347208299)
-# models[1].inhibitor_scaling = 10.0 ** -0.853972635479188
+# models[1].threshold = 0.421573076609568
+# models[1].nbhd_size = 2*np.floor(56.5325206131255) + 1
+# models[1].inducer_scaling = 10.0 ** (-2.61174561686766)
+# models[1].inhibitor_scaling = 10.0 ** -0.329085126426299
 
 ################################################################################################
 ##### activin ant ##############################################################################
@@ -122,7 +122,7 @@ models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
 # models[1].inhibitor_scaling = 10.0 ** 2.22004529783025
 
 ################################################################################################
-##### bmp4 ant #################################################################################
+##### bmp4_ant #################################################################################
 
 # models[0].name = 'inducer_SMAD'
 # models[0].label = 'Without\nnbhd'

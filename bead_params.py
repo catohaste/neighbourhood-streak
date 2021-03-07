@@ -83,10 +83,10 @@ bead_params_play = {
     # vg1
     'cell_pellet_width' : 30,
     
-    'cell_pellet_spread' : 7,
+    'cell_pellet_spread' : 6.57949224303151,
     
-    'vg1_cell_conc' : 0.390605285016128, # cell_pellet 
-    'bmp4_cell_conc' : 0.573597304673746,
+    'vg1_cell_conc' : 0.483739938138263, # cell_pellet 
+    'bmp4_cell_conc' : 0.389505013640406,
 
     # bmp
     'afigel_width' : 7,
@@ -165,10 +165,10 @@ bead_params_cell_pellet = {
     # vg1
     'cell_pellet_width' : 30,
     
-    'cell_pellet_spread' : 7.34075549541568,
+    'cell_pellet_spread' : 6.57949224303151,
     
-    'vg1_cell_conc' : 0.863267625118639, # cell_pellet 
-    'bmp4_cell_conc' : 0.538293642879425,
+    'vg1_cell_conc' : 0.483739938138263, # cell_pellet 
+    'bmp4_cell_conc' : 0.389505013640406,
 
     # bmp
     'afigel_width' : 7,
