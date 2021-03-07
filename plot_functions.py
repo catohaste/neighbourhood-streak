@@ -568,7 +568,7 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_st
             ax_pro_des.fill_between(np.arange(noc), bar_bottom, bar_top, where=gray_where , facecolor='lightgray', alpha=1, step='mid')
             ax_pro_des.fill_between(np.arange(noc), bar_bottom, bar_top, where=certain_where, facecolor=target_color, edgecolor=target_color, alpha=1, step='mid', linewidth=1)
             # ax_pro_des.text(388, text_yloc, 'Desired streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
-            ax_pro_des.text(320, text_yloc, 'Target streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
+            ax_pro_des.text(418, text_yloc, 'Target streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALLEST_SIZE'], fontweight='bold')
 
             ax_pro_des.legend(loc='upper right', fontsize=font_sizes['SMALLEST_SIZE'])
 
@@ -580,7 +580,7 @@ def save_method_figs( models, list_of_embryos, model_values, model_ylim, font_st
             bar_height_proportion = 0.15
             bar_bottom_proportion = 0.2
 
-            predicted_s_loc = 340
+            predicted_s_loc = 341
             ''' model A '''
             plot_model = np.roll(model_values[0, emb_idx, :], roll_idx[pos_idx])
             axs[0].set_ylabel('Model A value\n(absolute)')
@@ -847,8 +847,8 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
                     axs[ax_idx].set_yticklabels([])
 
             # clear legend for certain embryos
-            # legend_clear_embryos = [8,9,10,11,13,14,15,17,0,19,20,21]
-            legend_clear_embryos = [4,5,6,8,9,10,11,13,14,0,19,20,21]
+            # legend_clear_embryos = [0,8,9,10,11,13,14,15,17,19,20,21]
+            legend_clear_embryos = [4,5,6,8,9,10,11,13,14,19,20,21]
             if emb_idx in legend_clear_embryos:
                 for ax_idx in range(1):
                     axs[ax_idx].get_legend().remove()
@@ -860,23 +860,22 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             add_text_embryos = [item for item in range(len(list_of_embryos)) if item not in legend_clear_embryos]
             if emb_idx in add_text_embryos:
                 if emb_idx in [17,18]:
-                    text_xloc_pro = 290             # for bmp ant plots
-                    text_xloc_model = 350
+                    text_xloc_pro = 398             # for bmp ant plots
+                    text_xloc_model = 349
                 else:
-                    font_props = font_manager.FontProperties(size=font_sizes['SMALLEST_SIZE'], weight='semibold')
-                    # target = axs[0].text(408, text_yloc_pro, 'Desired streak', backgroundcolor='lightgray', color=target_color, fontproperties=font_props)
-                    text_xloc_pro = 350           # for most plots
+                    text_xloc_pro = 438           # for most plots
                     text_xloc_model = 398
-                    target = axs[0].text(text_xloc_pro, text_yloc_pro, 'Target streak', backgroundcolor='lightgray', color=target_color, fontproperties=font_props)
-                    predicted_A = axs[1].text(text_xloc_model, text_yloc_A, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_A, fontproperties=font_props)
-                    predicted_B = axs[2].text(text_xloc_model, text_yloc_B, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_B, fontproperties=font_props)
+                font_props = font_manager.FontProperties(size=font_sizes['SMALLEST_SIZE'], weight='semibold')
+                target = axs[0].text(text_xloc_pro, text_yloc_pro, 'Target streak', backgroundcolor='lightgray', color=target_color, fontproperties=font_props)
+                predicted_A = axs[1].text(text_xloc_model, text_yloc_A, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_A, fontproperties=font_props)
+                predicted_B = axs[2].text(text_xloc_model, text_yloc_B, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color_B, fontproperties=font_props)
 
-                    outline_width = 0.1
-                    target.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
-                                           path_effects.Normal()])
-                    predicted_A.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
-                                           path_effects.Normal()])
-                    predicted_B.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
+                outline_width = 0.1
+                target.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
+                                       path_effects.Normal()])
+                predicted_A.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
+                                       path_effects.Normal()])
+                predicted_B.set_path_effects([path_effects.Stroke(linewidth=outline_width, foreground='black'),
                                            path_effects.Normal()])
 
 
