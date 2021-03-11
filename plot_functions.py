@@ -665,7 +665,8 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
     if not os.path.isdir(directory_name):
         os.mkdir(directory_name)        # I have no idea why this is necessary
 
-    inset_axes = [10, 11, 12]
+    inset_axes_A = [8,9,10, 11]
+    inset_axes_B = [8,9,10, 11, 12]
 
     for pos_idx, position in enumerate(['anterior_view', 'posterior_view']):
 
@@ -777,21 +778,22 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             axs[1].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model < models[0].threshold , facecolor='lightgray', alpha=1, step='mid')
             axs[1].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model >= models[0].threshold ,facecolor=brachyury_color_A, edgecolor=brachyury_color_A, alpha=1, step='mid', linewidth=1)
 
-            # if emb_idx in inset_axes:
-            #
-            #     # inset axes....
-            #     axins = axs[1].inset_axes([0.02, 0.6, 0.35, 0.35])
-            #     axins.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1)
-            #     axins.plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-            #     # axins.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
-            #     # sub region of the original image
-            #     x1, x2, y1, y2 = 230, 370, 0.2, 0.35
-            #     axins.set_xlim(x1, x2)
-            #     axins.set_ylim(y1, y2)
-            #     axins.set_xticklabels('')
-            #     axins.set_yticklabels('')
-            #
-            #     axs[1].indicate_inset_zoom(axins)
+            if emb_idx in inset_axes_A:
+
+                # inset axes....
+                
+                axinsA = axs[1].inset_axes([0.02, 0.65, 0.35, 0.3])
+                axinsA.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[0].plot_color, markersize = 1)
+                axinsA.plot(range(0,noc), [models[0].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
+                # axinsA.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
+                # sub region of the original image
+                x1, x2, y1, y2 = 230, 370, 0.45, 0.55
+                axinsA.set_xlim(x1, x2)
+                axinsA.set_ylim(y1, y2)
+                axinsA.set_xticklabels('')
+                axinsA.set_yticklabels('')
+
+                axs[1].indicate_inset_zoom(axinsA)
 
 
             ''' model B '''
@@ -822,21 +824,22 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
             axs[2].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model < models[1].threshold , facecolor='lightgray', alpha=1, step='mid')
             axs[2].fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model >= models[1].threshold ,facecolor=brachyury_color_B, edgecolor=brachyury_color_B, alpha=1, step='mid', linewidth=1)
 
-            if emb_idx in inset_axes:
+            if emb_idx in inset_axes_B:
 
                 # inset axes....
-                axins = axs[2].inset_axes([0.02, 0.25, 0.35, 0.35])
-                axins.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1)
-                axins.plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
-                # axins.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
+                
+                axinsB = axs[2].inset_axes([0.02, 0.25, 0.35, 0.35])
+                axinsB.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=models[1].plot_color, markersize = 1)
+                axinsB.plot(range(0,noc), [models[1].threshold for i in range(noc)], '--', linewidth=0.8, marker=None, color='black', markersize = 1)
+                # axinsB.imshow(Z2, extent=extent, interpolation="nearest", origin="lower")
                 # sub region of the original image
                 x1, x2, y1, y2 = 230, 370, 0.2, 0.65
-                axins.set_xlim(x1, x2)
-                axins.set_ylim(y1, y2)
-                axins.set_xticklabels('')
-                axins.set_yticklabels('')
+                axinsB.set_xlim(x1, x2)
+                axinsB.set_ylim(y1, y2)
+                axinsB.set_xticklabels('')
+                axinsB.set_yticklabels('')
 
-                axs[2].indicate_inset_zoom(axins)
+                axs[2].indicate_inset_zoom(axinsB)
 
 
             # clear yaxis for certain embryos
