@@ -133,7 +133,7 @@ def check_success_rate_2models(select_embryos, model_with_nbhd, model_no_nbhd, s
     
     for index, row in top_params.iterrows():
     
-        embryoN = 30
+        embryoN = 15
         row_df = row.to_frame().T
         model_with_nbhd, model_no_nbhd = set_params_from_df_2models(row_df, model_with_nbhd, model_no_nbhd)
         

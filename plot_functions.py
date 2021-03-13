@@ -665,8 +665,8 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
     if not os.path.isdir(directory_name):
         os.mkdir(directory_name)        # I have no idea why this is necessary
 
-    inset_axes_A = [8,9,10, 11]
-    inset_axes_B = [8,9,10, 11, 12]
+    inset_axes_A = [5,6,7,8]
+    inset_axes_B = [5,6,7,8,9]
 
     for pos_idx, position in enumerate(['anterior_view', 'posterior_view']):
 
@@ -843,7 +843,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
 
 
             # clear yaxis for certain embryos
-            yaxis_clear_embryos = [5,6,7,9,10,11,12,14,15,16,19,20,21,22]
+            yaxis_clear_embryos = [2,3,4,6,7,8,19,13,14]
             if emb_idx in yaxis_clear_embryos:
                 for ax_idx in range(3):
                     axs[ax_idx].yaxis.label.set_visible(False)
@@ -851,7 +851,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
 
             # clear legend for certain embryos
             # legend_clear_embryos = [0,8,9,10,11,13,14,15,17,19,20,21]
-            legend_clear_embryos = [4,5,6,8,9,10,11,13,14,19,20,21]
+            legend_clear_embryos = [1,2,3,5,6,7,8,12,13]
             if emb_idx in legend_clear_embryos:
                 for ax_idx in range(1):
                     axs[ax_idx].get_legend().remove()
@@ -862,7 +862,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
 
             add_text_embryos = [item for item in range(len(list_of_embryos)) if item not in legend_clear_embryos]
             if emb_idx in add_text_embryos:
-                if emb_idx in [17,18]:
+                if emb_idx in [10,11]:
                     text_xloc_pro = 398             # for bmp ant plots
                     text_xloc_model = 349
                 else:

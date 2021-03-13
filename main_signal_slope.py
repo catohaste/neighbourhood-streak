@@ -21,10 +21,8 @@ if sub_directory[-1] != '/':
 save_directory = 'results/' + sub_directory
 
 # initialize embryos
-embryoN = 30
+embryoN = 15
 embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
-
-
 
 model_values = np.ndarray((modelN, embryoN, initial_params['number_of_cells']), dtype=float)
 model_ylim = np.ndarray((modelN, embryoN, 2), dtype=float)
@@ -68,14 +66,14 @@ exp_name = 'activin_ant'
 paper_directory = 'results/paper_figures/' + exp_name + '/'
 if not os.path.isdir(paper_directory):
     os.mkdir(paper_directory)
-save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
-save_results_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'results/' )
+# save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
+# save_results_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'results/' )
 
 report_directory = 'results/report/' + exp_name + '/'
 if not os.path.isdir(report_directory):
     os.mkdir(report_directory)
-save_method_figs( models, embryos, model_values, model_ylim, 'Clear Sans', report_directory + 'method/' )
-save_results_figs( models, embryos, model_values, model_ylim, 'Clear Sans', report_directory + 'results/' )
+# save_method_figs( models, embryos, model_values, model_ylim, 'Clear Sans', report_directory + 'method/' )
+# save_results_figs( models, embryos, model_values, model_ylim, 'Clear Sans', report_directory + 'results/' )
 
 code_directory = save_directory + 'code/'
 paper_code_directory = paper_directory + 'code/'
@@ -91,6 +89,6 @@ if not os.path.isdir(report_code_directory):
 filenames = ['main_signal_slope.py', 'classes.py', 'functions.py', 'plot_functions.py', 'model_params.py', 'bead_params.py', 'initial_params.py']
 for filename in filenames:
     copy2(filename, code_directory + filename)
-    copy2(filename, paper_code_directory + filename)
-    copy2(filename, report_code_directory + filename)
+    # copy2(filename, paper_code_directory + filename)
+    # copy2(filename, report_code_directory + filename)
 
