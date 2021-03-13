@@ -8,7 +8,7 @@ import pandas as pd
 from scipy import stats
 
 from initial_params import initial_params
-from model_params import modelN, models
+from model_params import load_model
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
@@ -24,10 +24,15 @@ save_directory = 'results/' + sub_directory
 embryoN = 15
 embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
 
+# select experiment
+experiment_options = ['testing', 'all_exps', 'cell_pellet', 'activin_ant', 'bmp4_ant', 'threshold']
+select_exp = 'bmp4_ant'
+models = load_model(select_exp)
+
+# initialize arrays for plots
+modelN = len(models)
 model_values = np.ndarray((modelN, embryoN, initial_params['number_of_cells']), dtype=float)
 model_ylim = np.ndarray((modelN, embryoN, 2), dtype=float)
-
-# select_embryos = [0]
 
 for model_idx, model in enumerate(models):
     
@@ -61,15 +66,13 @@ for model_idx, model in enumerate(models):
 save_method_figs( models, embryos, model_values, model_ylim, 'Arial', save_directory + 'method/' )
 save_results_figs( models, embryos, model_values, model_ylim, 'Arial', save_directory + 'results/' )
 
-exp_name = 'activin_ant'
-
-paper_directory = 'results/paper_figures/' + exp_name + '/'
+paper_directory = 'results/paper_figures/' + select_exp + '/'
 if not os.path.isdir(paper_directory):
     os.mkdir(paper_directory)
 # save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
 # save_results_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'results/' )
 
-report_directory = 'results/report/' + exp_name + '/'
+report_directory = 'results/report/' + select_exp + '/'
 if not os.path.isdir(report_directory):
     os.mkdir(report_directory)
 # save_method_figs( models, embryos, model_values, model_ylim, 'Clear Sans', report_directory + 'method/' )

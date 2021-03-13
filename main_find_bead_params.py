@@ -17,7 +17,7 @@ from functions import define_initial_protein_concentrations, setup_embryos, run_
 from dicts import param_priors_dict, param_lims_dict, axes_labels_dict
 
 from initial_params import initial_params
-from model_params import models
+from model_params import load_models
 
 anterior = range(150,451)
 whole_embryo = range(600)
@@ -67,6 +67,7 @@ axes_labels = [axes_labels_dict[key] for key in param_names]
 param_lims = [param_lims_dict[key] for key in param_names]
 parameters_to_sample = [param_priors_dict[key] for key in param_names]
 
+models = load_models('all_exps') # it doesn't matter which experiment is loaded as parameter values vary
 like_model_with_nbhd = deepcopy(models[1])
 like_model_no_nbhd = deepcopy(models[0])
 def likelihood(param_vector):

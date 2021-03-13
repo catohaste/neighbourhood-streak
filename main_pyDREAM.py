@@ -16,7 +16,7 @@ from functions import define_initial_protein_concentrations, setup_embryos, run_
 from dicts import param_priors_dict, param_lims_dict, axes_labels_dict
 
 from initial_params import initial_params
-from model_params import models
+from model_params import load_models
 
 anterior = range(150,451)
 whole_embryo = range(600)
@@ -61,6 +61,8 @@ dream_params = {
     'niterations' : 500,
     'GRlim' : 1.2 # GR Convergence limit
 }
+
+models = load_models('all_exps') # it doesn't matter which experiment is loaded as parameter values vary
 
 #### with_nbhd ###########################################################################################
 save_directory = sub_directory + 'with_nbhd/'
