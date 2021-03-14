@@ -8,7 +8,7 @@ import pandas as pd
 from scipy import stats
 
 from initial_params import initial_params
-from model_params import load_model
+from model_params import load_models
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
@@ -27,7 +27,7 @@ embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(emb
 # select experiment
 experiment_options = ['testing', 'all_exps', 'cell_pellet', 'activin_ant', 'bmp4_ant', 'threshold']
 select_exp = 'bmp4_ant'
-models = load_model(select_exp)
+models = load_models(select_exp)
 
 # initialize arrays for plots
 modelN = len(models)

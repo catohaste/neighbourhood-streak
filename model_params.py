@@ -4,12 +4,14 @@ import numpy as np
 from bead_params import bead_params_play, bead_params_all_exps, bead_params_cell_pellet, bead_params_activin_ant, bead_params_bmp4_ant, bead_params_threshold
 
 
-def load_model(select_exp):
+def load_models(select_exp):
+    """ load models with correct parameters based upon experiment """
     
     # define models
     modelN = 2
     models = [Model() for i in range(modelN)]
 
+    # parameters which stay the same regardless of experiment
     models[0].name = 'inducer_SMAD'
     models[0].label = 'Without\nnbhd'
     models[0].index_string = 'A'
