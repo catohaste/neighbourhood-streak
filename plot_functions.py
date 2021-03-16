@@ -843,7 +843,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
 
 
             # clear yaxis for certain embryos
-            yaxis_clear_embryos = [2,3,4,6,7,8,19,13,14]
+            yaxis_clear_embryos = [2,3,4,6,7,8,9,13,14]
             if emb_idx in yaxis_clear_embryos:
                 for ax_idx in range(3):
                     axs[ax_idx].yaxis.label.set_visible(False)
