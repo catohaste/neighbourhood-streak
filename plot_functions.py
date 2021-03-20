@@ -71,6 +71,8 @@ def plot_proteins(ax_pro, embryo, protein_settings):
     if protein_settings["x_label"]:
         ax_pro.set_xticklabels(xticklabel)
         ax_pro.set_xlabel('Cell location')
+    else:
+        ax_pro.set_xticklabels([])
 
     ''' proteins '''
     plot_inducer = np.roll(embryo.inducer.conc, roll_idx)
@@ -106,16 +108,16 @@ def plot_proteins(ax_pro, embryo, protein_settings):
         # With bar and text below
         [protein_ymin, protein_ymax] = ax_pro.get_ylim()
         fig_height =  protein_ymax - protein_ymin
-        fig_height_large = fig_height*1.3
+        fig_height_large = fig_height*1.4
         new_protein_ymin = protein_ymax - fig_height_large
         ax_pro.set_ylim([new_protein_ymin, protein_ymax])
-        bar_height = fig_height_large * 0.08
-        bar_bottom = new_protein_ymin + 0.12*fig_height_large
+        bar_height = fig_height_large * 0.11
+        bar_bottom = new_protein_ymin + 0.15*fig_height_large
         bar_top = bar_bottom + bar_height
         text_yloc = new_protein_ymin + 0.045*fig_height_large
         ax_pro.fill_between(np.arange(noc), bar_bottom, bar_top, where=gray_where , facecolor='lightgray', alpha=1, step='mid')
         ax_pro.fill_between(np.arange(noc), bar_bottom, bar_top, where=streak_where, facecolor=target_color, edgecolor=target_color, alpha=1, step='mid', linewidth=1)
-        ax_pro.text(315, text_yloc, 'Target streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALL_SIZE'], fontweight='bold')
+        ax_pro.text(400, text_yloc, 'Target streak', backgroundcolor='lightgray', color=target_color, fontsize=font_sizes['SMALL_SIZE'], fontweight='bold')
         
         # get rid of the frame
         ax_pro.spines['top'].set_visible(False)
@@ -128,10 +130,11 @@ def plot_proteins(ax_pro, embryo, protein_settings):
         return ax_pro
 
 
-def plot_model(ax_model, embryo, model, model_settings):
+def plot_model(ax_model, embryo, model, model_values, model_ylim, model_settings):
     
     noc = embryo.number_of_cells
     
+    font_sizes = model_settings['font_sizes']
     rcParams['font.sans-serif'] = [model_settings['font']]
     if model_settings['view'] is 'anterior':
         xticklabel = ['post.','ant.','post.']
@@ -148,8 +151,10 @@ def plot_model(ax_model, embryo, model, model_settings):
     if model_settings["x_label"]:
         ax_model.set_xticklabels(xticklabel)
         ax_model.set_xlabel('Cell location')
+    else:
+        ax_model.set_xticklabels([])
 
-    plot_model = np.roll(embryo.model_value[:], roll_idx)
+    plot_model = np.roll(model_values[:], roll_idx)
     ax_model.set_ylabel(model_settings['y_label_str'])
             
     ax_model.plot(range(0,noc), plot_model, linewidth=2, marker=None, color=model.plot_color, markersize = 1, label=model.label)
@@ -163,11 +168,11 @@ def plot_model(ax_model, embryo, model, model_settings):
 
     # model bar params
     fig_height_increase_multiplier = 1.4
-    bar_height_proportion = 0.15
-    bar_bottom_proportion = 0.2
+    bar_height_proportion = 0.16
+    bar_bottom_proportion = 0.19
 
     # With bar and text below
-    [model_ymin, model_ymax] = [embryo.plot_model_ylim[0], embryo.plot_model_ylim[1]]
+    [model_ymin, model_ymax] = [model_ylim[0], model_ylim[1]]
     fig_height =  model_ymax - model_ymin
     fig_height_large = fig_height * fig_height_increase_multiplier
     new_model_ymin = model_ymax - fig_height_large
@@ -175,11 +180,13 @@ def plot_model(ax_model, embryo, model, model_settings):
     bar_height = fig_height * bar_height_proportion
     bar_bottom = new_model_ymin + bar_bottom_proportion * fig_height
     bar_top = bar_bottom + bar_height
-    text_yloc_A = new_model_ymin + 0.04 * fig_height_large
+    text_yloc = new_model_ymin + 0.04 * fig_height_large
 
     brachyury_color = model.plot_color  # 'C4'  # purple
     ax_model.fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model < model.threshold , facecolor='lightgray', alpha=1, step='mid')
     ax_model.fill_between(np.arange(noc), bar_bottom, bar_top, where=plot_model >= model.threshold ,facecolor=brachyury_color, edgecolor=brachyury_color, alpha=1, step='mid', linewidth=1)
+    font_props = font_manager.FontProperties(size=font_sizes['SMALL_SIZE'], weight='semibold')
+    predicted_A = ax_model.text(345, text_yloc, 'Predicted streak', backgroundcolor='lightgray', color=brachyury_color, fontproperties=font_props)
             
     # if emb_idx in inset_axes:
     #
@@ -227,13 +234,14 @@ def set_up_protein_fig(embryo):
     
     
 
-def set_up_fig_trio(embryo, models):
+def set_up_fig_trio(embryo, models, model_values, model_ylim):
     
     font_sizes = set_figs_font_settings() 
     
-    fig = plt.figure(figsize=(5,5))
-    ax_pro = fig.add_subplot(211)
-    ax_model = fig.add_subplot(212)
+    fig = plt.figure(figsize=(6,10))
+    ax_pro = fig.add_subplot(311)
+    ax_model_A = fig.add_subplot(312)
+    ax_model_B = fig.add_subplot(313)
     
     global_settings = {
         "font" : 'Arial',
@@ -250,17 +258,27 @@ def set_up_fig_trio(embryo, models):
         "x_label" : False
     }
     
-    model_settings = {
+    model_A_settings = {
+        "font" : 'Arial',
+        "font_sizes" : font_sizes,
+        "view" : 'anterior',
+        "legend" : False,
+        "x_label" : False,
+        "y_label_str" : 'Model A value\n(absolute)'
+    }
+    
+    model_B_settings = {
         "font" : 'Arial',
         "font_sizes" : font_sizes,
         "view" : 'anterior',
         "legend" : False,
         "x_label" : True,
-        "y_label_str" : 'A abs',
+        "y_label_str" : 'Model B value\n(relative)'
     }
     
     ax_pro = plot_proteins(ax_pro, embryo, protein_settings)
-    ax_model = plot_model(ax_model, embryo, models[0], model_settings)
+    ax_model_A = plot_model(ax_model_A, embryo, models[0], model_values[0], model_ylim[0], model_A_settings)
+    ax_model_B = plot_model(ax_model_B, embryo, models[1], model_values[1], model_ylim[1], model_B_settings)
     
     fig.tight_layout()
 
@@ -665,8 +683,8 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
     if not os.path.isdir(directory_name):
         os.mkdir(directory_name)        # I have no idea why this is necessary
 
-    inset_axes_A = [8,9,10, 11]
-    inset_axes_B = [8,9,10, 11, 12]
+    inset_axes_A = [5,6,7,8]
+    inset_axes_B = [5,6,7,8,9]
 
     for pos_idx, position in enumerate(['anterior_view', 'posterior_view']):
 
@@ -843,7 +861,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
 
 
             # clear yaxis for certain embryos
-            yaxis_clear_embryos = [5,6,7,9,10,11,12,14,15,16,19,20,21,22]
+            yaxis_clear_embryos = [2,3,4,6,7,8,9,13,14]
             if emb_idx in yaxis_clear_embryos:
                 for ax_idx in range(3):
                     axs[ax_idx].yaxis.label.set_visible(False)
@@ -851,7 +869,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
 
             # clear legend for certain embryos
             # legend_clear_embryos = [0,8,9,10,11,13,14,15,17,19,20,21]
-            legend_clear_embryos = [4,5,6,8,9,10,11,13,14,19,20,21]
+            legend_clear_embryos = [1,2,3,5,6,7,8,12,13]
             if emb_idx in legend_clear_embryos:
                 for ax_idx in range(1):
                     axs[ax_idx].get_legend().remove()
@@ -862,7 +880,7 @@ def save_results_figs( models, list_of_embryos, model_values, model_ylim, font_s
 
             add_text_embryos = [item for item in range(len(list_of_embryos)) if item not in legend_clear_embryos]
             if emb_idx in add_text_embryos:
-                if emb_idx in [17,18]:
+                if emb_idx in [10,11]:
                     text_xloc_pro = 398             # for bmp ant plots
                     text_xloc_model = 349
                 else:

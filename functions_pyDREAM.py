@@ -9,7 +9,6 @@ from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
 
 from initial_params import initial_params
-from model_params import models
     
 
 def run_pyDREAM(parameters_to_sample, likelihood_function, dream_params, save_directory):
@@ -65,7 +64,7 @@ def run_model_best_params(df_dream_out, select_embryos, best_model, save_directo
 
     best_params = df.iloc[[0],:]
     
-    embryoN = 30
+    embryoN = 15
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     
@@ -107,7 +106,7 @@ def check_success_rate(select_embryos, current_model, save_directory):
     
     for index, row in top_params.iterrows():
     
-        embryoN = 30
+        embryoN = 15
         embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
         initial_concentrations = define_initial_protein_concentrations(initial_params)
 
@@ -148,7 +147,7 @@ def run_model_best_params_max_success(select_embryos, best_model, save_directory
         
     best_params = best_params.iloc[[-1],:]
     
-    embryoN = 30
+    embryoN = 15
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     

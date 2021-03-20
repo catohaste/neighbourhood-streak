@@ -16,62 +16,53 @@ from functions import define_initial_protein_concentrations, setup_embryos, run_
 from dicts import param_priors_dict, param_lims_dict, axes_labels_dict
 
 from initial_params import initial_params
-from model_params import models
+from model_params import load_models
 
 anterior = range(150,451)
 whole_embryo = range(600)
 
-select_embryos = [4,5,6,7]
-sub_directory = 'results/dream/bead_lim_005_cell_pellet_5000_stage_XII_disp_50/'
+select_embryos = [1,2,3,4] # cell pellet
+sub_directory = 'results/dream/testing_bead_lim_005_cell_pellet_500_stage_XII_disp_50/'
 likelihood_region = [anterior for i in select_embryos]
 param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
-# select_embryos = [8,9,10,11,12]
+# select_embryos = [5,6,7,8,9] # microbead repeat of cell pellet
 # sub_directory = 'results/dream/bead_lim_005_activin_ant_5000_stage_XII_disp_50/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$',  'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'n']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
 
-# select_embryos = [13,14,15]
-# sub_directory = 'results/dream/bead_lim_005_threshold_reduced_5000_stage_XII_disp_50/'
-# likelihood_region = [anterior for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_2_spread',  'bmp4_6_conc', 'bmp4_6_spread']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread',  'bmp4_6_conc', 'bmp4_6_spread']
-
-# select_embryos = [17,18]
+# select_embryos = [10,11] # dm / bmp4 anterior
 # sub_directory = 'results/dream/bead_lim_005_bmp4_ant_5000_stage_XII_disp_50/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'bmp4_12_conc', 'bmp4_12_spread', 'DM_conc', 'AG1X2_spread']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'bmp4_12_conc', 'bmp4_12_spread', 'DM_conc', 'AG1X2_spread']
 
-# select_embryos = [4,5,6,7,8,9,10,11,12,13,14,15,17,18]
+# select_embryos = [12,13,14] # threshold
+# sub_directory = 'results/dream/bead_lim_005_threshold_reduced_5000_stage_XII_disp_50/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_2_spread',  'bmp4_6_conc', 'bmp4_6_spread']
+# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread',  'bmp4_6_conc', 'bmp4_6_spread']
+
+
+# select_embryos = list(range(1,15)) # all exps
 # sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_reduced_10000_stage_XII_disp_50_try2/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 
-# select_embryos = [4,5,6,7,8,9,10,11,12]
-# sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_3000_stage_XII_disp_50/'
-# likelihood_region = [anterior for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
-
-
-# select_embryos = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
-# sub_directory = 'results/dream/all_exps/'
-# likelihood_region = [ anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, anterior, whole_embryo, whole_embryo, whole_embryo, whole_embryo]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_50_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'bmp4_50_spread', 'n']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_2_spread', 'activin_10_conc', 'activin_10_spread', 'bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_50_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'bmp4_50_spread', 'bmp4_25_spread']
 
 if not os.path.isdir(sub_directory):
     os.mkdir(sub_directory)
 
 dream_params = {
     'nchains' : 5,
-    'niterations' : 5000,
+    'niterations' : 500,
     'GRlim' : 1.2 # GR Convergence limit
 }
+
+models = load_models('all_exps') # it doesn't matter which experiment is loaded as parameter values vary
 
 #### with_nbhd ###########################################################################################
 save_directory = sub_directory + 'with_nbhd/'
@@ -89,7 +80,7 @@ def likelihood_with_nbhd(param_vector):
 
     Delta = 0.05
 
-    embryoN = 30
+    embryoN = 15
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
 
@@ -145,7 +136,7 @@ def likelihood_no_nbhd(param_vector):
 
     Delta = 0.05
 
-    embryoN = 30
+    embryoN = 15
     embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
     initial_concentrations = define_initial_protein_concentrations(initial_params)
 

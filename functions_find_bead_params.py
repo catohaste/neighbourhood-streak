@@ -9,7 +9,6 @@ from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
 
 from initial_params import initial_params
-from model_params import models
 
 def set_params_from_df_2models(df, model_with_nbhd, model_no_nbhd):
     
@@ -133,7 +132,7 @@ def check_success_rate_2models(select_embryos, model_with_nbhd, model_no_nbhd, s
     
     for index, row in top_params.iterrows():
     
-        embryoN = 30
+        embryoN = 15
         row_df = row.to_frame().T
         model_with_nbhd, model_no_nbhd = set_params_from_df_2models(row_df, model_with_nbhd, model_no_nbhd)
         
