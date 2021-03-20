@@ -26,7 +26,7 @@ embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(emb
 
 # select experiment
 experiment_options = ['testing', 'all_exps', 'cell_pellet', 'activin_ant', 'bmp4_ant', 'threshold']
-select_exp = 'bmp4_ant'
+select_exp = 'cell_pellet'
 models = load_models(select_exp)
 
 # initialize arrays for plots
@@ -39,11 +39,6 @@ for model_idx, model in enumerate(models):
     initial_concentrations = define_initial_protein_concentrations(initial_params)
     embryos = setup_embryos(embryos, model, initial_concentrations)
     
-    # for embryo_idx in select_embryos:
-    #     embryo = embryos[embryo_idx]
-    #     fig_pro = set_up_protein_fig(embryo)
-    #     plt.show()
-    
     for embryo in embryos:
         run_model(embryo, model)
         embryo.find_streaks()
@@ -54,12 +49,6 @@ for model_idx, model in enumerate(models):
         exp.find_plot_model_ylim()
         
     model_values[model_idx,:,:], model_ylim[model_idx,:,:] = create_presentation_fig_arrays(embryos)
-    temp_model_values, temp_model_ylim = create_presentation_fig_arrays(embryos)
-    
-# for embryo_idx in select_embryos:
-#     embryo = embryos[embryo_idx]
-#     fig_trio = set_up_fig_trio(embryo, models)
-#     plt.show()
         
 # save_presentation_figs(models, embryos, model_values, model_ylim, 'results/presentation_figs/')
 
