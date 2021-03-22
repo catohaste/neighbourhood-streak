@@ -73,7 +73,11 @@ def plot_logp_over_time(dream_out_df, dream_params, figs_directory):
     df = df.reset_index()
     min_logp = df['logp'].min()
     max_logp = df['logp'].max()
-    logp_cutoff = ( 0.9 * (max_logp - min_logp) ) + min_logp
+    
+    if not np.isinf(min_logp):
+        logp_cutoff = ( 0.9 * (max_logp - min_logp) ) + min_logp
+    else:
+        logp_cutoff = 0.9 * max_logp 
     # logp_cutoff = df.at[int(np.ceil(0.7 * len(df))),'logp']
     
     ax_cutoff = fig.add_subplot(212)
@@ -93,7 +97,7 @@ def plot_logp_over_time(dream_out_df, dream_params, figs_directory):
     return
     
     
-def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels, figs_directory):
+def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels, model_color, figs_directory):
     
     font_size = set_figs_font_settings()
     
@@ -141,8 +145,10 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
         yheight = ymax - ymin
         ymin = ymin - 0.05*yheight
         ymax = ymax + 0.05*yheight
+        
+        cmap_length = 25
 
-        scatter_cmap = sns.cubehelix_palette(8, start=.5, rot=-.75, reverse=True, as_cmap=True)
+        scatter_cmap = sns.cubehelix_palette(cmap_length, start=.5, rot=-.75, reverse=True, as_cmap=True)
         axes[par1_idx, par2_idx].scatter(x=df[par2],y=df[par1], c=df['logp'], cmap=scatter_cmap, vmin=color_cutoff, vmax=cmax, s=2)
         axes[par1_idx, par2_idx].set_xlim([xmin, xmax])
         axes[par1_idx, par2_idx].set_ylim([ymin, ymax])
@@ -150,8 +156,15 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
         axes[par1_idx, par2_idx].set_xticklabels([])
         axes[par1_idx, par2_idx].set_yticklabels([])
 
-        kde_cmap =  sns.cubehelix_palette(8, start=.5, rot=-.75, reverse=True, as_cmap=True)
-        sns.kdeplot(ax=axes[par2_idx, par1_idx], data=df[par1], data2=df[par2], shade=False, cmap=kde_cmap)
+        # kde_cmap =  sns.cubehelix_palette(8, start=.5, rot=-.75, reverse=True, as_cmap=True)
+        kde_cmap = sns.cubehelix_palette(cmap_length, start=.5, rot=-.75, reverse=True, as_cmap=False)
+        
+        kde_idx = -3
+        hist_idx = -3
+        hist_idx = 5
+        hist_line_idx = 5
+        
+        sns.kdeplot(ax=axes[par2_idx, par1_idx], x=df[par1], y=df[par2], shade=False, color=kde_cmap[kde_idx])
         axes[par2_idx, par1_idx].set_xlim([ymin, ymax])
         axes[par2_idx, par1_idx].set_ylim([xmin, xmax])
         
@@ -163,11 +176,13 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
         if par1_idx is not 0:
             axes[par2_idx, par1_idx].set_yticklabels([])
 
-    distplot_palette =  sns.cubehelix_palette(8, start=.5, rot=-.75, light=0.5, reverse=True, as_cmap=False)
+    # distplot_palette =  sns.cubehelix_palette(8, start=.5, rot=-.75, light=0.5, reverse=True, as_cmap=False)
     # distplot_palette = sns.cubehelix_palette(param_N, light=0.5, start=0.5, reverse=True, as_cmap=False)
     for par_idx, par in enumerate(param_names):
 
-        sns.distplot( df[par], ax=axes[par_idx, par_idx], color=distplot_palette[5])
+        sns.histplot( data=df[par], ax=axes[par_idx, par_idx], kde=True, color=kde_cmap[hist_idx], element='step')
+        # sns.kdeplot( data=df[par], ax=axes[par_idx, par_idx], color=kde_cmap[hist_line_idx])
+        
         xmin, xmax = param_lims[par_idx]
         xheight = xmax - xmin
         xmin = xmin - 0.05 * xheight
@@ -176,7 +191,7 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
 
         axes[par_idx, par_idx].set_xlabel('')
         axes[par_idx, par_idx].set_ylabel('')
-        
+    
         if par_idx is 0:
             old_ymin, old_ymax = axes[par_idx, par_idx].get_ylim()
             old_yheight = old_ymax - old_ymin
@@ -425,7 +440,7 @@ def plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels
     
     color_cutoff = df.at[int(np.ceil(0.1 * len(df))),'logp']
     
-    fig, axes = plt.subplots(nrows=chain_N + 1, ncols=param_N, figsize=(14,9))
+    fig, axes = plt.subplots(nrows=chain_N + 1, ncols=param_N, figsize=(15,7))
 
     plot_palette =  sns.cubehelix_palette(8, start=.5, rot=-.75, light=0.5, reverse=True, as_cmap=False)
     # plot_palette = sns.cubehelix_palette(param_N, light=0.5, start=0.5, reverse=True, as_cmap=False)
@@ -474,7 +489,7 @@ def plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels
             # if chain_idx is not (chain_N - 1):
                 # axes[chain_idx, par_idx].set_xlabel(axes_labels[par_idx])
             
-            axes[chain_idx, par_idx].tick_params(axis='y', direction='in', labelsize=12)
+            axes[chain_idx, par_idx].tick_params(axis='y', direction='in', labelsize=6)
                 
     for par_idx, par in enumerate(param_names):
         # sns.histplot( df_temp[par], ax=axes[chain_idx, par_idx], color=plot_palette[5], kde=True)
@@ -492,7 +507,7 @@ def plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels
         # axes[chain_N, par_idx].set_yticklabels([])
         axes[chain_N, 0].set_ylabel('All chains')
         axes[chain_N, par_idx].set_xlabel(axes_labels[par_idx])
-        axes[chain_N, par_idx].tick_params(axis='y', direction='in', labelsize=12)
+        axes[chain_N, par_idx].tick_params(axis='y', direction='in', labelsize=6)
         
     
     fig.suptitle('Iterations per chain = ' + titleN)
@@ -585,8 +600,8 @@ def create_pyDREAM_figs(dream_params, param_names, param_lims, axes_labels, mode
         os.mkdir(figs_directory)
         
     # desired output
-    plot_param_pair_grid_logp(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
-    plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
+    # plot_param_pair_grid_logp(dream_success_df, param_names, param_lims, axes_labels, model_color, figs_directory)
+    # plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
     
     # checks
     plot_logp_over_time(dream_out_df, dream_params, figs_directory)
