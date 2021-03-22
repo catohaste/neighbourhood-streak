@@ -61,14 +61,31 @@ def plot_logp_over_time(dream_out_df, dream_params, figs_directory):
     df = dream_out_df    
     nchains = dream_params['nchains']
     
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
+    fig = plt.figure(figsize=(8,6))
+    ax = fig.add_subplot(211)
     for chain in range(nchains):
         temp_df = df[df['chainID']==chain]
         temp_df = temp_df.reset_index()
         temp_df.plot(ax=ax, y='logp', kind='line', label='chain ' + str(chain))
     ax.set_xlabel('Iteration')
     ax.set_ylabel('log$_{10}$(Likelihood)')
+    
+    df = df.reset_index()
+    min_logp = df['logp'].min()
+    max_logp = df['logp'].max()
+    logp_cutoff = ( 0.9 * (max_logp - min_logp) ) + min_logp
+    # logp_cutoff = df.at[int(np.ceil(0.7 * len(df))),'logp']
+    
+    ax_cutoff = fig.add_subplot(212)
+    for chain in range(nchains):
+        temp_df = df[df['chainID']==chain]
+        temp_df = temp_df.reset_index()
+        df_filt = temp_df[temp_df['logp'] > logp_cutoff]
+        df_filt.plot(ax=ax_cutoff, y='logp', kind='line', label='chain ' + str(chain))
+    ax_cutoff.set_xlabel('Iteration')
+    ax_cutoff.set_ylabel('log$_{10}$(Likelihood)')
+    ax_cutoff.get_legend().remove()
+    
     plt.tight_layout()
     plt.savefig(figs_directory + 'logp_over_time.png')
     plt.close()
@@ -347,7 +364,7 @@ def plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes
     
     return
     
-def logp_success_correlation(dream_success_df, param_names, model_color, figs_directory):
+def logp_success_correlation(dream_success_df, success_prop_col_name_prefix, model_color, figs_directory):
     
     font_size = set_figs_font_settings()
     
@@ -356,11 +373,13 @@ def logp_success_correlation(dream_success_df, param_names, model_color, figs_di
     df = df.replace([np.inf, -np.inf], np.nan).dropna(subset=["logp"])
     df.sort_values(by='logp', ascending=False)
     
+    col_name = success_prop_col_name_prefix + 'success_proportion'
+    
     logp_min = df.logp.min()
     
     fig = plt.figure(figsize=(8,5))
     ax1 = fig.add_subplot(211)
-    ax1.scatter(x=df['logp'], y=df['success_proportion'], c=model_color, s=25, marker='|')
+    ax1.scatter(x=df['logp'], y=df[col_name], c=model_color, s=25, marker='|')
     ax1.set_xlim([logp_min * 1.05 , 0])
     ax1.set_ylim([-0.05,1.05])
     ax1.set_ylabel('success rate')
@@ -371,14 +390,14 @@ def logp_success_correlation(dream_success_df, param_names, model_color, figs_di
     
     df_filt = df[df['logp'] > logp_cutoff]
     ax2 = fig.add_subplot(212)
-    ax2.scatter(x=df_filt['logp'], y=df_filt['success_proportion'], c=model_color, s=25,  marker='|')
+    ax2.scatter(x=df_filt['logp'], y=df_filt[col_name], c=model_color, s=25,  marker='|')
     ax2.set_xlim([logp_cutoff * 1.05 , 0])
     ax2.set_ylim([-0.05,1.05])
     ax2.set_ylabel('success rate')
     ax2.set_xlabel('log$_{10}$(Likelihood)')
     
     plt.tight_layout()
-    plt.savefig(figs_directory + 'logp_vs_success.png')
+    plt.savefig(figs_directory + success_prop_col_name_prefix + 'logp_vs_success.png')
     plt.close()
     
     
@@ -406,16 +425,34 @@ def plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels
     
     color_cutoff = df.at[int(np.ceil(0.1 * len(df))),'logp']
     
-    fig, axes = plt.subplots(nrows=chain_N, ncols=param_N, figsize=(14,9))
+    fig, axes = plt.subplots(nrows=chain_N + 1, ncols=param_N, figsize=(14,9))
 
-    distplot_palette =  sns.cubehelix_palette(8, start=.5, rot=-.75, light=0.5, reverse=True, as_cmap=False)
-    # distplot_palette = sns.cubehelix_palette(param_N, light=0.5, start=0.5, reverse=True, as_cmap=False)
+    plot_palette =  sns.cubehelix_palette(8, start=.5, rot=-.75, light=0.5, reverse=True, as_cmap=False)
+    # plot_palette = sns.cubehelix_palette(param_N, light=0.5, start=0.5, reverse=True, as_cmap=False)
+    ymin = 10
+    ymax = 0
+    
     for chain_idx in range(chain_N):
         df_temp = df[df['chainID'] == chain_idx]
         titleN = str(len(df_temp))
         for par_idx, par in enumerate(param_names):
-            sns.distplot( df_temp[par], ax=axes[chain_idx, par_idx], color=distplot_palette[5])
+            # sns.histplot( df_temp[par], ax=axes[chain_idx, par_idx], color=plot_palette[5], kde=True, fill=True)
+            sns.histplot( df_temp[par], ax=axes[chain_idx, par_idx], kde=True)
+            # sns.kdeplot( df_temp[par], ax=axes[chain_idx, par_idx], color=plot_palette[5])
             
+            temp_ymin, temp_ymax = axes[chain_idx, par_idx].get_ylim()
+            if temp_ymin < ymin:
+                ymin = temp_ymin
+            if temp_ymax > ymax:
+                ymax = temp_ymax
+                
+    for chain_idx in range(chain_N):
+        df_temp = df[df['chainID'] == chain_idx]
+        titleN = str(len(df_temp))
+        for par_idx, par in enumerate(param_names):
+            # sns.histplot( df_temp[par], ax=axes[chain_idx, par_idx], color=plot_palette[5], kde=True)
+            # sns.kdeplot( df_temp[par], ax=axes[chain_idx, par_idx], color=plot_palette[5])
+            sns.histplot( df_temp[par], ax=axes[chain_idx, par_idx], kde=True)
             xmin, xmax = param_lims[par_idx]
             xheight = xmax - xmin
             xmin = xmin - 0.05 * xheight
@@ -424,15 +461,38 @@ def plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels
 
             axes[chain_idx, par_idx].set_xlabel('')
             axes[chain_idx, par_idx].set_ylabel('')
-            axes[chain_idx, par_idx].set_yticklabels([])
+            # axes[chain_idx, par_idx].set_ylim([ymin,ymax])
+            # axes[chain_idx, par_idx].set_yticklabels([])
+            
+            
         
-            if chain_idx is not (chain_N - 1):
-                axes[chain_idx, par_idx].set_xticklabels([])
+            # if chain_idx is not (chain_N-1):
+            axes[chain_idx, par_idx].set_xticklabels([])
             
             if par_idx is 0:
                 axes[chain_idx, par_idx].set_ylabel('chain ' + str(chain_idx))
-            if chain_idx is (chain_N - 1):
-                axes[chain_idx, par_idx].set_xlabel(axes_labels[par_idx])
+            # if chain_idx is not (chain_N - 1):
+                # axes[chain_idx, par_idx].set_xlabel(axes_labels[par_idx])
+            
+            axes[chain_idx, par_idx].tick_params(axis='y', direction='in', labelsize=12)
+                
+    for par_idx, par in enumerate(param_names):
+        # sns.histplot( df_temp[par], ax=axes[chain_idx, par_idx], color=plot_palette[5], kde=True)
+        # sns.kdeplot( df_temp[par], ax=axes[chain_idx, par_idx], color=plot_palette[5])
+        sns.histplot( df[par], ax=axes[chain_N, par_idx], kde=True)
+        xmin, xmax = param_lims[par_idx]
+        xheight = xmax - xmin
+        xmin = xmin - 0.05 * xheight
+        xmax = xmax + 0.05 * xheight
+        axes[chain_N, par_idx].set_xlim([xmin,xmax])
+
+        axes[chain_N, par_idx].set_xlabel('')
+        axes[chain_N, par_idx].set_ylabel('')
+        # axes[chain_N, par_idx].set_ylim([ymin,ymax])
+        # axes[chain_N, par_idx].set_yticklabels([])
+        axes[chain_N, 0].set_ylabel('All chains')
+        axes[chain_N, par_idx].set_xlabel(axes_labels[par_idx])
+        axes[chain_N, par_idx].tick_params(axis='y', direction='in', labelsize=12)
         
     
     fig.suptitle('Iterations per chain = ' + titleN)
@@ -441,6 +501,74 @@ def plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels
     plt.close()
     
     return
+    
+    
+def switch_models_A_and_B_find_bead(param_names, save_directory):
+
+    dream_out_df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t', header=0, index_col=0)
+    dream_success_df = pd.read_csv(save_directory + 'top_params.tsv', sep='\t', header=0, index_col=0)
+        
+    df_out_switch_AB_and_lower = {
+        "threshold$^A$": "threshold$^b$",
+        "$b_B^A$": "$b_B^b$",
+        "$b_V^A$": "$b_V^b$",
+        "threshold$^B$": "threshold$^a$",
+        "$b_B^B$": "$b_B^a$",
+        "$b_V^B$": "$b_V^a$"
+    }
+    dream_out_df = dream_out_df.rename(columns=df_out_switch_AB_and_lower)
+    
+    df_out_switch_upper = {
+        "threshold$^b$": "threshold$^B$",
+        "$b_B^b$": "$b_B^B$",
+        "$b_V^b$": "$b_V^B$",
+        "threshold$^a$": "threshold$^A$",
+        "$b_B^a$": "$b_B^A$",
+        "$b_V^a$": "$b_V^A$"
+    }
+    dream_out_df = dream_out_df.rename(columns=df_out_switch_upper)
+    
+    col_N = len(dream_success_df.columns)
+    param_N = len(param_names)
+    
+    embryo_N = int((col_N - param_N - 1) / 2) - 1 # ((colN - param_names - logp) / just A) - success_prop
+    
+    df_success_switch_AB_and_lower = {
+        "threshold$^A$": "threshold$^b$",
+        "$b_B^A$": "$b_B^b$",
+        "$b_V^A$": "$b_V^b$",
+        "threshold$^B$": "threshold$^a$",
+        "$b_B^B$": "$b_B^a$",
+        "$b_V^B$": "$b_V^a$",
+        "A_success_proportion": "b_success_proportion",
+        "B_success_proportion": "a_success_proportion"
+    }
+    for idx in range(embryo_N):
+        df_success_switch_AB_and_lower['A_' + str(idx + 1)] = 'b_' + str(idx + 1)
+        df_success_switch_AB_and_lower['B_' + str(idx + 1)] = 'a_' + str(idx + 1)
+    dream_success_df = dream_success_df.rename(columns=df_success_switch_AB_and_lower)
+    
+    df_success_switch_upper = {
+        "threshold$^b$": "threshold$^B$",
+        "$b_B^b$": "$b_B^B$",
+        "$b_V^b$": "$b_V^B$",
+        "threshold$^a$": "threshold$^A$",
+        "$b_B^a$": "$b_B^A$",
+        "$b_V^a$": "$b_V^A$",
+        "b_success_proportion": "B_success_proportion",
+        "a_success_proportion": "A_success_proportion"
+    }
+    for idx in range(embryo_N):
+        df_success_switch_upper['b_' + str(idx + 1)] = 'B_' + str(idx + 1)
+        df_success_switch_upper['a_' + str(idx + 1)] = 'A_' + str(idx + 1)
+    dream_success_df = dream_success_df.rename(columns=df_success_switch_upper)
+    
+    dream_out_df.to_csv(save_directory + 'dream_out_switched_AB.tsv', sep='\t')
+    dream_success_df.to_csv(save_directory + 'top_params_switched_AB.tsv', sep='\t')
+    
+    # param_names = ['threshold$^A$', '$b_B^A$', '$b_V^A$', 'threshold$^B$', '$b_B^B$', '$b_V^B$', 'n'] + param_names[7:]
+    
+    return param_names
     
 
 
@@ -463,22 +591,38 @@ def create_pyDREAM_figs(dream_params, param_names, param_lims, axes_labels, mode
     # checks
     plot_logp_over_time(dream_out_df, dream_params, figs_directory)
     plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
-    logp_success_correlation(dream_success_df, param_names, model_color, figs_directory)
+    logp_success_correlation(dream_success_df, '', model_color, figs_directory)
     
-def create_pyDREAM_figs_2models(dream_out_df, dream_success_df, dream_params, param_names, param_lims, axes_labels, model_A_color, model_B_color, save_directory):
+def create_pyDREAM_figs_2models(dream_params, param_names, param_lims, axes_labels, without_nbhd_color, with_nbhd_color, save_directory):
+    
+    param_names = switch_models_A_and_B_find_bead(param_names, save_directory)
+    
+    dream_out_df = pd.read_csv(save_directory + 'dream_out_switched_AB.tsv', sep='\t')
+    dream_success_df = pd.read_csv(save_directory + 'top_params_switched_AB.tsv', sep='\t')
     
     figs_directory = save_directory + 'figs/'
     if not os.path.isdir(figs_directory):
         os.mkdir(figs_directory)
         
+    param_names_with_nbhd = param_names[:5]
+    param_names_without_nbhd = param_names[5:8]
+    param_names_bead = param_names[8:]
+    
+    param_names_with_nbhd_bead = param_names_with_nbhd + param_names_bead
+    param_names_without_nbhd_bead = param_names_without_nbhd + param_names_bead
+        
     # desired output
     # plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
-    plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
+    # plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
+    
+    # posterior distributions
+    
     
     # checks
-    # plot_logp_over_time(dream_out_df, dream_params, figs_directory)
-    # plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
-    # logp_success_correlation(dream_success_df, param_names, model_A_color, figs_directory)
-    # logp_success_correlation(dream_success_df, param_names, model_B_color, figs_directory)
+    plot_logp_over_time(dream_out_df, dream_params, figs_directory)
+    plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
+    logp_success_correlation(dream_success_df, 'A_', without_nbhd_color, figs_directory)
+    logp_success_correlation(dream_success_df, 'B_', with_nbhd_color, figs_directory)
+    
     
     
