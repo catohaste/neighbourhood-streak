@@ -147,9 +147,14 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
         ymax = ymax + 0.05*yheight
         
         cmap_length = 25
+        
+        kde_cmap = sns.cubehelix_palette(cmap_length, start=.5, rot=-.75, reverse=True, as_cmap=False)
 
         scatter_cmap = sns.cubehelix_palette(cmap_length, start=.5, rot=-.75, reverse=True, as_cmap=True)
         axes[par1_idx, par2_idx].scatter(x=df[par2],y=df[par1], c=df['logp'], cmap=scatter_cmap, vmin=color_cutoff, vmax=cmax, s=2)
+        
+        axes[par1_idx, par2_idx].set_facecolor(kde_cmap[0])
+        
         axes[par1_idx, par2_idx].set_xlim([xmin, xmax])
         axes[par1_idx, par2_idx].set_ylim([ymin, ymax])
 
@@ -157,14 +162,14 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
         axes[par1_idx, par2_idx].set_yticklabels([])
 
         # kde_cmap =  sns.cubehelix_palette(8, start=.5, rot=-.75, reverse=True, as_cmap=True)
-        kde_cmap = sns.cubehelix_palette(cmap_length, start=.5, rot=-.75, reverse=True, as_cmap=False)
+        # kde_cmap = sns.cubehelix_palette(cmap_length, start=.5, rot=-.75, reverse=True, as_cmap=False)
         
         kde_idx = -3
         hist_idx = -3
         hist_idx = 5
         hist_line_idx = 5
         
-        sns.kdeplot(ax=axes[par2_idx, par1_idx], x=df[par1], y=df[par2], shade=False, color=kde_cmap[kde_idx])
+        sns.kdeplot(ax=axes[par2_idx, par1_idx], x=df[par1], y=df[par2], shade=True, color=kde_cmap[hist_idx])
         axes[par2_idx, par1_idx].set_xlim([ymin, ymax])
         axes[par2_idx, par1_idx].set_ylim([xmin, xmax])
         
@@ -180,7 +185,7 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
     # distplot_palette = sns.cubehelix_palette(param_N, light=0.5, start=0.5, reverse=True, as_cmap=False)
     for par_idx, par in enumerate(param_names):
 
-        sns.histplot( data=df[par], ax=axes[par_idx, par_idx], kde=True, color=kde_cmap[hist_idx], element='step')
+        sns.histplot( data=df[par], ax=axes[par_idx, par_idx], kde=True, color=model_color, element='step')
         # sns.kdeplot( data=df[par], ax=axes[par_idx, par_idx], color=kde_cmap[hist_line_idx])
         
         xmin, xmax = param_lims[par_idx]
@@ -600,7 +605,7 @@ def create_pyDREAM_figs(dream_params, param_names, param_lims, axes_labels, mode
         os.mkdir(figs_directory)
         
     # desired output
-    # plot_param_pair_grid_logp(dream_success_df, param_names, param_lims, axes_labels, model_color, figs_directory)
+    plot_param_pair_grid_logp(dream_success_df, param_names, param_lims, axes_labels, model_color, figs_directory)
     # plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
     
     # checks
