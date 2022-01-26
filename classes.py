@@ -35,7 +35,8 @@ class Embryo:
 
             dummy_cells = range(0,int(self.number_of_cells/2))
             bead_distribution_right = [concentration * np.exp((-1/spread_cells) * cell) for cell in dummy_cells]
-            bead_effect_limit = int(np.ceil(- spread_cells * np.log(0.005)))
+            # bead_effect_limit = int(np.ceil(- spread_cells * np.log(0.005)))
+            bead_effect_limit = int(np.ceil((self.number_of_cells - bead_width) / 2))
             
             # print(bead_centre, bead_effect_limit)
                        
@@ -50,6 +51,12 @@ class Embryo:
         
                 self.conc[pos_cell] =  self.conc[pos_cell] + bead_distribution_right[idx]
                 self.conc[neg_cell] =  self.conc[neg_cell] + bead_distribution_right[idx]
+                
+            # this only really applies if bead_effect_limit is set to whole embryo - bead_width
+            # however it won't make a massive difference otherwise
+            if bead_width % 2 != 0:
+                pos_cell = (bead_right + bead_effect_limit) % self.number_of_cells
+                self.conc[pos_cell] =  self.conc[pos_cell] + bead_distribution_right[bead_effect_limit]
         
         def check_below_zero(self):
             self.conc = (self.conc <= 0) * 0.02 + np.multiply((self.conc > 0), self.conc)
