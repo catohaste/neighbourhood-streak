@@ -25,16 +25,16 @@ def load_models(select_exp):
     if select_exp is 'testing':
         
         models[0].bead_params = bead_params_play
-        models[0].threshold = 0.497687138515397
+        models[0].threshold = 0.427922233370511
         models[0].nbhd_size = None
-        models[0].inhibitor_scaling = 10.0 ** (1.45030857599371)
-        models[0].inducer_scaling = 10.0 ** (1.29838186230979)
+        models[0].inhibitor_scaling = 10.0 ** (2.28635614897028)
+        models[0].inducer_scaling = 10.0 ** (2.40585923229449)
 
         models[1].bead_params = bead_params_play
-        models[1].threshold = 0.421573076609568
-        models[1].nbhd_size = 2*np.floor(56.5325206131255) + 1
-        models[1].inhibitor_scaling = 10.0 ** -0.329085126426299
-        models[1].inducer_scaling = 10.0 ** (-2.61174561686766)
+        models[1].threshold = 0.454828043213113
+        models[1].nbhd_size = 2*np.floor(62.8098261951711) + 1
+        models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
+        models[1].inducer_scaling = 10.0 ** (-1.79339961627464)
         
     elif select_exp is 'all_exps':
         

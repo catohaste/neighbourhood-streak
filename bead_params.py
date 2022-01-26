@@ -3,31 +3,31 @@ bead_params_play = {
     # vg1
     'cell_pellet_width' : 30,
     
-    'cell_pellet_spread' : 6.57949224303151,
+    'cell_pellet_spread' : 7,
     
-    'vg1_cell_conc' : 0.483739938138263, # cell_pellet 
-    'bmp4_cell_conc' : 0.389505013640406,
+    'vg1_cell_conc' : 0.390605285016128, # cell_pellet 
+    'bmp4_cell_conc' : 0.573597304673746,
 
     # bmp
     'afigel_width' : 7,
     
     'afigel_50_spread' : 40,
-    'afigel_25_spread' : 42.1146773531996,
-    'afigel_12_spread' : 6.94129297198067,
+    'afigel_25_spread' : 100,
+    'afigel_12_spread' : 5.77208618636969,
     'afigel_6_spread' : 9.40279474053165,
     
     'bmp4_50_conc' : 0.9,  # afigel
-    'bmp4_25_conc' : 0.00634559907647732,
-    'bmp4_12_conc' : 0.996145149040218, # 0.125,
+    'bmp4_25_conc' : 0.983842072047581,
+    'bmp4_12_conc' : 0.961062556964044, # 0.125,
     'bmp4_6_conc' : 0.928947829600234,
 
     # activin
     'heparin_width' : 9,
     
-    'heparin_10_spread' : 22.2541462480205, # 0.143, # heparin
+    'heparin_10_spread' : 8.44662319094725, # 0.143, # heparin
     'heparin_2_spread' : 14.4820334029303,
     
-    'activin_10_conc' : 0.561934865879604, # 0.143, # heparin
+    'activin_10_conc' : 0.0777580754457874, # 0.143, # heparin
     'activin_2_conc' : 0.100308721619127,
     
     # DM and SB
