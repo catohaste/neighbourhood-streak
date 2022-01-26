@@ -12,7 +12,7 @@ from model_params import load_models
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
-from plot_functions import create_presentation_fig_arrays, save_presentation_figs, save_method_figs, save_results_figs, set_up_protein_fig, set_up_fig_trio
+from plot_functions import create_presentation_fig_arrays, save_presentation_figs, save_method_figs, save_method_figs_poster, save_results_figs , save_results_figs_poster, set_up_protein_fig, set_up_fig_trio
 
 # set up save directory
 sub_directory = 'testing/'
@@ -26,7 +26,7 @@ embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(emb
 
 # select experiment
 experiment_options = ['testing', 'all_exps', 'cell_pellet', 'activin_ant', 'bmp4_ant', 'threshold']
-select_exp = 'cell_pellet'
+select_exp = 'testing'
 models = load_models(select_exp)
 
 # initialize arrays for plots
@@ -52,14 +52,20 @@ for model_idx, model in enumerate(models):
         
 # save_presentation_figs(models, embryos, model_values, model_ylim, 'results/presentation_figs/')
 
-save_method_figs( models, embryos, model_values, model_ylim, 'Arial', save_directory + 'method/' )
-save_results_figs( models, embryos, model_values, model_ylim, 'Arial', save_directory + 'results/' )
+# save_method_figs( models, embryos, model_values, model_ylim, 'Arial', save_directory + 'method/' )
+# save_results_figs( models, embryos, model_values, model_ylim, 'Arial', save_directory + 'results/' )
+
+poster_directory = 'results/poster_figures/' + select_exp + '/'
+if not os.path.isdir(poster_directory):
+    os.mkdir(poster_directory)
+# save_method_figs_poster( models, embryos, model_values, model_ylim, 'Arial', poster_directory + 'method/' )
+# save_results_figs_poster( models, embryos, model_values, model_ylim, 'Arial', poster_directory + 'results/' )
 
 paper_directory = 'results/paper_figures/' + select_exp + '/'
 if not os.path.isdir(paper_directory):
     os.mkdir(paper_directory)
-# save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
-# save_results_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'results/' )
+save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
+save_results_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'results/' )
 
 report_directory = 'results/report/' + select_exp + '/'
 if not os.path.isdir(report_directory):
@@ -68,19 +74,23 @@ if not os.path.isdir(report_directory):
 # save_results_figs( models, embryos, model_values, model_ylim, 'Clear Sans', report_directory + 'results/' )
 
 code_directory = save_directory + 'code/'
+poster_code_directory = poster_directory + 'code/'
 paper_code_directory = paper_directory + 'code/'
 report_code_directory = report_directory + 'code/'
 if not os.path.isdir(code_directory):
     os.mkdir(code_directory)
+if not os.path.isdir(poster_code_directory):
+    os.mkdir(poster_code_directory)
 if not os.path.isdir(paper_code_directory):
     os.mkdir(paper_code_directory)
 if not os.path.isdir(report_code_directory):
- os.mkdir(report_code_directory)
+    os.mkdir(report_code_directory)
 
 # copy2(param_filename, code_directory + 'best_params.csv')
 filenames = ['main_signal_slope.py', 'classes.py', 'functions.py', 'plot_functions.py', 'model_params.py', 'bead_params.py', 'initial_params.py']
 for filename in filenames:
-    copy2(filename, code_directory + filename)
-    # copy2(filename, paper_code_directory + filename)
+    # copy2(filename, code_directory + filename)
+    # copy2(filename, poster_code_directory + filename)
+    copy2(filename, paper_code_directory + filename)
     # copy2(filename, report_code_directory + filename)
 
