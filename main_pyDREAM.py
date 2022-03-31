@@ -7,8 +7,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from functions_pyDREAM import run_pyDREAM, run_model_best_params, check_success_rate, run_model_best_params_max_success
+from functions_pyDREAM import run_pyDREAM, check_success_rate
 from plot_pyDREAM import save_pyDREAM_out_dataframe, create_pyDREAM_figs
+from bayes_factor import set_bayes_factor_threshold, calculate_model_score
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
@@ -21,17 +22,23 @@ from model_params import load_models
 anterior = range(150,451)
 whole_embryo = range(600)
 
-select_embryos = [1,2,3,4] # cell pellet
-sub_directory = 'results/dream/testing_bead_lim_005_cell_pellet_500_stage_XII_disp_50/'
-likelihood_region = [anterior for i in select_embryos]
-param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
-param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
-
-# select_embryos = [5,6,7,8,9] # microbead repeat of cell pellet
-# sub_directory = 'results/dream/bead_lim_005_activin_ant_5000_stage_XII_disp_50/'
+# select_embryos = [1,2,3,4] # testing
+# sub_directory = 'results/dream/testing_bead_lim_005_cell_pellet_500_stage_XII_disp_50/'
 # likelihood_region = [anterior for i in select_embryos]
-# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$',  'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread', 'n']
-# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
+# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+
+# select_embryos = [1,2,3,4] # cell pellet
+# sub_directory = 'results/dream/bead_lim_005_cell_pellet_5000_stage_XII_disp_50/'
+# likelihood_region = [anterior for i in select_embryos]
+# param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+# param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
+
+select_embryos = [5,6,7,8,9] # microbead repeat of cell pellet
+sub_directory = 'results/dream/bead_lim_005_activin_ant_5000_stage_XII_disp_50/'
+likelihood_region = [anterior for i in select_embryos]
+param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread' ]
+param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_10_conc', 'activin_10_spread', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_12_spread', 'bmp4_25_spread']
 
 # select_embryos = [10,11] # dm / bmp4 anterior
 # sub_directory = 'results/dream/bead_lim_005_bmp4_ant_5000_stage_XII_disp_50/'
@@ -47,7 +54,7 @@ param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'vg1_cell_conc', 'bmp4_cel
 
 
 # select_embryos = list(range(1,15)) # all exps
-# sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_reduced_10000_stage_XII_disp_50_try2/'
+# sub_directory = 'results/dream/bead_lim_005_cell_pellet_activin_ant_bmp4_ant_threshold_reduced_10000_stage_XII_disp_50/'
 # likelihood_region = [anterior for i in select_embryos]
 # param_names_with_nbhd = ['threshold', '$b_B$', '$b_V$', 'n', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
 # param_names_no_nbhd = ['threshold', '$b_B$', '$b_V$', 'activin_2_conc', 'activin_10_conc', 'activin_2_spread', 'activin_10_spread','bmp4_6_conc', 'bmp4_12_conc', 'bmp4_25_conc', 'bmp4_6_spread', 'bmp4_12_spread', 'bmp4_25_spread', 'DM_conc', 'AG1X2_spread', 'vg1_cell_conc', 'bmp4_cell_conc', 'cell_pellet_spread']
@@ -58,7 +65,7 @@ if not os.path.isdir(sub_directory):
 
 dream_params = {
     'nchains' : 5,
-    'niterations' : 500,
+    'niterations' : 5000,
     'GRlim' : 1.2 # GR Convergence limit
 }
 
@@ -111,13 +118,12 @@ else:
         os.remove(f)
 run_pyDREAM(parameters_to_sample, likelihood_with_nbhd, dream_params, dream_out_directory)
 
-dream_df = save_pyDREAM_out_dataframe(param_names_with_nbhd, dream_params, save_directory, dream_out_suffix)
+save_pyDREAM_out_dataframe(param_names_with_nbhd, dream_params, save_directory, dream_out_suffix)
 
 verify_model_with_nbhd = deepcopy(models[1])
 check_success_rate(select_embryos, verify_model_with_nbhd, save_directory)
-# run_model_best_params_max_success(select_embryos, verify_model_with_nbhd, save_directory)
 
-# create_pyDREAM_figs(dream_params, param_names_with_nbhd, param_lims, axes_labels, verify_model_with_nbhd.plot_color, save_directory)
+create_pyDREAM_figs(dream_params, param_names_with_nbhd, param_lims, axes_labels, verify_model_with_nbhd.plot_color, save_directory)
 
 
 #### no_nbhd ###########################################################################################
@@ -171,9 +177,8 @@ save_pyDREAM_out_dataframe(param_names_no_nbhd, dream_params, save_directory, dr
 
 verify_model_no_nbhd = deepcopy(models[0])
 check_success_rate(select_embryos, verify_model_no_nbhd, save_directory)
-# run_model_best_params_max_success(select_embryos, verify_model_no_nbhd, save_directory)
 
-# create_pyDREAM_figs(dream_params, param_names_no_nbhd, param_lims, axes_labels, verify_model_no_nbhd.plot_color, save_directory)
+create_pyDREAM_figs(dream_params, param_names_no_nbhd, param_lims, axes_labels, verify_model_no_nbhd.plot_color, save_directory)
 
 ##########################################################################################################
 
@@ -181,6 +186,6 @@ code_directory = sub_directory + 'code/'
 if not os.path.isdir(code_directory):
     os.mkdir(code_directory)
 
-filenames = ['main_pyDREAM.py', 'classes.py', 'functions.py', 'dicts.py', 'plot_functions.py', 'model_params.py', 'bead_params.py', 'initial_params.py', 'functions_pyDREAM.py', 'plot_pyDREAM.py']
+filenames = ['main_pyDREAM.py', 'classes.py', 'functions.py', 'dicts.py', 'plot_functions.py', 'model_params.py', 'bead_params.py', 'initial_params.py', 'functions_pyDREAM.py', 'plot_pyDREAM.py', 'bayes_factor.py']
 for filename in filenames:
     copy2(filename, code_directory + filename)

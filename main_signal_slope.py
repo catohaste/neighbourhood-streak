@@ -26,7 +26,7 @@ embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(emb
 
 # select experiment
 experiment_options = ['testing', 'all_exps', 'cell_pellet', 'activin_ant', 'bmp4_ant', 'threshold']
-select_exp = 'testing'
+select_exp = 'activin_ant'
 models = load_models(select_exp)
 
 # initialize arrays for plots
@@ -64,7 +64,7 @@ if not os.path.isdir(poster_directory):
 paper_directory = 'results/paper_figures/' + select_exp + '/'
 if not os.path.isdir(paper_directory):
     os.mkdir(paper_directory)
-save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
+# save_method_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'method/' )
 save_results_figs( models, embryos, model_values, model_ylim, 'Arial', paper_directory + 'results/' )
 
 report_directory = 'results/report/' + select_exp + '/'
