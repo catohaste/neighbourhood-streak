@@ -95,6 +95,7 @@ def load_models(select_exp):
     elif select_exp is 'threshold':
         
         models[0].bead_params = bead_params_threshold
+        
         models[0].threshold = 0.456084933585625
         models[0].nbhd_size = None
         models[0].inhibitor_scaling = 10.0 ** (-2.87675720588008)
@@ -115,10 +116,10 @@ def load_models(select_exp):
         models[0].inducer_scaling = 10.0 ** (2.55881683637734)
 
         models[1].bead_params = bead_params_run2_modelB
-        models[0].threshold = 0.246273569161305
-        models[0].nbhd_size = 2*np.floor(97.0223908634862) + 1
-        models[0].inhibitor_scaling = 10.0 ** (1.80372902814812)
-        models[0].inducer_scaling = 10.0 ** (-0.160334345526756)
+        models[1].threshold = 0.246273569161305
+        models[1].nbhd_size = 2*np.floor(97.0223908634862) + 1
+        models[1].inhibitor_scaling = 10.0 ** (1.80372902814812)
+        models[1].inducer_scaling = 10.0 ** (-0.160334345526756)
         
     else:
         print("Unexpected input for 'select_exp'.\nPlease choose valid choice from 'experiment_options'.\nLoaded 'testing' parameter values.")
