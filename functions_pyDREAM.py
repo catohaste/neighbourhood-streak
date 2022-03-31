@@ -55,38 +55,6 @@ def run_pyDREAM(parameters_to_sample, likelihood_function, dream_params, save_di
                 
     return
     
-def run_model_best_params(df_dream_out, select_embryos, best_model, save_directory):
-    
-    df = df_dream_out
-    
-    df = df.drop_duplicates()
-    df = df.sort_values(by='logp', ascending=False)
-
-    best_params = df.iloc[[0],:]
-    
-    embryoN = 15
-    embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
-    initial_concentrations = define_initial_protein_concentrations(initial_params)
-    
-    best_model = set_params_from_df(best_params, best_model)
-    
-    embryos = setup_embryos(embryos, best_model, initial_concentrations)
-    for idx, emb_idx in enumerate(select_embryos):
-        embryo = embryos[emb_idx]
-        run_model(embryo, best_model)
-        save_standard_figs(embryo, best_model, save_directory)
-        embryo.find_streaks()
-    
-    successN, failureN = check_embryos_success(embryos)
-    experiments = define_experiment_groups(embryos)
-    for exp in experiments:
-        exp.find_plot_model_ylim()
-    
-    for idx, emb_idx in enumerate(select_embryos):
-        save_model_figs(embryos[emb_idx], best_model, save_directory,'')
-        
-    best_params.to_csv(save_directory + 'best_params.tsv', sep='\t')
-    
     
 def check_success_rate(select_embryos, current_model, save_directory):
         
@@ -128,45 +96,4 @@ def check_success_rate(select_embryos, current_model, save_directory):
     top_params.to_csv(save_directory + 'top_params.tsv', sep='\t')
     
     return
-
-def run_model_best_params_max_success(select_embryos, best_model, save_directory):
-    
-    df = pd.read_csv(save_directory + 'top_params.tsv', sep='\t')
-    out_directory = save_directory + 'verify/'
-    
-    best_params = df.iloc[[0],:]
-    
-    max_success = df.success_proportion.max()
-    
-    if df.at[0,'success_proportion'] != max_success:
-        
-        best_success = df[df['success_proportion'] == max_success]
-        best_success = best_success.sort_values(by='logp', ascending=False)
-        
-        best_params = pd.concat([best_params, best_success.iloc[[0],:]])
-        
-    best_params = best_params.iloc[[-1],:]
-    
-    embryoN = 15
-    embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
-    initial_concentrations = define_initial_protein_concentrations(initial_params)
-    
-    best_model = set_params_from_df(best_params, best_model)
-    
-    embryos = setup_embryos(embryos, best_model, initial_concentrations)
-    for idx, emb_idx in enumerate(select_embryos):
-        embryo = embryos[emb_idx]
-        run_model(embryo, best_model)
-        # save_standard_figs(embryo, best_model, out_directory)
-        embryo.find_streaks()
-    
-    successN, failureN = check_embryos_success(embryos)
-    experiments = define_experiment_groups(embryos)
-    for exp in experiments:
-        exp.find_plot_model_ylim()
-    
-    # for idx, emb_idx in enumerate(select_embryos):
-        # save_model_figs(embryos[emb_idx], best_model, out_directory,'')
-        
-    best_params.to_csv(out_directory + 'best_params.tsv', sep='\t')
 
