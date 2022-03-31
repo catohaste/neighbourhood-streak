@@ -91,7 +91,7 @@ def plot_logp_over_time(dream_out_df, dream_params, figs_directory):
     ax_cutoff.get_legend().remove()
     
     plt.tight_layout()
-    plt.savefig(figs_directory + 'logp_over_time.png')
+    plt.savefig(figs_directory + 'logp_over_time.png', dpi=600)
     plt.close()
     
     return
@@ -108,7 +108,7 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
     param_N = len(param_names)
 
     df = dream_out_df
-    df = df.drop_duplicates()
+    # df = df.drop_duplicates()
     df = df.sort_values(by='logp', ascending=True)
    
     """ find settings for the colorbar """
@@ -223,7 +223,7 @@ def plot_param_pair_grid_logp(dream_out_df, param_names, param_lims, axes_labels
     # cbar.cmap.set_under('k')
         
     # plt.tight_layout()
-    plt.savefig(figs_directory + 'param_pair_grid_logp.png')
+    plt.savefig(figs_directory + 'param_pair_grid_logp.png', dpi=600)
     plt.close()
     
     return
@@ -376,8 +376,8 @@ def plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes
     cbar_ax_max_success.set_ylabel('log$_{10}$(Likelihood)', rotation=90)
         
     # plt.tight_layout()
-    fig.savefig(figs_directory + 'param_pair_grid_success.png')
-    fig_max_success.savefig(figs_directory + 'param_pair_grid_max_success.png')
+    fig.savefig(figs_directory + 'param_pair_grid_success.png', dpi=600)
+    fig_max_success.savefig(figs_directory + 'param_pair_grid_max_success.png', dpi=600)
     
     plt.close(fig)
     plt.close(fig_max_success)
@@ -386,38 +386,66 @@ def plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes
     
 def logp_success_correlation(dream_success_df, success_prop_col_name_prefix, model_color, figs_directory):
     
+    print(model_color)
+    if model_color == 'C8':
+        model_letter = 'A'
+    elif model_color == 'C1':
+        model_letter = 'B'
+    else:
+        model_letter = ''
+        print('Model color value unknown.')
+    
     font_size = set_figs_font_settings()
     
-    df = dream_success_df
+    df_raw = dream_success_df
     
-    df = df.replace([np.inf, -np.inf], np.nan).dropna(subset=["logp"])
+    len_raw = len(df_raw)
+    
+    df = df_raw.replace([np.inf, -np.inf], np.nan).dropna(subset=["logp"])
     df.sort_values(by='logp', ascending=False)
+    
+    len_no_inf = len(df)
+    
+    # print(len_raw, len_no_inf)
     
     col_name = success_prop_col_name_prefix + 'success_proportion'
     
     logp_min = df.logp.min()
     
-    fig = plt.figure(figsize=(8,5))
+    print(df[col_name].value_counts())
+    
+    fig = plt.figure(figsize=(8,6))
+    
+    logp_shade_min = -60
+    logp_shade_max = -35
+    
     ax1 = fig.add_subplot(211)
     ax1.scatter(x=df['logp'], y=df[col_name], c=model_color, s=25, marker='|')
     ax1.set_xlim([logp_min * 1.05 , 0])
     ax1.set_ylim([-0.05,1.05])
+    x = np.linspace(logp_shade_min , logp_shade_max, 101)
+    ax1.fill_between(x, -0.05, y2=1.05, color='lightgray', alpha=0.4)
     ax1.set_ylabel('success rate')
     ax1.set_xlabel('log$_{10}$(Likelihood)')
+    ax1.set_title('Model ' + model_letter, fontsize=24, fontweight='bold')
+    # ax1.set_title('Correlation between likelihood and success rate\nof parameter values found\nwith Bayesian parameter inference\n')
     
     df = df.reset_index()
-    logp_cutoff = df.at[int(np.ceil(0.7 * len(df))),'logp']
+    # logp_cutoff = df.at[int(np.ceil(0.7 * len(df))),'logp']
+    logp_cutoff = logp_shade_min
     
     df_filt = df[df['logp'] > logp_cutoff]
     ax2 = fig.add_subplot(212)
-    ax2.scatter(x=df_filt['logp'], y=df_filt[col_name], c=model_color, s=25,  marker='|')
-    ax2.set_xlim([logp_cutoff * 1.05 , 0])
+    ax2.scatter(x=df_filt['logp'], y=df_filt[col_name], c=model_color, s=25,  marker='|', label='one set of parameters')
+    ax2.set_xlim([logp_cutoff - 1 , logp_shade_max + 1])
+    ax2.fill_between(x, -0.05, y2=1.05, color='lightgray', alpha=0.4)
     ax2.set_ylim([-0.05,1.05])
     ax2.set_ylabel('success rate')
     ax2.set_xlabel('log$_{10}$(Likelihood)')
+    ax2.legend(loc='lower right')
     
     plt.tight_layout()
-    plt.savefig(figs_directory + success_prop_col_name_prefix + 'logp_vs_success.png')
+    plt.savefig(figs_directory + success_prop_col_name_prefix + 'logp_vs_success.png', dpi=600)
     plt.close()
     
     
@@ -517,7 +545,7 @@ def plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels
     
     fig.suptitle('Iterations per chain = ' + titleN)
     # plt.tight_layout()
-    plt.savefig(figs_directory + 'compare_dist_all_chains.png')
+    plt.savefig(figs_directory + 'compare_dist_all_chains.png', dpi=600)
     plt.close()
     
     return
@@ -551,7 +579,7 @@ def switch_models_A_and_B_find_bead(param_names, save_directory):
     col_N = len(dream_success_df.columns)
     param_N = len(param_names)
     
-    embryo_N = int((col_N - param_N - 1) / 2) - 1 # ((colN - param_names - logp) / just A) - success_prop
+    embryo_N = 15
     
     df_success_switch_AB_and_lower = {
         "threshold$^A$": "threshold$^b$",
@@ -564,8 +592,9 @@ def switch_models_A_and_B_find_bead(param_names, save_directory):
         "B_success_proportion": "a_success_proportion"
     }
     for idx in range(embryo_N):
-        df_success_switch_AB_and_lower['A_' + str(idx + 1)] = 'b_' + str(idx + 1)
-        df_success_switch_AB_and_lower['B_' + str(idx + 1)] = 'a_' + str(idx + 1)
+        if 'A_' + str(idx + 1) in dream_success_df.columns:
+            df_success_switch_AB_and_lower['A_' + str(idx + 1)] = 'b_' + str(idx + 1)
+            df_success_switch_AB_and_lower['B_' + str(idx + 1)] = 'a_' + str(idx + 1)
     dream_success_df = dream_success_df.rename(columns=df_success_switch_AB_and_lower)
     
     df_success_switch_upper = {
@@ -579,8 +608,9 @@ def switch_models_A_and_B_find_bead(param_names, save_directory):
         "a_success_proportion": "A_success_proportion"
     }
     for idx in range(embryo_N):
-        df_success_switch_upper['b_' + str(idx + 1)] = 'B_' + str(idx + 1)
-        df_success_switch_upper['a_' + str(idx + 1)] = 'A_' + str(idx + 1)
+        if 'b_' + str(idx + 1) in dream_success_df.columns:
+            df_success_switch_upper['b_' + str(idx + 1)] = 'B_' + str(idx + 1)
+            df_success_switch_upper['a_' + str(idx + 1)] = 'A_' + str(idx + 1)
     dream_success_df = dream_success_df.rename(columns=df_success_switch_upper)
     
     dream_out_df.to_csv(save_directory + 'dream_out_switched_AB.tsv', sep='\t')
@@ -591,13 +621,11 @@ def switch_models_A_and_B_find_bead(param_names, save_directory):
     return param_names
     
 
-
 def create_pyDREAM_figs(dream_params, param_names, param_lims, axes_labels, model_color, save_directory):
     
-    dream_out_df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t')
-    dream_success_df = pd.read_csv(save_directory + 'top_params.tsv', sep='\t')
+    dream_out_df = pd.read_csv(save_directory + 'dream_out.tsv', sep='\t', index_col=0, header=0)
+    dream_success_df = pd.read_csv(save_directory + 'top_params.tsv', sep='\t', index_col=0, header=0)
     
-    dream_success_df = dream_success_df.drop_duplicates()
     dream_success_df = dream_success_df.sort_values(by='logp', ascending=False)
     
     figs_directory = save_directory + 'figs/'
@@ -605,12 +633,12 @@ def create_pyDREAM_figs(dream_params, param_names, param_lims, axes_labels, mode
         os.mkdir(figs_directory)
         
     # desired output
-    plot_param_pair_grid_logp(dream_success_df, param_names, param_lims, axes_labels, model_color, figs_directory)
+    # plot_param_pair_grid_logp(dream_success_df, param_names, param_lims, axes_labels, model_color, figs_directory)
     # plot_param_pair_grid_success(dream_success_df, param_names, param_lims, axes_labels, figs_directory)
     
     # checks
-    plot_logp_over_time(dream_out_df, dream_params, figs_directory)
-    plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
+    # plot_logp_over_time(dream_out_df, dream_params, figs_directory)
+    # plot_dist_from_all_chains(dream_out_df, param_names, param_lims, axes_labels, figs_directory)
     logp_success_correlation(dream_success_df, '', model_color, figs_directory)
     
 def create_pyDREAM_figs_2models(dream_params, param_names, param_lims, axes_labels, without_nbhd_color, with_nbhd_color, save_directory):
