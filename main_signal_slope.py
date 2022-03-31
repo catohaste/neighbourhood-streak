@@ -25,8 +25,8 @@ embryoN = 15
 embryos = [Embryo('title', initial_params['number_of_cells']) for i in range(embryoN)]
 
 # select experiment
-experiment_options = ['testing', 'all_exps', 'cell_pellet', 'activin_ant', 'bmp4_ant', 'threshold']
-select_exp = 'activin_ant'
+experiment_options = ['testing', 'all_exps', 'cell_pellet', 'activin_ant', 'bmp4_ant', 'threshold', 'run2_A_B']
+select_exp = 'run2_A_B'
 models = load_models(select_exp)
 
 # initialize arrays for plots

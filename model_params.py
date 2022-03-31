@@ -1,7 +1,7 @@
 from classes import Model
 import numpy as np
 
-from bead_params import bead_params_play, bead_params_all_exps, bead_params_cell_pellet, bead_params_activin_ant, bead_params_bmp4_ant, bead_params_threshold
+from bead_params import bead_params_play, bead_params_all_exps, bead_params_cell_pellet, bead_params_activin_ant, bead_params_bmp4_ant, bead_params_threshold, bead_params_run2_modelA, bead_params_run2_modelB
 
 
 def load_models(select_exp):
@@ -105,6 +105,20 @@ def load_models(select_exp):
         models[1].nbhd_size = 2*np.floor(62.0953642599517) + 1
         models[1].inhibitor_scaling = 10.0 ** 1.43501518320614
         models[1].inducer_scaling = 10.0 ** (1.30491072217825)
+        
+    elif select_exp is 'run2_A_B':
+        
+        models[0].bead_params = bead_params_run2_modelA
+        models[0].threshold = 0.493950265800207
+        models[0].nbhd_size = None
+        models[0].inhibitor_scaling = 10.0 ** (2.02042081653826)
+        models[0].inducer_scaling = 10.0 ** (2.55881683637734)
+
+        models[1].bead_params = bead_params_run2_modelB
+        models[0].threshold = 0.246273569161305
+        models[0].nbhd_size = 2*np.floor(97.0223908634862) + 1
+        models[0].inhibitor_scaling = 10.0 ** (1.80372902814812)
+        models[0].inducer_scaling = 10.0 ** (-0.160334345526756)
         
     else:
         print("Unexpected input for 'select_exp'.\nPlease choose valid choice from 'experiment_options'.\nLoaded 'testing' parameter values.")

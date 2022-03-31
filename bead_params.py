@@ -243,3 +243,85 @@ bead_params_threshold = {
     'DM_conc' : -0.496848222171755,  # AG1X2
     'SB_conc' : -0.5 # AG1X2
 }
+
+bead_params_run2_modelA = {
+    
+    # vg1
+    'cell_pellet_width' : 30,
+    
+    'cell_pellet_spread' : 7,
+    
+    'vg1_cell_conc' : 0.390605285016128, # cell_pellet 
+    'bmp4_cell_conc' : 0.573597304673746,
+
+    # bmp
+    'afigel_width' : 7,
+    
+    'afigel_50_spread' : 40,
+    'afigel_25_spread' : 52.995798457724,
+    'afigel_12_spread' : 2.61868431772316,
+    'afigel_6_spread' : 9.40279474053165,
+    
+    'bmp4_50_conc' : 0.9,  # afigel
+    'bmp4_25_conc' : 0.788715881423304,
+    'bmp4_12_conc' : 0.82072795709399, # 0.125,
+    'bmp4_6_conc' : 0.928947829600234,
+
+    # activin
+    'heparin_width' : 9,
+    
+    'heparin_10_spread' : 7.25591255297502, # 0.143, # heparin
+    'heparin_2_spread' : 14.4820334029303,
+    
+    'activin_10_conc' : 0.115666505181872, # 0.143, # heparin
+    'activin_2_conc' : 0.100308721619127,
+    
+    # DM and SB
+    'AG1X2_width' : 7,
+    
+    'AG1X2_spread' : 31.4225304206746,
+    
+    'DM_conc' : -0.496848222171755,  # AG1X2
+    'SB_conc' : -0.5 # AG1X2
+}
+
+bead_params_run2_modelB = {
+    
+    # vg1
+    'cell_pellet_width' : 30,
+    
+    'cell_pellet_spread' : 7,
+    
+    'vg1_cell_conc' : 0.390605285016128, # cell_pellet 
+    'bmp4_cell_conc' : 0.573597304673746,
+
+    # bmp
+    'afigel_width' : 7,
+    
+    'afigel_50_spread' : 40,
+    'afigel_25_spread' : 55.376527718581,
+    'afigel_12_spread' : 4.70652623424728,
+    'afigel_6_spread' : 9.40279474053165,
+    
+    'bmp4_50_conc' : 0.9,  # afigel
+    'bmp4_25_conc' : 0.960239621997976,
+    'bmp4_12_conc' : 0.632320994975803, # 0.125,
+    'bmp4_6_conc' : 0.928947829600234,
+
+    # activin
+    'heparin_width' : 9,
+    
+    'heparin_10_spread' : 11.9376261559365, # 0.143, # heparin
+    'heparin_2_spread' : 14.4820334029303,
+    
+    'activin_10_conc' : 0.0290834295325344, # 0.143, # heparin
+    'activin_2_conc' : 0.100308721619127,
+    
+    # DM and SB
+    'AG1X2_width' : 7,
+    
+    'AG1X2_spread' : 31.4225304206746,
+    
+    'DM_conc' : -0.496848222171755,  # AG1X2
+    'SB_conc' : -0.5 # AG1X2
+}
