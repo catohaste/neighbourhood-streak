@@ -13,26 +13,31 @@ Both models involve cells balancing their concentrations of inducer and inhibito
 ## Quickstart
 
 Code has been tested with Python 3.7.9.
-
+#### Download code
 ```
-python -m venv env
+git clone https://github.com/catohaste/neighbourhood-streak.git
+cd neighoubourhood-streak
+```
+
+#### Create and activate virtual environments with all required packages
+```
+python3 -m venv env
 source env/bin/activate
 python -m pip install -r requirements.txt
 ```
-#### Run files
 
+#### Run files
 ```
 python main_signal_slope.py
 ```
 
 #### Jupyter demo
-
 ```
 python -m ipykernel install --user --name=env
 jupyter notebook
 ```
 
-Open 'demo.ipynb' and change kernel to the virtualenv created.
+Open 'demo.ipynb' and change kernel to the virtualenv created, if not already done so.
 
 ### Clean up
 ```
