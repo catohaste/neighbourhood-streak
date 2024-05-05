@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 from functions_pyDREAM import run_pyDREAM, check_success_rate
 from plot_pyDREAM import save_pyDREAM_out_dataframe, create_pyDREAM_figs
-from bayes_factor import set_bayes_factor_threshold, calculate_model_score
+# from bayes_factor import set_bayes_factor_threshold, calculate_model_score
 
 from classes import Embryo
 from functions import define_initial_protein_concentrations, setup_embryos, run_model, check_embryos_success, define_experiment_groups, set_params_from_df
