@@ -2,6 +2,7 @@ import os.path
 import numpy as np
 import pandas as pd
 from copy import deepcopy
+import multiprocessing as mp
 from pydream.core import run_dream
 from pydream.convergence import Gelman_Rubin
 
@@ -17,11 +18,13 @@ def run_pyDREAM(parameters_to_sample, likelihood_function, dream_params, save_di
     niterations = dream_params['niterations']
     GRlim = dream_params['GRlim']
     
+    fork_context = mp.get_context('fork')
+    
     converged = False
     total_iterations = niterations
 
 	#Run DREAM sampling.  Documentation of DREAM options is in Dream.py.
-    sampled_params, log_ps = run_dream(parameters_to_sample, likelihood_function, niterations=niterations, nchains=nchains, multitry=False, parallel=False, verbose=False, model_name=save_directory)
+    sampled_params, log_ps = run_dream(parameters_to_sample, likelihood_function, niterations=niterations, nchains=nchains, multitry=False, parallel=False, mp_context=fork_context, verbose=False, model_name=save_directory)
     
 	#Save sampling output (sampled parameter values and their corresponding logps).
     for chain in range(len(sampled_params)):
@@ -39,7 +42,7 @@ def run_pyDREAM(parameters_to_sample, likelihood_function, dream_params, save_di
         while not converged:
             total_iterations += niterations
 
-            sampled_params, log_ps = run_dream(parameters_to_sample, likelihood_function, niterations=niterations, nchains=nchains, multitry=False, parallel = False, verbose=False, model_name=save_directory)
+            sampled_params, log_ps = run_dream(parameters_to_sample, likelihood_function, niterations=niterations, nchains=nchains, multitry=False, parallel = False, mp_context=fork_context, verbose=False, model_name=save_directory)
             
             for chain in range(len(sampled_params)):
                 np.save(save_directory + 'sampled_params_chain' + str(chain) + '_' + str(total_iterations), sampled_params[chain])
