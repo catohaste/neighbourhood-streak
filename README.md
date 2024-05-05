@@ -12,7 +12,7 @@ Both models involve cells balancing their concentrations of inducer and inhibito
 
 ## Quickstart
 
-Code has been tested with Python 3.7.9.
+Code has been tested with Python 3.12.2.
 #### Download code
 ```
 git clone https://github.com/catohaste/neighbourhood-streak.git
