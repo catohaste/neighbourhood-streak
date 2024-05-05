@@ -88,10 +88,10 @@ class Embryo:
         streak_cell_number = np.count_nonzero(self.brachyury)
         # indices where value changes
         change_indices = np.where(np.roll(self.brachyury,1)!=self.brachyury)[0]
-        if np.count_nonzero(self.brachyury) is 0:
+        if np.count_nonzero(self.brachyury) == 0:
             # print('no streaks')
             self.streakN = 0
-        elif len(change_indices) is 0:
+        elif len(change_indices) == 0:
             # print('ring streak')
             self.streakN = 1
             self.streak_positions = ['ring']

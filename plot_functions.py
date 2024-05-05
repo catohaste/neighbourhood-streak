@@ -82,10 +82,10 @@ def plot_proteins(ax_pro, embryo, protein_settings):
     
     font_sizes = protein_settings['font_sizes']
     rcParams['font.sans-serif'] = [protein_settings['font']]
-    if protein_settings['view'] is 'anterior':
+    if protein_settings['view'] == 'anterior':
         xticklabel = ['post.','ant.','post.']
         roll_idx = 0
-    elif protein_settings['view'] is 'posterior':
+    elif protein_settings['view'] == 'posterior':
         xticklabel = ['ant.','post.','ant.']
         roll_idx = int(noc/2)
     else:
@@ -161,10 +161,10 @@ def plot_model(ax_model, embryo, model, model_values, model_ylim, model_settings
     
     font_sizes = model_settings['font_sizes']
     rcParams['font.sans-serif'] = [model_settings['font']]
-    if model_settings['view'] is 'anterior':
+    if model_settings['view'] == 'anterior':
         xticklabel = ['post.','ant.','post.']
         roll_idx = 0
-    elif model_settings['view'] is 'posterior':
+    elif model_settings['view'] == 'posterior':
         xticklabel = ['ant.','post.','ant.']
         roll_idx = int(noc/2)
     else:

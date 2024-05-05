@@ -22,7 +22,7 @@ def load_models(select_exp):
     models[1].index_string = 'B'
     models[1].plot_color = 'C1'
             
-    if select_exp is 'testing':
+    if select_exp == 'testing':
         
         models[0].bead_params = bead_params_play
         models[0].threshold = 0.427922233370511
@@ -36,7 +36,7 @@ def load_models(select_exp):
         models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
         models[1].inducer_scaling = 10.0 ** (-1.79339961627464)
         
-    elif select_exp is 'all_exps':
+    elif select_exp == 'all_exps':
         
         models[0].bead_params = bead_params_all_exps
         models[0].threshold = 0.427922233370511
@@ -50,7 +50,7 @@ def load_models(select_exp):
         models[1].inhibitor_scaling = 10.0 ** 1.57491873987476
         models[1].inducer_scaling = 10.0 ** (-1.79339961627464)
         
-    elif select_exp is 'cell_pellet':
+    elif select_exp == 'cell_pellet':
         
         models[0].bead_params = bead_params_cell_pellet
         models[0].threshold = 0.497687138515397
@@ -64,7 +64,7 @@ def load_models(select_exp):
         models[1].inhibitor_scaling = 10.0 ** -0.329085126426299
         models[1].inducer_scaling = 10.0 ** (-2.61174561686766)
         
-    elif select_exp is 'activin_ant':
+    elif select_exp == 'activin_ant':
         
         models[0].bead_params = bead_params_activin_ant
         models[0].threshold = 0.496121824802409
@@ -78,7 +78,7 @@ def load_models(select_exp):
         models[1].inhibitor_scaling = 10.0 ** 2.22004529783025
         models[1].inducer_scaling = 10.0 ** (-1.62424826505605)
         
-    elif select_exp is 'bmp4_ant':
+    elif select_exp == 'bmp4_ant':
         
         models[0].bead_params = bead_params_bmp4_ant
         models[0].threshold = 0.485598910878967
@@ -92,7 +92,7 @@ def load_models(select_exp):
         models[1].inhibitor_scaling = 10.0 ** 2.39830585243343
         models[1].inducer_scaling = 10.0 ** (-2.70035400851161)
         
-    elif select_exp is 'threshold':
+    elif select_exp == 'threshold':
         
         models[0].bead_params = bead_params_threshold
         
@@ -107,7 +107,7 @@ def load_models(select_exp):
         models[1].inhibitor_scaling = 10.0 ** 1.43501518320614
         models[1].inducer_scaling = 10.0 ** (1.30491072217825)
         
-    elif select_exp is 'run2_A_B':
+    elif select_exp == 'run2_A_B':
         
         models[0].bead_params = bead_params_run2_modelA
         models[0].threshold = 0.493950265800207
